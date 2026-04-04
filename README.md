@@ -71,7 +71,10 @@ Copy `.env.example` to `.env` and fill in:
 - Optimized for Vercel deployment.
 - Add all environment variables in Vercel project settings.
 - Use a managed PostgreSQL database.
-- Run Prisma migrations during deployment workflow.
+- Install Command: `npm install --legacy-peer-deps`
+- Build Command: `npm run build`
+- Node.js Version: `20.x`
+- Run `npm run prisma:migrate:deploy` against the production database before first production launch, or add it to the Vercel build command if you explicitly want automatic migrations on each deploy.
 
 ## Current MVP Boundaries
 - The live player is protected at the app layer and ready for a dedicated streaming provider integration.
