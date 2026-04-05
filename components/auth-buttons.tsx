@@ -11,8 +11,8 @@ export function AuthButtons({ session }: { session: Session | null }) {
         <Button asChild variant="ghost" className="hidden sm:inline-flex">
           <Link href="/auth/signin">Log In</Link>
         </Button>
-        <Button asChild>
-          <Link href="/auth/register">Join</Link>
+        <Button asChild variant="secondary">
+          <Link href="/contact#booking">Book Now</Link>
         </Button>
       </div>
     );

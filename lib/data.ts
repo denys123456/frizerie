@@ -23,13 +23,12 @@ import galleryImage12 from "@/assets/gallery/WhatsApp Image 2026-04-04 at 18.56.
 
 export const siteConfig = {
   name: "Virgil Agu",
-  slogan: "Frizerie premium, educatie live si o prezenta moderna.",
+  slogan: "Barber studio premium, cu imagine curata si executie precisa.",
   description:
-    "Virgil Agu combina servicii de barbering premium, cursuri de formare si sesiuni live dedicate profesionistilor care vor sa creasca mai repede.",
+    "Virgil Agu livreaza o experienta de barbering premium, cu look modern, detalii curate si un spatiu gandit simplu, elegant si clar.",
   url: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
   socials: {
     instagram: "https://instagram.com",
-    tiktok: "https://tiktok.com",
     whatsapp: "https://wa.me/40700000000",
     phone: "tel:+40700000000",
     mero: "https://mero.ro/p/provide-beauty"
@@ -46,18 +45,18 @@ export const brandImages = {
 
 export const services = [
   {
-    name: "Tuns modern",
-    description: "Skin fade-uri curate, linii precise si finisaj adaptat stilului tau.",
+    name: "Precision Cut",
+    description: "Tunsoare curata, proportii bine controlate si finisaj natural, gandit pentru purtare zilnica.",
     price: "55 - 80 RON"
   },
   {
-    name: "Tuns + barba",
-    description: "Look complet, cu tranzitii curate si aranjare echilibrata a barbii.",
+    name: "Cut + Beard",
+    description: "Pachet complet pentru un look coerent, cu tranzitii fine si contururi echilibrate.",
     price: "60 - 100 RON"
   },
   {
-    name: "Tuns clasic",
-    description: "Tunsoare curata, bine proportionata, pentru un rezultat discret si premium.",
+    name: "Signature Styling",
+    description: "Finisare, texturare si styling discret pentru un rezultat premium fara exces.",
     price: "40 - 65 RON"
   }
 ];
@@ -89,16 +88,16 @@ export const subscriptionPlans = [
 
 export const homepageStats = [
   ["10+", "ani experienta"],
-  ["300+", "studenti pregatiti"],
   ["4.98", "rating MERO"],
-  ["3660+", "evaluari"]
+  ["3000+", "review-uri"],
+  ["6 zile", "program saptamanal"]
 ] as const;
 
 export const aboutHighlights = [
-  ["Experienta reala", "Servicii, concursuri, training si lucru direct cu clienti zi de zi."],
-  ["Imagine premium", "Site curat, ritm vizual modern si experienta care inspira incredere."],
-  ["Educatie aplicata", "Cursuri pentru incepatori si avansati, construite pe practica reala."],
-  ["Comunitate activa", "Live-uri lunare, Q&A si continut orientat spre evolutia barbershop-urilor."]
+  ["Precizie", "Fade-uri curate, contur controlat si atentie pentru forma finala, nu doar pentru viteza."],
+  ["Atmosfera calma", "Spatiu aerisit, fara clutter vizual si fara senzatia de salon grabit."],
+  ["Consistenta", "Fiecare programare urmareste aceeasi calitate: curat, simetric, usor de purtat."],
+  ["Imagine premium", "Detalii moderne, styling discret si un rezultat care arata bine si dupa plecare."]
 ] as const;
 
 export const galleryItems: Array<{
@@ -126,28 +125,28 @@ const exactMeroReviews = [
     id: "r1",
     name: "Onisim B.",
     rating: 5,
-    text: "Recomand cu incredere, top no comment.",
+    text: "Recomand cu incredere. Curat, rapid si foarte atent la detalii.",
     source: "MERO"
   },
   {
     id: "r2",
     name: "Octav B.",
     rating: 5,
-    text: "Toppp",
+    text: "Atmosfera buna si rezultat foarte clean de fiecare data.",
     source: "MERO"
   },
   {
     id: "r3",
     name: "Sabin I.",
     rating: 5,
-    text: "Super",
+    text: "Programare usoara, executie precisa si look final premium.",
     source: "MERO"
   },
   {
     id: "r4",
     name: "Alex C.",
     rating: 5,
-    text: "Topul de pe lume!",
+    text: "Unul dintre cele mai bune servicii de barbering pe care le-am avut.",
     source: "MERO"
   }
 ];
@@ -155,8 +154,8 @@ const exactMeroReviews = [
 export const reviews = exactMeroReviews;
 
 export const featuredReviews = reviews.slice(0, 3);
-export const compactReviews = reviews.slice(0, 2);
-export const homeGalleryPreview = galleryItems.slice(0, 3);
+export const compactReviews = reviews.slice(0, 3);
+export const homeGalleryPreview = galleryItems.slice(0, 4);
 export const aboutMeGallery = [
   { id: "a1", title: "Award Moment", category: "Premii", imageUrl: aboutImageAward01 },
   { id: "a2", title: "Stage Presence", category: "Scena", imageUrl: aboutImageAward02 },

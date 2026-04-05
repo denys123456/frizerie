@@ -5,21 +5,22 @@ import { siteConfig } from "@/lib/data";
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/10 py-10">
-      <div className="section-shell flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+    <footer className="border-t border-white/10 py-10 sm:py-12">
+      <div className="section-shell flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
         <div className="space-y-4">
           <Logo />
           <p className="max-w-md text-sm leading-6 text-white/55">
-            Servicii premium de barbering, cursuri practice si sesiuni live pentru o
-            experienta moderna, coerenta si profesionala.
+            Barber studio cu estetică curată, servicii precise și o experiență liniștită,
+            construită pentru clienți care preferă calitatea în locul aglomerației.
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-5 text-sm text-white/60">
-          <Link href={siteConfig.socials.instagram}>Instagram</Link>
-          <Link href={siteConfig.socials.tiktok}>TikTok</Link>
-          <Link href={siteConfig.socials.mero}>MERO</Link>
-          <Link href={siteConfig.socials.whatsapp}>WhatsApp</Link>
-          <Link href="/dashboard">Dashboard</Link>
+          <Link href="/gallery" className="transition hover:text-white">Gallery</Link>
+          <Link href="/reviews" className="transition hover:text-white">Reviews</Link>
+          <Link href="/contact" className="transition hover:text-white">Booking</Link>
+          <Link href={siteConfig.socials.instagram} className="transition hover:text-white">Instagram</Link>
+          <Link href={siteConfig.socials.mero} className="transition hover:text-white">MERO</Link>
+          <Link href={siteConfig.socials.whatsapp} className="transition hover:text-white">WhatsApp</Link>
         </div>
       </div>
     </footer>

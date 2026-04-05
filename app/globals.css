@@ -11,15 +11,16 @@ html {
 }
 
 body {
-  background-color: #080808;
+  background-color: #0f0f0f;
   background-image:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.05), transparent 30%),
-    linear-gradient(180deg, #050505 0%, #090a0d 45%, #050505 100%);
+    radial-gradient(circle at top, rgba(216, 195, 165, 0.06), transparent 28%),
+    linear-gradient(180deg, #0d0d0d 0%, #121212 45%, #0b0b0b 100%);
+  color: #f5f5f2;
 }
 
 ::selection {
-  background: rgba(200, 208, 220, 0.32);
-  color: #f5f7fa;
+  background: rgba(216, 195, 165, 0.28);
+  color: #faf7f2;
 }
 
 @layer base {
@@ -31,7 +32,16 @@ body {
   h2,
   h3,
   h4 {
-    @apply font-display tracking-[0.02em];
+    @apply font-display tracking-[-0.03em];
+  }
+
+  body,
+  p,
+  a,
+  button,
+  input,
+  textarea {
+    @apply font-sans;
   }
 }
 
@@ -41,7 +51,7 @@ body {
   }
 
   .glass-panel {
-    @apply border border-white/10 bg-white/[0.06] shadow-panel backdrop-blur-xl;
+    @apply border border-white/10 bg-white/[0.04] shadow-panel backdrop-blur-xl;
   }
 
   .soft-ring {
@@ -49,6 +59,14 @@ body {
   }
 
   .accent-chip {
-    @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 text-xs uppercase tracking-[0.35em] text-accent;
+    @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[10px] uppercase tracking-[0.38em] text-accent;
+  }
+
+  .premium-card {
+    @apply rounded-[1.75rem] border border-white/10 bg-white/[0.035] shadow-panel transition duration-300;
+  }
+
+  .section-space {
+    @apply py-16 sm:py-20 lg:py-24;
   }
 }

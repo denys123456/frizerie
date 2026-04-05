@@ -19,7 +19,7 @@ export function FadeIn({
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay }}
+      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay }}
       className={cn(className)}
     >
       {children}
@@ -43,7 +43,7 @@ export function Stagger({
         hidden: {},
         visible: {
           transition: {
-            staggerChildren: 0.12
+            staggerChildren: 0.09
           }
         }
       }}
@@ -67,7 +67,7 @@ export function StaggerItem({
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0 }
       }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       className={cn(className)}
     >
       {children}

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Manrope, Syne } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 
 import { auth } from "@/auth";
 import { Footer } from "@/components/footer";
@@ -10,15 +10,15 @@ import { siteConfig } from "@/lib/data";
 
 import "./globals.css";
 
-const inter = Manrope({
+const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter"
 });
 
-const cormorant = Syne({
+const poppins = Poppins({
   subsets: ["latin"],
-  variable: "--font-cormorant",
-  weight: ["400", "500", "600", "700"]
+  variable: "--font-poppins",
+  weight: ["500", "600", "700"]
 });
 
 export const metadata: Metadata = {
@@ -51,10 +51,10 @@ export default async function RootLayout({
   const session = await auth();
 
   return (
-    <html lang="en" className={`${inter.variable} ${cormorant.variable}`}>
+    <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <body className="bg-background font-sans text-foreground antialiased">
         <div className="fixed inset-0 -z-10 bg-mesh opacity-80" />
-        <div className="fixed inset-0 -z-10 bg-[linear-gradient(to_bottom,rgba(8,8,8,0.82),rgba(8,8,8,0.98))]" />
+        <div className="fixed inset-0 -z-10 bg-[linear-gradient(to_bottom,rgba(12,12,12,0.84),rgba(12,12,12,0.98))]" />
         <Navbar session={session} />
         <main className="min-h-screen pt-24">{children}</main>
         <Footer />

@@ -1,21 +1,20 @@
 import { GalleryGrid } from "@/components/gallery-grid";
 import { FadeIn } from "@/components/motion-shell";
 import { SectionHeading } from "@/components/section-heading";
-import { getManagedGalleryItems } from "@/lib/site-content";
+import { galleryItems } from "@/lib/data";
 
-export default async function GalleryPage() {
-  const galleryItems = await getManagedGalleryItems();
-
+export default function GalleryPage() {
   return (
-    <section className="section-shell py-16 sm:py-20">
+    <section className="section-shell section-space">
       <FadeIn>
         <SectionHeading
           eyebrow="Galerie"
-          title="Portofoliu vizual cu imagini reale din assets."
-          description="Fara placeholdere, fara stock, doar continut local integrat in layout-ul nou."
+          title="Galerie completa, construita exclusiv din imaginile locale."
+          description="Grid curat, 3-4 imagini pe rand in functie de ecran, spacing consistent si lightbox fullscreen pentru preview clar."
+          align="center"
         />
       </FadeIn>
-      <div className="mt-10">
+      <div className="mx-auto mt-10 max-w-7xl">
         <GalleryGrid items={galleryItems} />
       </div>
     </section>
