@@ -23,9 +23,9 @@ import galleryImage12 from "@/assets/gallery/WhatsApp Image 2026-04-04 at 18.56.
 
 export const siteConfig = {
   name: "Virgil Agu",
-  slogan: "Barber studio premium, cu imagine curata si executie precisa.",
+  slogan: "Cursuri de frizerie, LIVE-uri si executie premium.",
   description:
-    "Virgil Agu livreaza o experienta de barbering premium, cu look modern, detalii curate si un spatiu gandit simplu, elegant si clar.",
+    "Virgil Agu organizeaza cursuri de frizerie pentru incepatori, perfectionare 1 la 1 si sesiuni LIVE, bazate pe peste 10 ani de experienta si sute de cursanti formati.",
   url: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
   socials: {
     instagram: "https://instagram.com",
@@ -45,19 +45,19 @@ export const brandImages = {
 
 export const services = [
   {
-    name: "Precision Cut",
-    description: "Tunsoare curata, proportii bine controlate si finisaj natural, gandit pentru purtare zilnica.",
-    price: "55 - 80 RON"
+    name: "Curs Incepatori",
+    description: "Curs fizic de la 0, organizat impreuna cu Scoala Comerciala si de Servicii Bacau.",
+    price: "3650 RON"
   },
   {
-    name: "Cut + Beard",
-    description: "Pachet complet pentru un look coerent, cu tranzitii fine si contururi echilibrate.",
-    price: "60 - 100 RON"
+    name: "Perfectionare 1 la 1",
+    description: "Experienta intensiva cu 2 modele reale, corectii in timp real si lucru direct alaturi de Virgil Agu.",
+    price: "Format fizic"
   },
   {
-    name: "Signature Styling",
-    description: "Finisare, texturare si styling discret pentru un rezultat premium fara exces.",
-    price: "40 - 65 RON"
+    name: "LIVE Barber Experience",
+    description: "Sesiuni lunare LIVE cu explicatii pas cu pas, tehnici reale si context clar de salon.",
+    price: "100 RON / sesiune"
   }
 ];
 
@@ -65,7 +65,7 @@ export const subscriptionPlans = [
   {
     name: "Abonament Live",
     price: "de la 19 EUR / luna",
-    description: "Acces la live-uri, replay-uri si sesiuni educative pentru profesionisti.",
+    description: "Acces la live-uri, replay-uri si continut educational pentru frizeri care vor sa creasca real.",
     features: [
       "Acces la live stream",
       "Acces la arhiva de sesiuni",
@@ -76,7 +76,7 @@ export const subscriptionPlans = [
   {
     name: "Sesiune individuala",
     price: "de la 15 EUR",
-    description: "Deblochezi o sesiune singulara fara abonament recurent.",
+    description: "Deblochezi o sesiune singulara fara abonament recurent, pentru acces rapid la o demonstratie concreta.",
     features: [
       "Acces one-time",
       "Ideal pentru sesiuni punctuale",
@@ -89,15 +89,15 @@ export const subscriptionPlans = [
 export const homepageStats = [
   ["10+", "ani experienta"],
   ["4.98", "rating MERO"],
-  ["3000+", "review-uri"],
-  ["6 zile", "program saptamanal"]
+  ["300+", "cursanti formati"],
+  ["2x", "master barber romania"]
 ] as const;
 
 export const aboutHighlights = [
-  ["Precizie", "Fade-uri curate, contur controlat si atentie pentru forma finala, nu doar pentru viteza."],
-  ["Atmosfera calma", "Spatiu aerisit, fara clutter vizual si fara senzatia de salon grabit."],
-  ["Consistenta", "Fiecare programare urmareste aceeasi calitate: curat, simetric, usor de purtat."],
-  ["Imagine premium", "Detalii moderne, styling discret si un rezultat care arata bine si dupa plecare."]
+  ["Experienta reala", "Peste 10 ani in domeniu, zeci de seminarii si workshopuri, atat ca trainer, cat si ca participant."],
+  ["Cursuri fizice", "Atat cursul de incepatori, cat si perfectionarea 1 la 1 sunt construite practic, cu modele reale."],
+  ["Palmares", "Fast Fade Dublin, Master Barber Romania doi ani consecutiv si multe alte clasari de top."],
+  ["Progres clar", "Accent pe executie, ritm de lucru, claritate in explicatii si rezultate care pot fi aplicate imediat in salon."]
 ] as const;
 
 export const galleryItems: Array<{
@@ -106,18 +106,18 @@ export const galleryItems: Array<{
   category: string;
   imageUrl: StaticImageData;
 }> = [
-  { id: "g1", title: "Skin Fade Clean", category: "Fade", imageUrl: galleryImage01 },
-  { id: "g2", title: "Texture Build", category: "Crop", imageUrl: galleryImage02 },
-  { id: "g3", title: "Sharp Beard Line", category: "Barba", imageUrl: galleryImage03 },
-  { id: "g4", title: "Low Fade Detail", category: "Fade", imageUrl: galleryImage04 },
-  { id: "g5", title: "Classic Blend", category: "Clasic", imageUrl: galleryImage05 },
-  { id: "g6", title: "Modern Finish", category: "Styling", imageUrl: galleryImage06 },
-  { id: "g7", title: "Precision Texture", category: "Crop", imageUrl: galleryImage07 },
-  { id: "g8", title: "Contur Clean", category: "Barba", imageUrl: galleryImage08 },
-  { id: "g9", title: "Studio Result", category: "Salon", imageUrl: galleryImage09 },
-  { id: "g10", title: "Fresh Fade", category: "Fade", imageUrl: galleryImage10 },
-  { id: "g11", title: "Modern Barbering", category: "Editorial", imageUrl: galleryImage11 },
-  { id: "g12", title: "Premium Session", category: "Salon", imageUrl: galleryImage12 }
+  { id: "g1", title: "Fast Fade Dublin", category: "Premii", imageUrl: galleryImage01 },
+  { id: "g2", title: "Master Barber Romania", category: "Premii", imageUrl: galleryImage02 },
+  { id: "g3", title: "Fade curat", category: "Galerie", imageUrl: galleryImage03 },
+  { id: "g4", title: "Blend precis", category: "Galerie", imageUrl: galleryImage04 },
+  { id: "g5", title: "Rezultat premium", category: "Galerie", imageUrl: galleryImage05 },
+  { id: "g6", title: "Styling modern", category: "Galerie", imageUrl: galleryImage06 },
+  { id: "g7", title: "Executie de salon", category: "Galerie", imageUrl: galleryImage07 },
+  { id: "g8", title: "Detaliu de finish", category: "Galerie", imageUrl: galleryImage08 },
+  { id: "g9", title: "Context de lucru real", category: "Salon", imageUrl: galleryImage09 },
+  { id: "g10", title: "Fade si control", category: "Fade", imageUrl: galleryImage10 },
+  { id: "g11", title: "Barbering modern", category: "Editorial", imageUrl: galleryImage11 },
+  { id: "g12", title: "Rezultat final", category: "Salon", imageUrl: galleryImage12 }
 ];
 
 const exactMeroReviews = [

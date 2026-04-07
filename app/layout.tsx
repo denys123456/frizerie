@@ -3,8 +3,8 @@ import type { ReactNode } from "react";
 import { Inter, Poppins } from "next/font/google";
 
 import { auth } from "@/auth";
-import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
+import { SiteFooter } from "@/components/site-footer";
 import { ToasterShell } from "@/components/toaster-shell";
 import { siteConfig } from "@/lib/data";
 
@@ -24,7 +24,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} | Premium Barber & Education`,
+    default: `${siteConfig.name} | Cursuri de Frizerie si LIVE`,
     template: `%s | ${siteConfig.name}`
   },
   description: siteConfig.description,
@@ -57,7 +57,7 @@ export default async function RootLayout({
         <div className="fixed inset-0 -z-10 bg-[linear-gradient(to_bottom,rgba(12,12,12,0.84),rgba(12,12,12,0.98))]" />
         <Navbar session={session} />
         <main className="min-h-screen pt-24">{children}</main>
-        <Footer />
+        <SiteFooter />
         <ToasterShell />
       </body>
     </html>

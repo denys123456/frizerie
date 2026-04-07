@@ -16,9 +16,9 @@ export function TestimonialsSection({
       <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
         <FadeIn className="premium-card p-8 sm:p-10">
           <SectionHeading
-            eyebrow="Client Reviews"
-            title="Destul feedback cat sa inspire incredere, nu sa incarce pagina."
-            description="Sectiune scurta, aerisita, cu review-uri usor de citit si acces direct la istoricul complet."
+            eyebrow="Clienti"
+            title="Review-uri reale care confirma executia, atentia la detalii si constanta."
+            description="Sectiunea ramane aerisita si usor de citit, cu acces direct la istoricul complet din MERO."
           />
           <div className="mt-8 space-y-4 text-white/62">
             <p className="text-sm uppercase tracking-[0.34em] text-accent/80">MERO</p>

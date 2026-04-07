@@ -12,9 +12,9 @@ export function PricingSection() {
     <section className="section-shell section-space">
       <FadeIn>
         <SectionHeading
-          eyebrow="Abonamente"
-          title="Acces simplu pentru live-uri si continut educational."
-          description="Zona de abonamente ramane focusul principal: prezentare clara, doua optiuni si CTA direct catre pagina de live."
+          eyebrow="Acces"
+          title="Formate clare pentru invatare practica si progres real."
+          description="Poti urmari sesiunile LIVE, poti intra in cursurile de incepatori sau poti alege perfectionarea 1 la 1 pentru lucru intensiv."
           align="center"
         />
       </FadeIn>
@@ -34,7 +34,7 @@ export function PricingSection() {
                 ))}
               </div>
               <Button asChild className="mt-8">
-                <Link href="/live">Vezi accesul live</Link>
+                <Link href="/live">Vezi sesiunea LIVE</Link>
               </Button>
             </article>
           </StaggerItem>

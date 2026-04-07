@@ -91,9 +91,9 @@ export default async function CoursesPage() {
     <section className="section-shell section-space">
       <FadeIn className="mx-auto max-w-4xl text-center">
         <SectionHeading
-          eyebrow="Courses"
-          title="Cursuri prezentate curat, cu ritm vizual similar paginii de reviews."
-          description="Trei directii clare: incepatori, 1 la 1 si live experience. Fara text in exces, fara layout incarcat."
+          eyebrow="Cursuri"
+          title="Cursuri fizice si sesiuni LIVE construite pentru progres real."
+          description="Trei directii clare: curs de incepatori de la 0, perfectionare 1 la 1 si LIVE Barber Experience."
           align="center"
         />
       </FadeIn>
@@ -114,8 +114,8 @@ export default async function CoursesPage() {
               <p className="text-xs uppercase tracking-[0.35em] text-accent/80">Trainer</p>
               <h2 className="mt-4 text-4xl text-white sm:text-5xl">Virgil Agu</h2>
               <p className="mt-4 text-sm leading-7 text-white/64 sm:text-base">
-                Experienta de salon, competitii si sute de studenti trecuti prin procese
-                reale, nu doar demonstratii sterile.
+                Cu peste 10 ani experienta, zeci de seminarii si workshopuri, plus peste 300 de
+                cursanti formati, Virgil aduce context real de salon in fiecare curs.
               </p>
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
                 <div className="rounded-[1.5rem] border border-white/10 bg-[#111111] p-5">
@@ -141,12 +141,12 @@ export default async function CoursesPage() {
           <CourseCard
             title={courses.beginner.title}
             description={courses.beginner.description}
-            listTitle="Achievements"
+            listTitle="Palmares"
             listItems={courses.beginner.achievements}
-            detailTitle="Details"
+            detailTitle="Detalii"
             detailItems={courses.beginner.details}
             icon={<GraduationCap className="h-5 w-5" />}
-            cta={{ label: "See membership", href: "/live" }}
+            cta={{ label: "Vezi sesiunea LIVE", href: "/live" }}
           />
         </StaggerItem>
 
@@ -159,7 +159,7 @@ export default async function CoursesPage() {
             detailTitle="Ce inveti"
             detailItems={courses.advanced.outcomes}
             icon={<Scissors className="h-5 w-5" />}
-            cta={{ label: "See live context", href: "/live" }}
+            cta={{ label: "Vezi sesiunea LIVE", href: "/live" }}
           />
         </StaggerItem>
 
@@ -172,7 +172,7 @@ export default async function CoursesPage() {
             detailTitle="Ce inveti"
             detailItems={[...courses.liveExperience.outcomes, ...courses.liveExperience.details]}
             icon={<Radio className="h-5 w-5" />}
-            cta={{ label: "Go to live", href: "/live" }}
+            cta={{ label: "Intra pe LIVE", href: "/live" }}
           />
         </StaggerItem>
       </Stagger>

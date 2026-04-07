@@ -10,12 +10,12 @@ import { Logo } from "@/components/logo";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/live", label: "Live" },
-  { href: "/gallery", label: "Gallery" },
+  { href: "/", label: "Acasa" },
+  { href: "/live", label: "LIVE" },
+  { href: "/gallery", label: "Galerie" },
   { href: "/admin", label: "Admin" },
-  { href: "/reviews", label: "Reviews" },
-  { href: "/courses", label: "Courses" }
+  { href: "/reviews", label: "Review-uri" },
+  { href: "/courses", label: "Cursuri" }
 ];
 
 export function Navbar({ session }: { session: Session | null }) {

@@ -138,8 +138,8 @@ export function AdminDashboard() {
     <section className="section-shell py-16 sm:py-20">
       <SectionHeading
         eyebrow="Admin"
-        title="Admin simplu pentru servicii, galerie si live YouTube."
-        description="Toate modificarile sunt salvate local in browser, fara backend, fara storage extern si fara sa schimbe tema actuala."
+        title="Admin pentru cursuri, galerie si sesiuni LIVE."
+        description="Continutul din site poate fi actualizat rapid: cursuri fizice, imagini de galerie si link-ul pentru YouTube LIVE."
       />
 
       <div className="mt-10 space-y-6">
@@ -147,9 +147,9 @@ export function AdminDashboard() {
           <div className="glass-panel rounded-[1.75rem] p-6">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <h2 className="text-2xl text-white">Services</h2>
+                <h2 className="text-2xl text-white">Cursuri si servicii</h2>
                 <p className="mt-2 max-w-2xl text-sm leading-6 text-white/60">
-                  Adauga, editeaza sau sterge servicii. Imaginile pot fi selectate doar din assets.
+                  Adauga, editeaza sau sterge cardurile principale. Imaginile raman selectate doar din assets.
                 </p>
               </div>
               <Button type="button" variant="secondary" onClick={() => {
@@ -157,7 +157,7 @@ export function AdminDashboard() {
                 resetDraft();
                 setGalleryPreview(null);
               }}>
-                Reset local data
+                Reseteaza continutul local
               </Button>
             </div>
 
@@ -166,13 +166,13 @@ export function AdminDashboard() {
                 <input
                   value={serviceDraft.title}
                   onChange={(event) => setServiceDraft((current) => ({ ...current, title: event.target.value }))}
-                  placeholder="Service title"
+                  placeholder="Titlu card"
                   className="w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none"
                 />
                 <textarea
                   value={serviceDraft.description}
                   onChange={(event) => setServiceDraft((current) => ({ ...current, description: event.target.value }))}
-                  placeholder="Service description"
+                  placeholder="Descriere card"
                   rows={4}
                   className="w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none"
                 />
@@ -201,11 +201,11 @@ export function AdminDashboard() {
                 </div>
                 <div className="flex flex-wrap gap-3">
                   <Button type="button" onClick={handleServiceSave}>
-                    {editingServiceId ? "Save changes" : "Add service"}
+                    {editingServiceId ? "Salveaza modificarile" : "Adauga card"}
                   </Button>
                   {editingServiceId ? (
                     <Button type="button" variant="secondary" onClick={resetDraft}>
-                      Cancel
+                      Anuleaza
                     </Button>
                   ) : null}
                 </div>
@@ -217,15 +217,15 @@ export function AdminDashboard() {
                   <div className="relative aspect-[4/3]">
                     <Image
                       src={getAssetImageById(serviceDraft.imageId).src}
-                      alt={serviceDraft.title || "Service preview"}
+                      alt={serviceDraft.title || "Card preview"}
                       fill
                       className="object-cover"
                     />
                   </div>
                   <div className="space-y-3 p-5">
-                    <h3 className="text-2xl text-white">{serviceDraft.title || "Service title"}</h3>
+                    <h3 className="text-2xl text-white">{serviceDraft.title || "Titlu card"}</h3>
                     <p className="text-sm leading-7 text-white/58">
-                      {serviceDraft.description || "Descrierea serviciului apare aici inainte sa salvezi."}
+                      {serviceDraft.description || "Descrierea cardului apare aici inainte sa salvezi."}
                     </p>
                   </div>
                 </div>
@@ -250,11 +250,11 @@ export function AdminDashboard() {
                   <div className="flex gap-2">
                     <Button type="button" variant="secondary" onClick={() => handleEditService(service)}>
                       <Pencil className="h-4 w-4" />
-                      Edit
+                      Editeaza
                     </Button>
                     <Button type="button" variant="secondary" onClick={() => handleDeleteService(service.id)}>
                       <Trash2 className="h-4 w-4" />
-                      Remove
+                      Sterge
                     </Button>
                   </div>
                 </div>
@@ -263,9 +263,9 @@ export function AdminDashboard() {
           </div>
 
           <div className="glass-panel rounded-[1.75rem] p-6">
-            <h2 className="text-2xl text-white">Live stream</h2>
+            <h2 className="text-2xl text-white">YouTube LIVE</h2>
             <p className="mt-2 text-sm leading-6 text-white/60">
-              Lipeste URL-ul de YouTube live. Daca nu exista un URL valid, pagina live va afisa mesajul de indisponibilitate.
+              Lipeste URL-ul sesiunei LIVE. Daca nu exista un link valid, pagina LIVE va afisa mesajul de indisponibilitate.
             </p>
             <input
               value={content.live.url}
@@ -282,35 +282,35 @@ export function AdminDashboard() {
               {currentEmbedUrl ? (
                 <iframe
                   src={currentEmbedUrl}
-                  title="Live stream preview"
+                  title="Preview LIVE"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
                   className="aspect-video w-full bg-black"
                 />
               ) : (
                 <div className="flex aspect-video items-center justify-center px-6 text-center text-white/55">
-                  No live stream available right now
+                  Niciun LIVE disponibil momentan
                 </div>
               )}
               <div className="flex items-center gap-3 p-4 text-sm text-white/60">
                 <Video className="h-4 w-4 text-accent" />
-                Preview salvat local pentru pagina Live.
+                Preview pentru pagina LIVE Barber Experience.
               </div>
             </div>
           </div>
         </div>
 
         <div className="glass-panel rounded-[1.75rem] p-6">
-          <h2 className="text-2xl text-white">Gallery management</h2>
+          <h2 className="text-2xl text-white">Galerie</h2>
           <p className="mt-2 text-sm leading-6 text-white/60">
-            Galeria combina imaginile statice din assets cu upload-urile locale salvate in browser.
+            Galeria combina imaginile statice din assets cu imaginile adaugate local, salvate in browserul curent.
           </p>
 
           <div className="mt-6 grid gap-6 xl:grid-cols-[0.95fr_1.05fr]">
             <div className="space-y-4 rounded-[1.5rem] border border-white/10 bg-black/20 p-5">
               <label className="flex cursor-pointer items-center justify-center gap-3 rounded-2xl border border-dashed border-white/15 bg-black/30 px-4 py-5 text-sm text-white/75 transition hover:border-white/25 hover:text-white">
                 <Upload className="h-4 w-4" />
-                Upload image from PC
+                Adauga imagine din PC
                 <input type="file" accept="image/*" className="hidden" onChange={handleGalleryUpload} />
               </label>
 
@@ -322,19 +322,19 @@ export function AdminDashboard() {
                   <div className="flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between">
                     <div>
                       <p className="text-white">{galleryPreview.title}</p>
-                      <p className="text-sm text-white/50">Preview before adding</p>
+                      <p className="text-sm text-white/50">Preview inainte de salvare</p>
                     </div>
                     <div className="flex gap-2">
-                      <Button type="button" onClick={confirmGalleryUpload}>Add to gallery</Button>
+                      <Button type="button" onClick={confirmGalleryUpload}>Adauga in galerie</Button>
                       <Button type="button" variant="secondary" onClick={() => setGalleryPreview(null)}>
-                        Cancel
+                        Anuleaza
                       </Button>
                     </div>
                   </div>
                 </div>
               ) : (
                 <div className="rounded-2xl border border-white/10 bg-black/30 px-4 py-6 text-sm leading-7 text-white/55">
-                  Alege o imagine din calculator pentru preview. Upload-ul va fi salvat ca base64 in localStorage.
+                  Alege o imagine pentru preview. Upload-ul este salvat local ca base64 in browserul curent.
                 </div>
               )}
             </div>
@@ -353,7 +353,7 @@ export function AdminDashboard() {
                     {"isUploaded" in item && item.isUploaded ? (
                       <Button type="button" variant="secondary" onClick={() => removeUploadedImage(item.id)}>
                         <Trash2 className="h-4 w-4" />
-                        Delete
+                        Sterge
                       </Button>
                     ) : (
                       <span className="text-xs uppercase tracking-[0.3em] text-white/35">Asset</span>

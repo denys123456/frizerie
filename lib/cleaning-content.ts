@@ -45,48 +45,51 @@ export type CleaningContentState = {
 
 export const cleaningAssetImages: AssetImage[] = [
   { id: "hero-main", label: "Hero", src: heroImage },
-  { id: "service-home", label: "Home Cleaning", src: salonImageWide },
-  { id: "service-office", label: "Office Cleaning", src: salonImage },
-  { id: "service-deep", label: "Deep Cleaning", src: galleryImage01 },
-  { id: "service-move", label: "Move In / Move Out", src: galleryImage02 },
-  { id: "gallery-01", label: "Gallery 1", src: galleryImage03 },
-  { id: "gallery-02", label: "Gallery 2", src: galleryImage04 },
-  { id: "gallery-03", label: "Gallery 3", src: galleryImage05 },
-  { id: "gallery-04", label: "Gallery 4", src: galleryImage06 },
-  { id: "gallery-05", label: "Gallery 5", src: galleryImage07 },
-  { id: "gallery-06", label: "Gallery 6", src: galleryImage08 }
+  { id: "service-home", label: "Curs Incepatori", src: salonImageWide },
+  { id: "service-office", label: "Curs Perfectionare", src: salonImage },
+  { id: "service-deep", label: "Live Barber Experience", src: galleryImage01 },
+  { id: "service-move", label: "Salon Session", src: galleryImage02 },
+  { id: "gallery-01", label: "Fade Detail", src: galleryImage03 },
+  { id: "gallery-02", label: "Clean Blend", src: galleryImage04 },
+  { id: "gallery-03", label: "Sharp Finish", src: galleryImage05 },
+  { id: "gallery-04", label: "Modern Crop", src: galleryImage06 },
+  { id: "gallery-05", label: "Premium Session", src: galleryImage07 },
+  { id: "gallery-06", label: "Stage Result", src: galleryImage08 }
 ];
 
 export const defaultServices: ServiceItem[] = [
   {
     id: "service-1",
-    title: "Standard Home Cleaning",
-    description: "Curatenie recurenta pentru apartamente si case, cu checklist clar si finisaj curat.",
+    title: "Curs de frizerie pentru incepatori",
+    description:
+      "Organizat impreuna cu Scoala Comerciala si de Servicii Bacau, cu maximum 6 cursanti si pret de 3650 lei.",
     imageId: "service-home"
   },
   {
     id: "service-2",
-    title: "Deep Cleaning",
-    description: "Curatare detaliata pentru spatii care au nevoie de mai mult timp si atentie pe suprafete.",
+    title: "Curs de perfectionare 1 la 1",
+    description:
+      "O zi intensiva alaturi de Virgil Agu, cu 2 modele reale, corectii in timp real si tehnici explicate pas cu pas.",
     imageId: "service-deep"
   },
   {
     id: "service-3",
-    title: "Office Cleaning",
-    description: "Solutie simpla pentru birouri si spatii comerciale care trebuie sa arate constant bine.",
+    title: "LIVE Barber Experience",
+    description:
+      "Sesiuni lunare live in care Virgil tunde clienti reali si explica pas cu pas fiecare tehnica, fiecare miscare si fiecare detaliu.",
     imageId: "service-office"
   }
 ];
 
 export const defaultGalleryImages = [
-  { id: "asset-gallery-1", title: "Kitchen Detail", category: "Assets", imageUrl: galleryImage01, isUploaded: false },
-  { id: "asset-gallery-2", title: "Bathroom Finish", category: "Assets", imageUrl: galleryImage02, isUploaded: false },
-  { id: "asset-gallery-3", title: "Living Room Reset", category: "Assets", imageUrl: galleryImage03, isUploaded: false },
-  { id: "asset-gallery-4", title: "Office Touch", category: "Assets", imageUrl: galleryImage04, isUploaded: false },
-  { id: "asset-gallery-5", title: "Detail Pass", category: "Assets", imageUrl: galleryImage05, isUploaded: false },
-  { id: "asset-gallery-6", title: "Final Polish", category: "Assets", imageUrl: galleryImage06, isUploaded: false },
-  { id: "asset-gallery-7", title: "Corner Cleaning", category: "Assets", imageUrl: galleryImage07, isUploaded: false },
-  { id: "asset-gallery-8", title: "Surface Finish", category: "Assets", imageUrl: galleryImage08, isUploaded: false }
+  { id: "asset-gallery-1", title: "Fast Fade Dublin", category: "Premii", imageUrl: galleryImage01, isUploaded: false },
+  { id: "asset-gallery-2", title: "Master Barber Romania", category: "Premii", imageUrl: galleryImage02, isUploaded: false },
+  { id: "asset-gallery-3", title: "Fade curat", category: "Galerie", imageUrl: galleryImage03, isUploaded: false },
+  { id: "asset-gallery-4", title: "Blend precis", category: "Galerie", imageUrl: galleryImage04, isUploaded: false },
+  { id: "asset-gallery-5", title: "Rezultat premium", category: "Galerie", imageUrl: galleryImage05, isUploaded: false },
+  { id: "asset-gallery-6", title: "Styling modern", category: "Galerie", imageUrl: galleryImage06, isUploaded: false },
+  { id: "asset-gallery-7", title: "Detaliu de salon", category: "Galerie", imageUrl: galleryImage07, isUploaded: false },
+  { id: "asset-gallery-8", title: "Executie precisa", category: "Galerie", imageUrl: galleryImage08, isUploaded: false }
 ] as const;
 
 export const contentStorageKey = "cleaning-site-content";

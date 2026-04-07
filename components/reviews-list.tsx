@@ -51,7 +51,7 @@ export function ReviewsList({
       <div className="mt-10 flex flex-wrap justify-center gap-3">
         {items.length > 3 ? (
           <Button variant="secondary" onClick={() => setExpanded((value) => !value)}>
-            {expanded ? "Show less" : "Show more"}
+            {expanded ? "Arata mai putin" : "Arata mai mult"}
           </Button>
         ) : null}
         <Button asChild>

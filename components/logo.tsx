@@ -7,7 +7,7 @@ export function Logo() {
       <div>
         <p className="font-display text-lg font-semibold text-white sm:text-xl">Virgil Agu</p>
         <p className="text-[10px] uppercase tracking-[0.42em] text-white/45">
-          Premium Barber
+          Education & Barbering
         </p>
       </div>
     </div>

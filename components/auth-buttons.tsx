@@ -9,10 +9,10 @@ export function AuthButtons({ session }: { session: Session | null }) {
     return (
       <div className="flex items-center gap-3">
         <Button asChild variant="ghost" className="hidden sm:inline-flex">
-          <Link href="/auth/signin">Log In</Link>
+          <Link href="/auth/signin">Autentificare</Link>
         </Button>
         <Button asChild variant="secondary">
-          <Link href="/live">Explore Live</Link>
+          <Link href="/live">Vezi LIVE</Link>
         </Button>
       </div>
     );
@@ -26,7 +26,7 @@ export function AuthButtons({ session }: { session: Session | null }) {
         </Button>
       ) : null}
       <Button asChild variant="ghost" className="hidden sm:inline-flex">
-        <Link href="/dashboard">Dashboard</Link>
+        <Link href="/dashboard">Contul meu</Link>
       </Button>
       <SignOutButton />
     </div>

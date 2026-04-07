@@ -8,9 +8,9 @@ export default function ReviewsPage() {
     <section className="section-shell section-space">
       <FadeIn>
         <SectionHeading
-          eyebrow="Reviews"
-          title="Review-uri scurte, clare si usor de scanat."
-          description="Layout centrat, carduri curate si un singur buton de extindere ca pagina sa ramana simpla, nu incarcata."
+          eyebrow="Review-uri"
+          title="Feedback real de la clienti care au vazut diferenta."
+          description="Pagina ramane curata si usor de scanat, cu review-uri care sustin increderea in executia si constanta lui Virgil Agu."
           align="center"
         />
       </FadeIn>

@@ -18,8 +18,8 @@ export default function ContactPage() {
       <FadeIn>
         <SectionHeading
           eyebrow="Contact"
-          title="Programare rapida, contact clar, layout simplu."
-          description="Totul ramane aerisit: date de contact, social si formularul de booking, fara sa se lupte intre ele pentru atentie."
+          title="Contact direct pentru cursuri, colaborari si sesiuni private."
+          description="Datele de contact raman clare si usor de parcurs, fie ca vrei informatii despre cursul de incepatori, perfectionare 1 la 1 sau LIVE Barber Experience."
         />
       </FadeIn>
       <div className="mt-10 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
@@ -40,10 +40,10 @@ export default function ContactPage() {
           <div className="premium-card p-6">
             <div className="flex items-center gap-3 text-accent">
               <Video className="h-5 w-5" />
-              <p className="text-sm uppercase tracking-[0.35em]">Live si colaborari</p>
+              <p className="text-sm uppercase tracking-[0.35em]">Cursuri si colaborari</p>
             </div>
             <p className="mt-3 text-base leading-7 text-white/60">
-              Pentru cursuri, colaborari sau sesiuni private, foloseste acelasi formular si centralizezi totul intr-un singur flux.
+              Pentru inscrieri la cursuri, colaborari sau sesiuni private, foloseste acelasi formular si centralizezi totul intr-un singur flux.
             </p>
           </div>
         </div>
