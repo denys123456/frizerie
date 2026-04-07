@@ -4,9 +4,9 @@ import { ProtectedVideoPlayer } from "@/components/protected-video-player";
 import { useCleaningContent } from "@/components/site/use-cleaning-content";
 import { getYoutubeEmbedUrl } from "@/lib/cleaning-content";
 
-export function LivePageContent() {
+export function LivePageContent({ canAccess }: { canAccess: boolean }) {
   const { content } = useCleaningContent();
-  const embedUrl = getYoutubeEmbedUrl(content.live.url);
+  const embedUrl = canAccess ? getYoutubeEmbedUrl(content.live.url) : null;
 
-  return <ProtectedVideoPlayer canAccess={Boolean(embedUrl)} embedUrl={embedUrl} />;
+  return <ProtectedVideoPlayer canAccess={canAccess} embedUrl={embedUrl} />;
 }

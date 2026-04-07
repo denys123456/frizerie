@@ -184,6 +184,16 @@ async function LegacyAdminPageUnused() {
   );
 }
 
-export default function AdminPage() {
+export default async function AdminPage() {
+  const session = await auth();
+
+  if (!session?.user) {
+    redirect("/auth/signin");
+  }
+
+  if (session.user.role !== "ADMIN") {
+    redirect("/dashboard");
+  }
+
   return <AdminDashboard />;
 }
