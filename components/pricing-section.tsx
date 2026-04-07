@@ -1,13 +1,13 @@
+"use client";
+
 import Link from "next/link";
 
 import { FadeIn, Stagger, StaggerItem } from "@/components/motion-shell";
 import { SectionHeading } from "@/components/section-heading";
 import { Button } from "@/components/ui/button";
-import { getSiteSettings } from "@/lib/site-content";
+import { subscriptionPlans } from "@/lib/data";
 
-export async function PricingSection() {
-  const { subscriptionPlans } = await getSiteSettings();
-
+export function PricingSection() {
   return (
     <section className="section-shell section-space">
       <FadeIn>
