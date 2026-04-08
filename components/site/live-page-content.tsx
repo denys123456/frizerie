@@ -595,11 +595,11 @@ export function LivePageContent({
   ];
 
   return (
-    <div className="space-y-6">
-      <div className="grid gap-6 xl:grid-cols-[minmax(0,1.3fr)_380px]">
+    <div className="space-y-8">
+      <div className="grid gap-8 xl:grid-cols-[minmax(0,1.38fr)_24rem]">
         <div className="space-y-6">
-          <div className="premium-card overflow-hidden">
-            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 px-5 py-4 sm:px-6">
+          <div className="overflow-hidden rounded-[2.1rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.012))] shadow-luxury">
+            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 px-6 py-5 sm:px-7">
               <div>
                 <div className="flex items-center gap-3">
                   <span className="live-dot" />
@@ -607,7 +607,7 @@ export function LivePageContent({
                     {currentSession?.isLive ? "LIVE" : "Offline"}
                   </p>
                 </div>
-                <h3 className="mt-3 text-2xl text-white sm:text-3xl">
+                <h3 className="mt-3 text-3xl text-white sm:text-4xl">
                   {currentSession?.title || "LIVE Barber Experience"}
                 </h3>
               </div>
@@ -618,11 +618,12 @@ export function LivePageContent({
               </div>
             </div>
 
-            <div className="bg-black">
+            <div className="relative bg-black">
+              <div className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(circle_at_top,rgba(214,185,140,0.12),transparent_28%)]" />
               {isAdmin && localStream ? (
-                <video ref={localVideoRef} autoPlay muted playsInline className="aspect-video w-full bg-black" />
+                <video ref={localVideoRef} autoPlay muted playsInline className="aspect-video w-full bg-black object-cover" />
               ) : currentSession?.isLive ? (
-                <video ref={remoteVideoRef} autoPlay playsInline controls className="aspect-video w-full bg-black" />
+                <video ref={remoteVideoRef} autoPlay playsInline controls className="aspect-video w-full bg-black object-cover" />
               ) : (
                 <div className="flex aspect-video items-center justify-center bg-black px-6 text-center text-white/60">
                   {canViewLive
@@ -632,8 +633,8 @@ export function LivePageContent({
               )}
             </div>
 
-            <div className="grid gap-4 px-5 py-5 sm:px-6 lg:grid-cols-[1fr_auto] lg:items-center">
-              <p className="text-sm leading-7 text-white/60">
+            <div className="grid gap-4 px-6 py-6 sm:px-7 lg:grid-cols-[1fr_auto] lg:items-center">
+              <p className="max-w-2xl text-sm leading-7 text-white/60">
                 {currentSession?.isLive
                   ? "Video centrat, fara clutter, cu acces direct la stream si chat."
                   : "Sesiunea poate fi programata din admin, iar streamul porneste doar cand adminul apasa Go Live."}
@@ -649,7 +650,7 @@ export function LivePageContent({
                 </div>
               ) : null}
             </div>
-            {error ? <p className="px-5 pb-5 text-sm text-red-300 sm:px-6">{error}</p> : null}
+            {error ? <p className="px-6 pb-6 text-sm text-red-300 sm:px-7">{error}</p> : null}
           </div>
 
           {canViewLive ? (
@@ -679,7 +680,7 @@ export function LivePageContent({
           />
         </div>
 
-        <div className="premium-card flex min-h-[540px] flex-col overflow-hidden">
+        <div className="flex min-h-[540px] flex-col overflow-hidden rounded-[2rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.035),rgba(255,255,255,0.01))] shadow-panel">
           <div className="border-b border-white/10 px-5 py-5 sm:px-6">
             <p className="text-xs uppercase tracking-[0.35em] text-[#d6b98c]">Chat</p>
             <h3 className="mt-3 text-2xl text-white">Live Chat</h3>
@@ -688,7 +689,7 @@ export function LivePageContent({
             </p>
           </div>
 
-          <div className="flex-1 bg-[#090909] px-4 py-4 sm:px-5">
+          <div className="flex-1 bg-[#070707] px-4 py-4 sm:px-5">
             {canViewLive && currentSession?.isLive ? (
               <div className="flex h-full flex-col">
                 <div className="flex-1 space-y-3 overflow-y-auto pr-1">
@@ -701,7 +702,7 @@ export function LivePageContent({
                           <div
                             className={`max-w-[88%] rounded-[1.35rem] px-4 py-3 ${
                               isRight
-                                ? "rounded-br-md bg-[#d6b98c] text-black"
+                                ? "rounded-br-md bg-[#d6b98c] text-black shadow-[0_14px_28px_rgba(214,185,140,0.16)]"
                                 : "rounded-bl-md border border-white/10 bg-white/[0.05] text-white"
                             }`}
                           >

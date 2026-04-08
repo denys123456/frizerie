@@ -33,26 +33,27 @@ export function Navbar({ session }: { session: Session | null }) {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      <div className="section-shell pt-4">
+      <div className="section-shell pt-5">
         <div
           className={cn(
-            "soft-ring flex items-center justify-between rounded-full border px-4 py-3 transition duration-300 sm:px-5",
+            "soft-ring flex items-center justify-between rounded-full border px-5 py-3.5 transition duration-500 sm:px-7 lg:px-8",
             isScrolled
-              ? "border-white/12 bg-black/75 shadow-panel backdrop-blur-2xl"
-              : "border-white/8 bg-black/40 backdrop-blur-md"
+              ? "border-white/12 bg-black/72 shadow-panel backdrop-blur-2xl"
+              : "border-white/8 bg-black/38 shadow-[0_18px_60px_rgba(0,0,0,0.28)] backdrop-blur-xl"
           )}
         >
           <Link href="/" aria-label="Go to homepage">
             <Logo />
           </Link>
-          <nav className="hidden items-center gap-3 md:flex">
+          <nav className="hidden items-center gap-1 lg:gap-2 md:flex">
             {visibleLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-full px-4 py-2 text-sm text-white/68 transition hover:bg-white/[0.04] hover:text-white"
+                className="group relative rounded-full px-4 py-2 text-xs uppercase tracking-[0.28em] text-white/62 transition hover:text-white"
               >
                 {link.label}
+                <span className="absolute inset-x-4 bottom-1 h-px origin-left scale-x-0 bg-[#d6b98c] transition duration-300 group-hover:scale-x-100" />
               </Link>
             ))}
           </nav>
@@ -69,13 +70,13 @@ export function Navbar({ session }: { session: Session | null }) {
           </button>
         </div>
         {isOpen ? (
-          <div className="mt-3 rounded-[1.5rem] border border-white/10 bg-black/85 p-4 shadow-panel backdrop-blur-2xl md:hidden">
+          <div className="mt-3 rounded-[1.75rem] border border-white/10 bg-black/85 p-4 shadow-panel backdrop-blur-2xl md:hidden">
             <nav className="grid gap-2">
               {visibleLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="rounded-2xl px-3 py-3 text-sm text-white/78 transition hover:bg-white/[0.05] hover:text-white"
+                  className="rounded-2xl px-4 py-3 text-xs uppercase tracking-[0.28em] text-white/78 transition hover:bg-white/[0.05] hover:text-white"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.label}

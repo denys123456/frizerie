@@ -156,11 +156,11 @@ export function AdminDashboard({
 
   return (
     <section className="section-shell py-12 sm:py-16">
-      <div className="grid gap-6 xl:grid-cols-[260px_minmax(0,1fr)]">
+      <div className="grid gap-8 xl:grid-cols-[280px_minmax(0,1fr)]">
         <aside className="xl:sticky xl:top-28 xl:self-start">
           <div className="premium-card p-6">
             <p className="text-xs uppercase tracking-[0.36em] text-[#d6b98c]">Admin</p>
-            <h1 className="mt-4 text-3xl leading-tight text-white">Dashboard SaaS pentru control vizual.</h1>
+            <h1 className="mt-4 text-4xl leading-tight text-white">Dashboard SaaS pentru control vizual.</h1>
             <p className="mt-4 text-sm leading-7 text-white/58">
               UI nou pentru users, live, courses si gallery. Actiunile si logica raman neschimbate.
             </p>
@@ -185,7 +185,7 @@ export function AdminDashboard({
           </div>
         </aside>
 
-        <div className="space-y-6">
+        <div className="space-y-8">
           <div className="grid gap-4 md:grid-cols-3">
             <div className="premium-card p-5"><p className="dashboard-label">Users</p><p className="mt-3 text-3xl text-white">{users.length}</p></div>
             <div className="premium-card p-5"><p className="dashboard-label">Live Sessions</p><p className="mt-3 text-3xl text-white">{liveSessions.length}</p></div>

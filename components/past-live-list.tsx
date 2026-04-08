@@ -18,14 +18,14 @@ export function PastLiveList({
   sessions: PastLiveSession[];
 }) {
   return (
-    <div className="premium-card p-6">
+    <div className="premium-card p-6 sm:p-8">
       <p className="text-xs uppercase tracking-[0.35em] text-[#d6b98c]">Liveuri Trecute</p>
-      <h3 className="mt-3 text-2xl text-white">Replay-uri disponibile dupa incheierea sesiunilor</h3>
+      <h3 className="mt-3 text-3xl text-white">Replay-uri disponibile dupa incheierea sesiunilor</h3>
 
-      <div className="mt-6 space-y-4">
+      <div className="mt-8 space-y-4">
         {sessions.length ? (
           sessions.map((session) => (
-            <div key={session.id} className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-5">
+            <div key={session.id} className="rounded-[1.6rem] border border-white/10 bg-white/[0.03] p-5 sm:p-6">
               <p className="text-white">{session.title}</p>
               <p className="mt-2 text-sm leading-6 text-white/60">{session.description}</p>
               <p className="mt-3 text-xs uppercase tracking-[0.25em] text-white/40">

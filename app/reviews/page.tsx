@@ -6,7 +6,7 @@ import { reviews, siteConfig } from "@/lib/data";
 export default function ReviewsPage() {
   return (
     <section className="section-shell section-space">
-      <FadeIn>
+      <FadeIn className="mx-auto max-w-5xl text-center">
         <SectionHeading
           eyebrow="Review-uri"
           title="Feedback real de la clienti care au vazut diferenta."
@@ -14,7 +14,7 @@ export default function ReviewsPage() {
           align="center"
         />
       </FadeIn>
-      <div className="mx-auto mt-14 max-w-5xl">
+      <div className="mx-auto mt-16 max-w-6xl">
         <ReviewsList items={reviews} moreHref={siteConfig.socials.mero} />
       </div>
     </section>

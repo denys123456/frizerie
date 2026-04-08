@@ -38,10 +38,10 @@ export default async function DashboardPage() {
       <SectionHeading
         eyebrow="Dashboard"
         title={`Bine ai revenit, ${session.user.name || "membru"}.`}
-        description="Zona de cont urmareste accesul la abonament, achizitiile si programarile recente."
+        description="Zona de cont pune accent pe claritate: accesul activ, achizitiile si programarile sunt mai bine separate si mai usor de parcurs."
       />
 
-      <div className="mt-12 grid gap-6 lg:grid-cols-3">
+      <div className="mt-14 grid gap-6 lg:grid-cols-3">
         <div className="premium-card p-7 sm:p-8">
           <p className="text-xs uppercase tracking-[0.35em] text-accent/80">Subscription</p>
           <h2 className="mt-5 text-4xl text-white">{activeSubscription ? activeSubscription.status : "Not active"}</h2>
@@ -71,7 +71,7 @@ export default async function DashboardPage() {
           <h3 className="text-3xl text-white">Session purchases</h3>
           <div className="mt-7 space-y-4">
             {data.purchases.length ? data.purchases.map((purchase: (typeof data.purchases)[number]) => (
-              <div key={purchase.id} className="rounded-[1.5rem] border border-white/10 bg-black/20 p-5 text-white/68">
+              <div key={purchase.id} className="rounded-[1.6rem] border border-white/10 bg-black/20 p-5 text-white/68">
                 <p className="text-lg text-white">{purchase.liveSession?.title || purchase.type}</p>
                 <p className="mt-2 text-sm">Purchased on {formatDate(purchase.createdAt)}</p>
               </div>
@@ -82,7 +82,7 @@ export default async function DashboardPage() {
           <h3 className="text-3xl text-white">Recent bookings</h3>
           <div className="mt-7 space-y-4">
             {data.bookings.length ? data.bookings.map((booking: (typeof data.bookings)[number]) => (
-              <div key={booking.id} className="rounded-[1.5rem] border border-white/10 bg-black/20 p-5 text-white/68">
+              <div key={booking.id} className="rounded-[1.6rem] border border-white/10 bg-black/20 p-5 text-white/68">
                 <p className="text-lg text-white">{booking.service}</p>
                 <p className="mt-2 text-sm">Preferred date {formatDate(booking.preferredAt)}</p>
               </div>

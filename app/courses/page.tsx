@@ -29,7 +29,7 @@ function CourseCard({
   cta: { label: string; href: string };
 }) {
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-[2rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))] shadow-panel transition duration-300 hover:-translate-y-2 hover:shadow-luxury">
+    <article className="group premium-card flex h-full flex-col overflow-hidden hover:-translate-y-2 hover:shadow-luxury">
       <div className="relative aspect-[16/11] overflow-hidden">
         <div className="absolute left-6 top-6 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-black/35 text-accent backdrop-blur-md">
           {icon}
@@ -44,45 +44,45 @@ function CourseCard({
       </div>
       <div className="flex flex-1 flex-col p-7 sm:p-8">
         <h2 className="text-3xl leading-tight text-white sm:text-4xl">{title}</h2>
-      {description ? (
-        <div className="mt-5 space-y-3 text-sm leading-8 text-white/66 sm:text-base">
-          {description.map((item) => (
-            <p key={item}>{item}</p>
-          ))}
-        </div>
-      ) : null}
-
-      {listTitle && listItems?.length ? (
-        <div className="mt-8">
-          <p className="text-xs uppercase tracking-[0.35em] text-accent/80">{listTitle}</p>
-          <div className="mt-4 space-y-3">
-            {listItems.map((item) => (
-              <div
-                key={item}
-                className="rounded-[1.25rem] bg-white/[0.04] px-4 py-3 text-sm leading-7 text-white/72"
-              >
-                {item}
-              </div>
+        {description ? (
+          <div className="mt-5 space-y-3 text-sm leading-8 text-white/66 sm:text-base">
+            {description.map((item) => (
+              <p key={item}>{item}</p>
             ))}
           </div>
-        </div>
-      ) : null}
+        ) : null}
 
-      {detailTitle && detailItems?.length ? (
-        <div className="mt-8">
-          <p className="text-xs uppercase tracking-[0.35em] text-accent/80">{detailTitle}</p>
-          <div className="mt-4 flex flex-wrap gap-3">
-            {detailItems.map((item) => (
-              <span
-                key={item}
-                className="rounded-full bg-white/[0.05] px-4 py-2 text-sm text-white/74"
-              >
-                {item}
-              </span>
-            ))}
+        {listTitle && listItems?.length ? (
+          <div className="mt-8">
+            <p className="text-xs uppercase tracking-[0.35em] text-accent/80">{listTitle}</p>
+            <div className="mt-4 space-y-3">
+              {listItems.map((item) => (
+                <div
+                  key={item}
+                  className="rounded-[1.25rem] bg-white/[0.04] px-4 py-3 text-sm leading-7 text-white/72"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      ) : null}
+        ) : null}
+
+        {detailTitle && detailItems?.length ? (
+          <div className="mt-8">
+            <p className="text-xs uppercase tracking-[0.35em] text-accent/80">{detailTitle}</p>
+            <div className="mt-4 flex flex-wrap gap-3">
+              {detailItems.map((item) => (
+                <span
+                  key={item}
+                  className="rounded-full bg-white/[0.05] px-4 py-2 text-sm text-white/74"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+        ) : null}
 
         <Button asChild variant="secondary" className="mt-10 w-fit">
           <Link href={cta.href}>
@@ -100,19 +100,19 @@ export default async function CoursesPage() {
 
   return (
     <section className="section-shell section-space">
-      <FadeIn className="mx-auto max-w-4xl text-center">
+      <FadeIn className="mx-auto max-w-5xl text-center">
         <SectionHeading
           eyebrow="Cursuri"
           title="Cursuri fizice si sesiuni LIVE construite pentru progres real."
-          description="Trei directii clare: curs de incepatori de la 0, perfectionare 1 la 1 si LIVE Barber Experience."
+          description="O compozitie mai editoriala, mai aerisita si mai convingatoare pentru cele trei directii principale de invatare."
           align="center"
         />
       </FadeIn>
 
-      <FadeIn className="mx-auto mt-10 max-w-6xl">
-        <div className="premium-card overflow-hidden">
+      <FadeIn className="mx-auto mt-14 max-w-7xl">
+        <div className="overflow-hidden rounded-[2.25rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.035),rgba(255,255,255,0.01))] shadow-luxury">
           <div className="grid lg:grid-cols-[1.08fr_0.92fr]">
-            <div className="relative min-h-[320px]">
+            <div className="relative min-h-[25rem]">
               <Image
                 src={brandImages.aboutSecondary}
                 alt="Virgil Agu courses"
@@ -121,7 +121,7 @@ export default async function CoursesPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
             </div>
-            <div className="flex flex-col justify-center p-8 sm:p-10">
+            <div className="flex flex-col justify-center p-8 sm:p-10 lg:p-12">
               <p className="text-xs uppercase tracking-[0.35em] text-accent/80">Trainer</p>
               <h2 className="mt-4 text-5xl leading-[0.92] text-white sm:text-6xl">Virgil Agu</h2>
               <p className="mt-5 text-sm leading-8 text-white/64 sm:text-base">
@@ -147,7 +147,7 @@ export default async function CoursesPage() {
         </div>
       </FadeIn>
 
-      <Stagger className="mx-auto mt-14 grid max-w-7xl gap-8 xl:grid-cols-3">
+      <Stagger className="mx-auto mt-16 grid max-w-7xl gap-8 xl:grid-cols-3">
         <StaggerItem>
           <CourseCard
             title={courses.beginner.title}

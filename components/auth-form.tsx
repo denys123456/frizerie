@@ -20,12 +20,12 @@ export function AuthForm({ mode }: { mode: "signin" | "register" }) {
   const alternateLabel = mode === "register" ? "Ai deja cont? Intra in cont" : "Nu ai cont? Creeaza unul";
 
   return (
-    <div className="glass-panel w-full max-w-xl rounded-[2.2rem] p-8 sm:p-10">
+    <div className="glass-panel w-full max-w-[34rem] rounded-[2.2rem] p-8 sm:p-10">
       <div className="space-y-3">
         <p className="text-xs uppercase tracking-[0.35em] text-accent/80">
           {mode === "register" ? "Cont nou" : "Bine ai revenit"}
         </p>
-        <h1 className="max-w-md text-5xl leading-[0.92] text-white sm:text-6xl">
+        <h1 className="max-w-md text-5xl leading-[0.88] text-white sm:text-6xl">
           {mode === "register" ? "Creeaza contul tau." : "Acceseaza contul tau."}
         </h1>
         <p className="max-w-md text-base leading-8 text-white/60">
@@ -35,7 +35,7 @@ export function AuthForm({ mode }: { mode: "signin" | "register" }) {
         </p>
       </div>
 
-      <div className="mt-8 space-y-4">
+      <div className="mt-10 space-y-4">
         <form
           className="space-y-4"
           onSubmit={(event) => {
@@ -141,7 +141,7 @@ export function AuthForm({ mode }: { mode: "signin" | "register" }) {
           </Button>
         </form>
 
-        <div className="flex items-center justify-between gap-3 text-sm">
+        <div className="flex items-center justify-between gap-3 border-t border-white/8 pt-4 text-sm">
           <Link href={alternateHref} className="text-white/60 transition hover:text-white">
             {alternateLabel}
           </Link>

@@ -55,27 +55,26 @@ export function HomepageContent() {
 
   return (
     <>
-      <section className="section-shell section-space pt-8 sm:pt-14 lg:pt-20">
-        <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-          <FadeIn className="premium-card relative overflow-hidden px-6 py-10 sm:px-10 sm:py-12 lg:px-12 lg:py-16">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(214,185,140,0.18),transparent_36%)]" />
-            <div className="relative max-w-3xl">
-              <span className="accent-chip">Virgil Agu Education</span>
-              <h1 className="mt-7 max-w-4xl text-5xl leading-[0.88] text-white sm:text-6xl lg:text-7xl">
-                Cursuri de frizerie. Live-uri reale. Rezultate premium.
+      <section className="section-shell section-space pt-8 sm:pt-14 lg:pt-16">
+        <div className="grid items-stretch gap-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(420px,0.92fr)]">
+          <FadeIn className="flex min-h-[36rem] flex-col justify-between rounded-[2.25rem] border border-white/8 bg-[radial-gradient(circle_at_top_left,rgba(214,185,140,0.16),transparent_34%),linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01))] px-7 py-10 shadow-luxury sm:px-10 sm:py-12 lg:px-14 lg:py-16">
+            <div className="max-w-4xl">
+              <span className="section-kicker">Virgil Agu Education</span>
+              <h1 className="mt-8 max-w-5xl text-[3.8rem] leading-[0.84] text-white sm:text-[5rem] lg:text-[6.4rem]">
+                Cursuri premium. LIVE real. Educatie construita pe executie.
               </h1>
-              <p className="mt-6 max-w-2xl text-base leading-8 text-white/68 sm:text-lg">
-                Training fizic pentru incepatori si avansati, plus sesiuni live construite pe
-                experienta reala din salon, competitie si educatie aplicata.
+              <p className="mt-7 max-w-2xl text-base leading-8 text-white/68 sm:text-lg">
+                O platforma de educatie pentru frizeri care elimina zgomotul vizual si pune in fata
+                claritatea, practica reala si progresul masurabil.
               </p>
-              <div className="mt-9 flex flex-wrap gap-3">
-                <Button asChild>
+              <div className="mt-10 flex flex-wrap gap-3">
+                <Button asChild className="px-7">
                   <Link href="/courses">
                     Vezi cursuri
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>
-                <Button asChild variant="secondary">
+                <Button asChild variant="secondary" className="px-7">
                   <Link href="/live">
                     <Play className="h-4 w-4" />
                     Vezi live
@@ -83,9 +82,24 @@ export function HomepageContent() {
                 </Button>
               </div>
             </div>
+
+            <div className="mt-14 grid gap-4 border-t border-white/8 pt-8 sm:grid-cols-3">
+              <div>
+                <p className="dashboard-label">Experienta</p>
+                <p className="mt-3 text-3xl text-white">10+ ani</p>
+              </div>
+              <div>
+                <p className="dashboard-label">Cursanti formati</p>
+                <p className="mt-3 text-3xl text-white">300+</p>
+              </div>
+              <div>
+                <p className="dashboard-label">Format</p>
+                <p className="mt-3 text-3xl text-white">Fizic + LIVE</p>
+              </div>
+            </div>
           </FadeIn>
 
-          <FadeIn className="premium-card relative min-h-[420px] overflow-hidden">
+          <FadeIn className="relative min-h-[36rem] overflow-hidden rounded-[2.25rem] border border-white/8 shadow-luxury">
             <Image
               src={brandImages.hero}
               alt="Virgil Agu"
@@ -93,14 +107,14 @@ export function HomepageContent() {
               priority
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
-              <div className="inline-flex items-center gap-3 rounded-full border border-red-500/30 bg-red-500/12 px-4 py-2 text-xs font-medium uppercase tracking-[0.35em] text-red-300">
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.12),rgba(0,0,0,0.76)),radial-gradient(circle_at_top,rgba(214,185,140,0.2),transparent_34%)]" />
+            <div className="absolute inset-x-0 bottom-0 p-7 sm:p-10">
+              <div className="inline-flex items-center gap-3 rounded-full border border-red-500/30 bg-black/35 px-4 py-2 text-xs font-medium uppercase tracking-[0.35em] text-red-300 backdrop-blur-md">
                 <span className="live-dot" />
                 Educatie reala
               </div>
-              <p className="mt-5 max-w-md text-2xl leading-tight text-white sm:text-3xl">
-                Peste 300 de cursanti formati si peste 10 ani de experienta in industrie.
+              <p className="mt-6 max-w-md text-3xl leading-tight text-white sm:text-4xl">
+                Un cadru vizual mai calm, mai scump si mult mai convingator.
               </p>
             </div>
           </FadeIn>
@@ -108,36 +122,43 @@ export function HomepageContent() {
       </section>
 
       <section className="section-shell section-space pt-0">
-        <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-          <FadeIn className="premium-card overflow-hidden p-7 sm:p-10">
-            <span className="accent-chip">About Me</span>
-            <div className="mt-6 space-y-4 text-sm leading-7 text-white/68 sm:text-base">
-              {aboutParagraphs.map((paragraph) => (
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+          <FadeIn className="section-intro">
+            <span className="section-kicker">About Me</span>
+            <h2 className="mt-6 editorial-title">
+              Trainer, competitor si fondator cu rezultate confirmate.
+            </h2>
+            <div className="mt-7 max-w-xl space-y-4 text-sm leading-8 text-white/62 sm:text-base">
+              {aboutParagraphs.slice(3).map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
           </FadeIn>
 
           <FadeIn className="premium-card overflow-hidden">
-            <div className="grid gap-0 md:grid-cols-[0.92fr_1.08fr]">
-              <div className="relative min-h-[320px]">
+            <div className="grid gap-0 md:grid-cols-[0.95fr_1.05fr]">
+              <div className="relative min-h-[26rem]">
                 <Image src={brandImages.aboutMain} alt="Virgil Agu trainer" fill className="object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
               </div>
-              <div className="p-7 sm:p-10">
-                <p className="text-xs uppercase tracking-[0.35em] text-[#d6b98c]">Palmares</p>
-                <h2 className="mt-4 text-3xl leading-tight text-white sm:text-4xl">
-                  Trainer, competitor si fondator cu rezultate confirmate.
-                </h2>
-                <div className="mt-8 space-y-3">
-                  {achievements.map((item) => (
-                    <div
-                      key={item}
-                      className="rounded-[1.25rem] border border-white/10 bg-white/[0.03] px-5 py-4 text-white/74"
-                    >
-                      {item}
-                    </div>
-                  ))}
+              <div className="flex flex-col justify-between p-7 sm:p-10">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.35em] text-[#d6b98c]">Palmares</p>
+                  <div className="mt-8 space-y-3">
+                    {achievements.map((item) => (
+                      <div
+                        key={item}
+                        className="rounded-[1.35rem] border border-white/8 bg-white/[0.025] px-5 py-4 text-white/78"
+                      >
+                        {item}
+                      </div>
+                    ))}
+                  </div>
                 </div>
+                <p className="mt-8 max-w-md text-sm leading-7 text-white/56">
+                  Pozitionare clara, selectie mai buna a informatiei si un cadru care sustine
+                  increderea in expertiza, nu doar o lista de texte.
+                </p>
               </div>
             </div>
           </FadeIn>
@@ -145,34 +166,34 @@ export function HomepageContent() {
       </section>
 
       <section className="section-shell section-space pt-0">
-        <FadeIn className="max-w-3xl">
-          <span className="accent-chip">Cursuri</span>
-          <h2 className="mt-6 text-4xl leading-[0.94] text-white sm:text-5xl">
-            Trei directii clare. Fara sectiuni inutile. Fara clutter.
+        <FadeIn className="section-intro">
+          <span className="section-kicker">Cursuri</span>
+          <h2 className="mt-6 editorial-title">
+            Trei directii clare, cu accent pe imagine, ritm si informatie esentiala.
           </h2>
-          <p className="mt-5 max-w-2xl text-base leading-8 text-white/62">
-            Cursuri fizice pentru incepatori si perfectionare, plus sesiuni live construite simplu,
-            clar si premium.
+          <p className="mt-6 editorial-copy">
+            Cursurile nu mai stau in cutii generice. Fiecare bloc e mai mare, mai aerisit si lasa
+            imaginea si valoarea sa conduca prima impresie.
           </p>
         </FadeIn>
 
-        <Stagger className="mt-10 grid gap-6 xl:grid-cols-3">
+        <Stagger className="mt-12 grid gap-8 xl:grid-cols-3">
           {services.slice(0, 3).map((service, index) => {
             const meta = courseMeta[index];
 
             return (
               <StaggerItem key={service.id}>
-                <article className="premium-card flex h-full flex-col overflow-hidden">
+                <article className="group premium-card flex h-full flex-col overflow-hidden hover:-translate-y-2 hover:shadow-luxury">
                   <div className="relative aspect-[16/11]">
                     <Image
                       src={getAssetImageById(service.imageId).src}
                       alt={service.title}
                       fill
-                      className="object-cover"
+                      className="object-cover transition duration-700 group-hover:scale-[1.04]"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/25 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
                   </div>
-                  <div className="flex flex-1 flex-col p-6 sm:p-7">
+                  <div className="flex flex-1 flex-col p-7 sm:p-8">
                     <div className="flex items-center justify-between gap-3">
                       <p className="text-xs uppercase tracking-[0.35em] text-[#d6b98c]">
                         {meta.label}
@@ -181,10 +202,10 @@ export function HomepageContent() {
                         {meta.note}
                       </span>
                     </div>
-                    <h3 className="mt-5 text-3xl leading-tight text-white">
+                    <h3 className="mt-6 text-3xl leading-tight text-white sm:text-[2.15rem]">
                       {index === 0 ? "Curs de frizerie Incepatori" : service.title}
                     </h3>
-                    <p className="mt-4 text-sm leading-7 text-white/64 sm:text-base">
+                    <p className="mt-4 max-w-md text-sm leading-7 text-white/64 sm:text-base">
                       {meta.description}
                     </p>
                     <div className="mt-8 border-t border-white/10 pt-5">
@@ -200,21 +221,25 @@ export function HomepageContent() {
       </section>
 
       <section className="section-shell section-space pt-0">
-        <div className="grid gap-6 lg:grid-cols-3">
-          <FadeIn className="premium-card p-7 sm:p-8 lg:col-span-1">
-            <span className="accent-chip">Review-uri</span>
-            <h2 className="mt-6 text-4xl leading-[0.94] text-white sm:text-5xl">
-              Feedback real de la clienti.
-            </h2>
-            <p className="mt-5 text-base leading-8 text-white/62">
-              Design curat, mesaj clar si rezultate care inspira incredere.
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)]">
+          <FadeIn className="section-intro">
+            <span className="section-kicker">Review-uri</span>
+            <h2 className="mt-6 editorial-title">Feedback real, prezentat mai curat si mai credibil.</h2>
+            <p className="mt-6 editorial-copy">
+              Mai putine elemente decorative, mai mult focus pe vocea clientului si pe increderea
+              construita in timp.
             </p>
           </FadeIn>
 
-          <div className="grid gap-6 lg:col-span-2 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {compactReviews.map((review) => (
-              <FadeIn key={review.id} className="premium-card h-full p-6 sm:p-7">
-                <p className="text-lg leading-8 text-white/76">&ldquo;{review.text}&rdquo;</p>
+              <FadeIn key={review.id} className="premium-card h-full p-7 sm:p-8">
+                <div className="flex gap-1 text-[#d6b98c]">
+                  {Array.from({ length: 5 }).map((_, starIndex) => (
+                    <span key={starIndex} className="text-sm">★</span>
+                  ))}
+                </div>
+                <p className="mt-6 text-lg leading-8 text-white/76">&ldquo;{review.text}&rdquo;</p>
                 <div className="mt-8 border-t border-white/10 pt-5">
                   <p className="text-lg text-white">{review.name}</p>
                   <p className="mt-1 text-xs uppercase tracking-[0.32em] text-white/40">
