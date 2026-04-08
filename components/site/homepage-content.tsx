@@ -35,9 +35,9 @@ const courseMeta = [
 ] as const;
 
 const aboutParagraphs = [
-  "Impreuna cu Scoala Comerciala si de Servicii Bacau, Provibe, alaturi de fondatorul Virgil Agu, organizeaza cursuri de frizerie dedicate incepatorilor.",
-  "Cu o experienta vasta de peste 10 ani in domeniu, Virgil Agu a participat la zeci de seminarii si workshopuri, atat in calitate de cursant, cat si ca trainer.",
-  "A format peste 300 de cursanti, ajutandu-i sa devina frizeri de top in industrie."
+  "Virgil Agu construieste cursuri pentru oameni care nu vor doar sa invete o tunsoare, ci sa inteleaga ritm, intentie, control si prezenta in lucru.",
+  "Cu peste 10 ani de experienta, participari constante la seminarii si workshopuri, plus sute de ore petrecute langa cursanti, formarea vine din practica reala, nu din teorie decorativa.",
+  "Peste 300 de cursanti au trecut prin procesul lui de lucru, iar diferenta vine exact de aici: claritate in explicatii, disciplina in executie si standard ridicat pana la ultimul detaliu."
 ] as const;
 
 const achievements = [
@@ -58,11 +58,10 @@ export function HomepageContent() {
             <div className="max-w-4xl">
               <span className="section-kicker">Virgil Agu Education</span>
               <h1 className="mt-8 max-w-5xl text-[3.8rem] leading-[0.84] text-white sm:text-[5rem] lg:text-[6.4rem]">
-                Cursuri premium. LIVE real. Educatie construita pe executie.
+                Locul unde frizeria inceteaza sa fie un job si devine arta.
               </h1>
               <p className="mt-7 max-w-2xl text-base leading-8 text-white/68 sm:text-lg">
-                O platforma de educatie pentru frizeri care elimina zgomotul vizual si pune in fata
-                claritatea, practica reala si progresul masurabil.
+                Aici incepe diferenta.
               </p>
               <div className="mt-10 flex flex-wrap gap-3">
                 <Button asChild className="px-7">
@@ -110,9 +109,6 @@ export function HomepageContent() {
                 <span className="live-dot" />
                 Educatie reala
               </div>
-              <p className="mt-6 max-w-md text-3xl leading-tight text-white sm:text-4xl">
-                Un cadru vizual mai calm, mai scump si mult mai convingator.
-              </p>
             </div>
           </FadeIn>
         </div>
@@ -123,7 +119,7 @@ export function HomepageContent() {
           <FadeIn className="section-intro">
             <span className="section-kicker">About Me</span>
             <h2 className="mt-6 editorial-title">
-              Trainer, competitor si fondator cu rezultate confirmate.
+              Nu predau doar tehnica. Predau ochi, control, disciplina si standard.
             </h2>
             <div className="mt-7 max-w-xl space-y-4 text-sm leading-8 text-white/62 sm:text-base">
               {aboutParagraphs.map((paragraph) => (
@@ -141,6 +137,9 @@ export function HomepageContent() {
               <div className="flex flex-col justify-between p-7 sm:p-10">
                 <div>
                   <p className="text-xs uppercase tracking-[0.35em] text-[#d6b98c]">Palmares</p>
+                  <p className="mt-5 max-w-md text-2xl leading-tight text-white sm:text-3xl">
+                    Rezultate reale din competitie, educatie si ani de executie constanta.
+                  </p>
                   <div className="mt-8 space-y-3">
                     {achievements.map((item) => (
                       <div
@@ -160,39 +159,6 @@ export function HomepageContent() {
             </div>
           </FadeIn>
         </div>
-      </section>
-
-      <section className="section-shell section-space pt-0">
-        <FadeIn className="overflow-hidden rounded-[2.4rem] border border-white/8 bg-black shadow-luxury">
-          <div className="grid gap-0 lg:grid-cols-[minmax(0,1.05fr)_minmax(420px,0.95fr)]">
-            <div className="flex flex-col justify-between p-8 sm:p-10 lg:p-14">
-              <div>
-                <span className="section-kicker">Craft & Presence</span>
-                <h2 className="mt-6 max-w-4xl text-5xl leading-[0.86] text-white sm:text-6xl lg:text-7xl">
-                  Un proiect care trebuie sa inspire incredere inainte sa spuna un singur cuvant.
-                </h2>
-              </div>
-              <div className="mt-10 grid gap-4 sm:grid-cols-3">
-                <div className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-5">
-                  <p className="dashboard-label">Discipline</p>
-                  <p className="mt-3 text-2xl text-white">Executie</p>
-                </div>
-                <div className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-5">
-                  <p className="dashboard-label">Focus</p>
-                  <p className="mt-3 text-2xl text-white">Claritate</p>
-                </div>
-                <div className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-5">
-                  <p className="dashboard-label">Feel</p>
-                  <p className="mt-3 text-2xl text-white">Luxury dark</p>
-                </div>
-              </div>
-            </div>
-            <div className="relative min-h-[28rem]">
-              <Image src={brandImages.salonWide} alt="Virgil Agu salon" fill className="object-cover" />
-              <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.82),rgba(0,0,0,0.14)),linear-gradient(180deg,rgba(0,0,0,0.04),rgba(0,0,0,0.58))]" />
-            </div>
-          </div>
-        </FadeIn>
       </section>
 
       <section className="section-shell section-space pt-0">
