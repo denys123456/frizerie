@@ -29,13 +29,23 @@ function CourseCard({
   cta: { label: string; href: string };
 }) {
   return (
-    <article className="premium-card flex h-full flex-col p-7 sm:p-8">
-      <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-accent">
-        {icon}
+    <article className="group flex h-full flex-col overflow-hidden rounded-[2rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))] shadow-panel transition duration-300 hover:-translate-y-2 hover:shadow-luxury">
+      <div className="relative aspect-[16/11] overflow-hidden">
+        <div className="absolute left-6 top-6 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-black/35 text-accent backdrop-blur-md">
+          {icon}
+        </div>
+        <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+        <Image
+          src={brandImages.aboutSecondary}
+          alt={title}
+          fill
+          className="object-cover transition duration-700 group-hover:scale-[1.04]"
+        />
       </div>
-      <h2 className="mt-6 text-3xl text-white sm:text-4xl">{title}</h2>
+      <div className="flex flex-1 flex-col p-7 sm:p-8">
+        <h2 className="text-3xl leading-tight text-white sm:text-4xl">{title}</h2>
       {description ? (
-        <div className="mt-5 space-y-3 text-sm leading-7 text-white/66 sm:text-base">
+        <div className="mt-5 space-y-3 text-sm leading-8 text-white/66 sm:text-base">
           {description.map((item) => (
             <p key={item}>{item}</p>
           ))}
@@ -49,7 +59,7 @@ function CourseCard({
             {listItems.map((item) => (
               <div
                 key={item}
-                className="rounded-2xl border border-white/10 bg-[#111111] px-4 py-3 text-sm leading-6 text-white/72"
+                className="rounded-[1.25rem] bg-white/[0.04] px-4 py-3 text-sm leading-7 text-white/72"
               >
                 {item}
               </div>
@@ -65,7 +75,7 @@ function CourseCard({
             {detailItems.map((item) => (
               <span
                 key={item}
-                className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-white/74"
+                className="rounded-full bg-white/[0.05] px-4 py-2 text-sm text-white/74"
               >
                 {item}
               </span>
@@ -74,12 +84,13 @@ function CourseCard({
         </div>
       ) : null}
 
-      <Button asChild variant="secondary" className="mt-8 w-fit">
-        <Link href={cta.href}>
-          {cta.label}
-          <ArrowRight className="h-4 w-4" />
-        </Link>
-      </Button>
+        <Button asChild variant="secondary" className="mt-10 w-fit">
+          <Link href={cta.href}>
+            {cta.label}
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </Button>
+      </div>
     </article>
   );
 }
@@ -136,7 +147,7 @@ export default async function CoursesPage() {
         </div>
       </FadeIn>
 
-      <Stagger className="mx-auto mt-12 grid max-w-6xl gap-6 xl:grid-cols-3">
+      <Stagger className="mx-auto mt-14 grid max-w-7xl gap-8 xl:grid-cols-3">
         <StaggerItem>
           <CourseCard
             title={courses.beginner.title}
