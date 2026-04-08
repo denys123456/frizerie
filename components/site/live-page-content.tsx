@@ -58,10 +58,10 @@ const rtcConfiguration: RTCConfiguration = {
   ]
 };
 
-const LIVE_POLL_INTERVAL = 1500;
-const SIGNAL_POLL_INTERVAL = 700;
+const LIVE_POLL_INTERVAL = 1000;
+const SIGNAL_POLL_INTERVAL = 250;
 const CHAT_POLL_INTERVAL = 2000;
-const ICE_GATHERING_TIMEOUT = 1200;
+const ICE_GATHERING_TIMEOUT = 300;
 
 async function waitForIceGathering(pc: RTCPeerConnection) {
   if (pc.iceGatheringState === "complete") {
