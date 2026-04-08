@@ -28,7 +28,7 @@ export const siteConfig = {
     "Virgil Agu organizeaza cursuri de frizerie pentru incepatori, perfectionare 1 la 1 si sesiuni LIVE, bazate pe peste 10 ani de experienta si sute de cursanti formati.",
   url: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
   socials: {
-    instagram: "https://instagram.com",
+    instagram: "https://www.instagram.com/virgil.agu/",
     whatsapp: "https://wa.me/40785571176",
     phone: "tel:+40785571176",
     mero: "https://mero.ro/p/provide-beauty"

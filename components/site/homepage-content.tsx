@@ -130,19 +130,33 @@ export function HomepageContent() {
       </section>
 
       <section className="section-shell section-space pt-0">
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,0.74fr)_minmax(0,1.26fr)] lg:items-end">
-          <FadeIn className="section-intro">
-            <span className="section-kicker">About Me</span>
-          </FadeIn>
+        <FadeIn className="overflow-hidden rounded-[2.6rem] border border-white/8 bg-[radial-gradient(circle_at_top_left,rgba(214,185,140,0.14),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.022),rgba(255,255,255,0.008))] px-6 py-8 shadow-[0_34px_110px_rgba(0,0,0,0.26)] sm:px-8 sm:py-10 lg:px-10">
+          <div className="mb-8 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <span className="section-kicker">About Me</span>
+              <p className="mt-5 max-w-2xl text-3xl leading-tight text-white sm:text-4xl">
+                Palmaresul si imaginea trebuie sa stea in acelasi cadru, nu in doua bucati fara legatura.
+              </p>
+            </div>
+            <p className="text-[3.8rem] font-display leading-none tracking-[0.18em] text-white/8 sm:text-[5.5rem] lg:text-[7rem]">
+              VA
+            </p>
+          </div>
 
-          <FadeIn className="grid gap-5 md:grid-cols-[0.84fr_1.16fr]">
-            <div className="relative min-h-[30rem] overflow-hidden rounded-[2.2rem] shadow-[0_30px_90px_rgba(0,0,0,0.32)]">
-              <Image src={brandImages.aboutMain} alt="Virgil Agu trainer" fill className="object-cover" />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.05),rgba(0,0,0,0.58))]" />
+          <div className="grid gap-5 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:items-stretch">
+            <div className="relative min-h-[27rem] overflow-hidden rounded-[2rem]">
+              <Image src={brandImages.aboutMain} alt="Virgil Agu trainer" fill className="object-cover object-center" />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.68))]" />
+              <div className="absolute inset-x-0 bottom-0 p-6 sm:p-7">
+                <p className="text-[10px] uppercase tracking-[0.34em] text-[#d6b98c]">Virgil Agu</p>
+                <p className="mt-3 max-w-sm text-2xl leading-tight text-white sm:text-3xl">
+                  Competitie, educatie si executie reala asezate corect in pagina.
+                </p>
+              </div>
             </div>
             <PalmaresDialog />
-          </FadeIn>
-        </div>
+          </div>
+        </FadeIn>
       </section>
 
       <section className="section-shell section-space pt-0">
