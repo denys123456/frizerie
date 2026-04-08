@@ -51,11 +51,17 @@ type LiveDebugState = {
 };
 
 const rtcConfiguration: RTCConfiguration = {
+  iceCandidatePoolSize: 10,
   iceServers: [
     { urls: "stun:stun.l.google.com:19302" },
     { urls: "stun:stun1.l.google.com:19302" }
   ]
 };
+
+const LIVE_POLL_INTERVAL = 1500;
+const SIGNAL_POLL_INTERVAL = 700;
+const CHAT_POLL_INTERVAL = 2000;
+const ICE_GATHERING_TIMEOUT = 1200;
 
 async function waitForIceGathering(pc: RTCPeerConnection) {
   if (pc.iceGatheringState === "complete") {
@@ -63,8 +69,14 @@ async function waitForIceGathering(pc: RTCPeerConnection) {
   }
 
   await new Promise<void>((resolve) => {
+    const timeout = window.setTimeout(() => {
+      pc.removeEventListener("icegatheringstatechange", onChange);
+      resolve();
+    }, ICE_GATHERING_TIMEOUT);
+
     const onChange = () => {
       if (pc.iceGatheringState === "complete") {
+        window.clearTimeout(timeout);
         pc.removeEventListener("icegatheringstatechange", onChange);
         resolve();
       }
@@ -310,7 +322,7 @@ export function LivePageContent({
     void loadCurrentLive();
     const interval = window.setInterval(() => {
       void loadCurrentLive();
-    }, 2000);
+    }, LIVE_POLL_INTERVAL);
 
     return () => window.clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -324,7 +336,7 @@ export function LivePageContent({
     void loadMessages();
     const interval = window.setInterval(() => {
       void loadMessages();
-    }, 2000);
+    }, CHAT_POLL_INTERVAL);
 
     return () => window.clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -335,7 +347,7 @@ export function LivePageContent({
       return;
     }
 
-    const interval = window.setInterval(async () => {
+    const runAdminSignalTick = async () => {
       const data = await api<{ pendingRequests: string[]; answers: Array<{ viewerId: string; sdp: RTCSessionDescriptionInit }> }>(
         `/api/signal/${currentSession.id}?role=admin`
       );
@@ -425,7 +437,12 @@ export function LivePageContent({
           });
         }
       }
-    }, 2000);
+    };
+
+    void runAdminSignalTick();
+    const interval = window.setInterval(() => {
+      void runAdminSignalTick();
+    }, SIGNAL_POLL_INTERVAL);
 
     return () => window.clearInterval(interval);
   }, [isAdmin, currentSession?.id, currentSession?.isLive, localStream]);
@@ -435,7 +452,7 @@ export function LivePageContent({
       return;
     }
 
-    const interval = window.setInterval(async () => {
+    const runViewerSignalTick = async () => {
       if (!requestedOfferLiveIdRef.current || requestedOfferLiveIdRef.current !== currentSession.id) {
         await api("/api/signal/offer", {
           method: "POST",
@@ -538,7 +555,12 @@ export function LivePageContent({
       });
 
       viewerPeerRef.current = peer;
-    }, 2000);
+    };
+
+    void runViewerSignalTick();
+    const interval = window.setInterval(() => {
+      void runViewerSignalTick();
+    }, SIGNAL_POLL_INTERVAL);
 
     return () => window.clearInterval(interval);
   }, [isAdmin, canAccess, currentSession?.id, currentSession?.isLive]);
