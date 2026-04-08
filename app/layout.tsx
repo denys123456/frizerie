@@ -55,7 +55,7 @@ export default async function RootLayout({
       <body className="bg-background font-sans text-foreground antialiased">
         <div className="fixed inset-0 -z-10 bg-canvas" />
         <div className="fixed inset-0 -z-10 bg-mesh opacity-90" />
-        <div className="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(194,154,92,0.1),transparent_24%),linear-gradient(180deg,rgba(7,7,7,0.18),rgba(7,7,7,0.88))]" />
+        <div className="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(194,154,92,0.12),transparent_18%),radial-gradient(circle_at_50%_100%,rgba(255,255,255,0.04),transparent_32%),linear-gradient(180deg,rgba(7,7,7,0.12),rgba(7,7,7,0.9))]" />
         <Navbar session={session} />
         <main className="min-h-screen pt-28 sm:pt-32">{children}</main>
         <SiteFooter />
