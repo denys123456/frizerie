@@ -1,7 +1,7 @@
 export function Logo() {
   return (
     <div className="flex items-center gap-3">
-      <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-sm font-semibold uppercase tracking-[0.24em] text-accent">
+      <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[#d6b98c]/30 bg-[#d6b98c]/10 text-sm font-semibold uppercase tracking-[0.24em] text-[#d6b98c]">
         VA
       </div>
       <div>

@@ -12,7 +12,6 @@ import { cn } from "@/lib/utils";
 const navLinks = [
   { href: "/", label: "Acasa" },
   { href: "/live", label: "LIVE" },
-  { href: "/gallery", label: "Galerie" },
   { href: "/reviews", label: "Review-uri" },
   { href: "/courses", label: "Cursuri" }
 ];
@@ -39,19 +38,19 @@ export function Navbar({ session }: { session: Session | null }) {
           className={cn(
             "soft-ring flex items-center justify-between rounded-full border px-4 py-3 transition duration-300 sm:px-5",
             isScrolled
-              ? "border-white/12 bg-black/55 shadow-panel backdrop-blur-2xl"
-              : "border-white/8 bg-black/30 backdrop-blur-md"
+              ? "border-white/12 bg-black/75 shadow-panel backdrop-blur-2xl"
+              : "border-white/8 bg-black/40 backdrop-blur-md"
           )}
         >
           <Link href="/" aria-label="Go to homepage">
             <Logo />
           </Link>
-          <nav className="hidden items-center gap-7 md:flex">
+          <nav className="hidden items-center gap-3 md:flex">
             {visibleLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm text-white/68 transition hover:text-white"
+                className="rounded-full px-4 py-2 text-sm text-white/68 transition hover:bg-white/[0.04] hover:text-white"
               >
                 {link.label}
               </Link>

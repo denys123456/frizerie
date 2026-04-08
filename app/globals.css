@@ -4,6 +4,17 @@
 
 :root {
   color-scheme: dark;
+  --background: #0b0b0b;
+  --background-soft: #121212;
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-strong: rgba(255, 255, 255, 0.07);
+  --stroke: rgba(255, 255, 255, 0.1);
+  --stroke-strong: rgba(214, 185, 140, 0.28);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.68);
+  --text-tertiary: rgba(255, 255, 255, 0.48);
+  --accent: #d6b98c;
+  --accent-strong: #ead7b6;
 }
 
 html {
@@ -11,11 +22,13 @@ html {
 }
 
 body {
-  background-color: #0f0f0f;
+  min-height: 100vh;
+  background-color: var(--background);
   background-image:
-    radial-gradient(circle at top, rgba(216, 195, 165, 0.06), transparent 28%),
-    linear-gradient(180deg, #0d0d0d 0%, #121212 45%, #0b0b0b 100%);
-  color: #f5f5f2;
+    radial-gradient(circle at top, rgba(214, 185, 140, 0.14), transparent 26%),
+    radial-gradient(circle at 85% 10%, rgba(214, 185, 140, 0.09), transparent 22%),
+    linear-gradient(180deg, #0d0d0d 0%, #0b0b0b 36%, #080808 100%);
+  color: var(--text-primary);
 }
 
 ::selection {
@@ -40,8 +53,19 @@ body {
   a,
   button,
   input,
-  textarea {
+  textarea,
+  select {
     @apply font-sans;
+  }
+
+  body {
+    @apply tracking-[-0.01em];
+  }
+
+  input,
+  textarea,
+  select {
+    color: var(--text-primary);
   }
 }
 
@@ -51,22 +75,62 @@ body {
   }
 
   .glass-panel {
-    @apply border border-white/10 bg-white/[0.04] shadow-panel backdrop-blur-xl;
+    @apply border shadow-panel backdrop-blur-xl;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.03));
+    border-color: var(--stroke);
   }
 
   .soft-ring {
-    @apply ring-1 ring-white/10;
+    @apply ring-1;
+    --tw-ring-color: rgba(255, 255, 255, 0.08);
   }
 
   .accent-chip {
-    @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[10px] uppercase tracking-[0.38em] text-accent;
+    @apply inline-flex items-center gap-2 rounded-full px-4 py-2 text-[10px] uppercase tracking-[0.38em];
+    border: 1px solid var(--stroke-strong);
+    background: rgba(214, 185, 140, 0.08);
+    color: var(--accent);
   }
 
   .premium-card {
-    @apply rounded-[1.75rem] border border-white/10 bg-white/[0.035] shadow-panel transition duration-300;
+    @apply rounded-[1.75rem] shadow-panel transition duration-300;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.028)),
+      rgba(11, 11, 11, 0.92);
+    border: 1px solid var(--stroke);
   }
 
   .section-space {
     @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  .premium-grid {
+    @apply grid gap-6;
+  }
+
+  .premium-input {
+    @apply w-full rounded-[1.25rem] px-4 py-3.5 outline-none transition;
+    border: 1px solid var(--stroke);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .premium-input:focus {
+    border-color: var(--stroke-strong);
+    box-shadow: 0 0 0 4px rgba(214, 185, 140, 0.08);
+  }
+
+  .dashboard-label {
+    @apply text-[11px] uppercase tracking-[0.32em];
+    color: var(--text-tertiary);
+  }
+
+  .fade-edge {
+    mask-image: linear-gradient(to bottom, black 86%, transparent 100%);
+  }
+
+  .live-dot {
+    @apply inline-flex h-2.5 w-2.5 rounded-full;
+    background: #ef4444;
+    box-shadow: 0 0 0 6px rgba(239, 68, 68, 0.14);
   }
 }

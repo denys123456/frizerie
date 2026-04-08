@@ -207,13 +207,21 @@ export default async function AdminPage() {
   }
 
   let liveSessions: Awaited<ReturnType<typeof prisma.liveSession.findMany>> = [];
+  let users: Awaited<ReturnType<typeof prisma.user.findMany>> = [];
 
   try {
-    liveSessions = await prisma.liveSession.findMany({
-      orderBy: [{ isFeatured: "desc" }, { scheduledFor: "asc" }, { createdAt: "desc" }]
-    });
+    [liveSessions, users] = await Promise.all([
+      prisma.liveSession.findMany({
+        orderBy: [{ isFeatured: "desc" }, { scheduledFor: "asc" }, { createdAt: "desc" }]
+      }),
+      prisma.user.findMany({
+        orderBy: { createdAt: "desc" },
+        take: 12
+      })
+    ]);
   } catch {
     liveSessions = [];
+    users = [];
   }
 
   return (
@@ -226,6 +234,12 @@ export default async function AdminPage() {
         scheduledFor: item.scheduledFor.toISOString(),
         recordingUrl: item.recordingUrl || "",
         isFeatured: item.isFeatured
+      }))}
+      users={users.map((item) => ({
+        id: item.id,
+        email: item.email || "Fara email",
+        role: item.role,
+        createdAt: item.createdAt.toISOString()
       }))}
     />
   );

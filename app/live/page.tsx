@@ -4,7 +4,6 @@ import { auth } from "@/auth";
 
 import { LivePageContent } from "@/components/site/live-page-content";
 import { FadeIn } from "@/components/motion-shell";
-import { SectionHeading } from "@/components/section-heading";
 import { Button } from "@/components/ui/button";
 import { hasSubscriptionAccess } from "@/lib/live-access";
 import { getPastLiveSessions, getPrimaryLiveSession, isLiveSessionActive } from "@/lib/live";
@@ -22,15 +21,56 @@ export default async function LivePage() {
 
   return (
     <section className="section-shell section-space">
-      <FadeIn>
-        <SectionHeading
-          eyebrow="LIVE"
-          title="LIVE Barber Experience, direct alaturi de Virgil Agu."
-          description="In fiecare luna, Virgil intra LIVE si lucreaza pe clienti reali, explicand pas cu pas miscarile, tehnicile si ritmul de lucru."
-        />
+      <FadeIn className="premium-card px-6 py-8 sm:px-8 sm:py-10">
+        <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div>
+            <div className="inline-flex items-center gap-3 rounded-full border border-red-500/25 bg-red-500/10 px-4 py-2 text-xs uppercase tracking-[0.35em] text-red-300">
+              <span className="live-dot" />
+              Live Barber Experience
+            </div>
+            <h1 className="mt-6 max-w-4xl text-4xl leading-[0.92] text-white sm:text-5xl lg:text-6xl">
+              Video centrat mare, chat in dreapta si acces clar, fara clutter.
+            </h1>
+            <p className="mt-5 max-w-3xl text-base leading-8 text-white/62">
+              In fiecare luna, Virgil intra live si lucreaza pe modele reale, explicand pas cu pas
+              tehnicile, ritmul de lucru si deciziile din proces.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Button asChild>
+              <Link href={!isLoggedIn ? "/auth/signin" : hasAccess || isAdmin ? "/live" : "/api/stripe/checkout?mode=subscription"}>
+                {!isLoggedIn ? "Autentificare" : hasAccess || isAdmin ? "Acces activ" : "Activeaza abonamentul"}
+              </Link>
+            </Button>
+            <Button asChild variant="secondary">
+              <Link href="/courses">Vezi cursuri</Link>
+            </Button>
+          </div>
+        </div>
+
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-5">
+            <p className="dashboard-label">Status acces</p>
+            <p className="mt-3 text-lg text-white">
+              {!isLoggedIn
+                ? "Necesita autentificare"
+                : hasAccess || isAdmin
+                  ? "Acces valid"
+                  : "Abonament necesar"}
+            </p>
+          </div>
+          <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-5">
+            <p className="dashboard-label">Status sesiune</p>
+            <p className="mt-3 text-lg text-white">{isActive ? "LIVE acum" : "Programata / inactiva"}</p>
+          </div>
+          <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-5">
+            <p className="dashboard-label">Acces continut</p>
+            <p className="mt-3 text-lg text-white">Video + chat + replay</p>
+          </div>
+        </div>
       </FadeIn>
 
-      <div className="mt-10 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+      <div className="mt-10">
         <LivePageContent
           canAccess={hasAccess}
           isAdmin={isAdmin}
@@ -51,46 +91,6 @@ export default async function LivePage() {
             recordingUrl: item.recordingUrl || ""
           }))}
         />
-        <div className="premium-card p-8">
-          <p className="text-xs uppercase tracking-[0.35em] text-accent/80">Acces LIVE</p>
-          <h2 className="mt-4 text-4xl text-white">
-            {!isLoggedIn
-              ? "Trebuie sa fii autentificat pentru a vedea LIVE-ul"
-              : hasAccess || isAdmin
-                ? isActive
-                  ? "Invata in timp real, din confortul casei tale"
-                  : "LIVE-ul este pregatit si devine activ la ora stabilita"
-                : "Ai nevoie de abonament activ pentru a vedea LIVE-ul"}
-          </h2>
-          <p className="mt-4 text-base leading-7 text-white/60">
-            {!isLoggedIn
-              ? "Autentifica-te in contul tau, apoi sistemul verifica automat daca ai abonament activ."
-              : hasAccess || isAdmin
-                ? isActive
-                  ? "Fiecare sesiune arata exact cum se construieste o tunsoare corecta, cum se optimizeaza viteza si cum se mentine calitatea fara pasi inutili."
-                  : "Abonamentul este valid. Playerul si chatul apar automat imediat ce sesiunea LIVE este pornita sau cand ora programata este atinsa."
-                : "Contul tau este autentificat, dar nu are un abonament activ. Dupa activare, playerul LIVE devine disponibil automat."}
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Button asChild>
-              <Link href={!isLoggedIn ? "/auth/signin" : hasAccess || isAdmin ? "/live" : "/api/stripe/checkout?mode=subscription"}>
-                {!isLoggedIn ? "Autentificare" : hasAccess || isAdmin ? "Acces activ" : "Activeaza abonamentul"}
-              </Link>
-            </Button>
-            <Button asChild variant="secondary">
-              <Link href="/gallery">Vezi galeria</Link>
-            </Button>
-          </div>
-          <div className="mt-8 rounded-[1.5rem] border border-white/10 bg-black/20 p-5 text-sm leading-7 text-white/60">
-            {!isLoggedIn
-              ? "Daca nu esti logat, pagina nu afiseaza LIVE-ul si iti cere mai intai autentificarea."
-              : hasAccess || isAdmin
-                ? isActive
-                  ? "In sesiune vezi tunsori pe modele reale, explicatii detaliate, intrebari si raspunsuri, tehnici actuale si sfaturi construite din peste 10 ani de experienta."
-                  : "Daca sesiunea este doar programata, pagina mentine accesul valid dar ascunde playerul si chatul pana la activare."
-                : "Daca esti logat, sistemul verifica abonamentul din contul tau. Fara abonament activ, LIVE-ul ramane blocat."}
-          </div>
-        </div>
       </div>
     </section>
   );

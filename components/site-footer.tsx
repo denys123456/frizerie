@@ -6,7 +6,8 @@ import { siteConfig } from "@/lib/data";
 export function SiteFooter() {
   return (
     <footer className="border-t border-white/10 py-10 sm:py-12">
-      <div className="section-shell flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+      <div className="section-shell">
+        <div className="premium-card flex flex-col gap-8 px-6 py-8 md:flex-row md:items-end md:justify-between md:px-8">
         <div className="space-y-4">
           <Logo />
           <p className="max-w-md text-sm leading-6 text-white/55">
@@ -22,6 +23,7 @@ export function SiteFooter() {
           <Link href={siteConfig.socials.instagram} className="transition hover:text-white">Instagram</Link>
           <Link href={siteConfig.socials.mero} className="transition hover:text-white">MERO</Link>
           <Link href={siteConfig.socials.whatsapp} className="transition hover:text-white">WhatsApp</Link>
+        </div>
         </div>
       </div>
     </footer>
