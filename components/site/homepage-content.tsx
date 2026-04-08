@@ -54,15 +54,15 @@ export function HomepageContent() {
     <>
       <section className="section-shell section-space pt-8 sm:pt-14 lg:pt-16">
         <FadeIn className="relative overflow-hidden rounded-[2.8rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.025),rgba(255,255,255,0.005))] px-7 py-10 shadow-[0_40px_120px_rgba(0,0,0,0.35)] sm:px-10 sm:py-12 lg:min-h-[46rem] lg:px-14 lg:py-16">
-          <div className="absolute inset-y-0 right-0 hidden w-[48%] lg:block">
+          <div className="absolute inset-y-0 right-0 hidden w-[43%] lg:block">
             <Image src={brandImages.hero} alt="Virgil Agu" fill priority className="object-cover object-center" />
-            <div className="absolute inset-0 bg-[linear-gradient(90deg,#070707_0%,rgba(7,7,7,0.84)_22%,rgba(7,7,7,0.26)_58%,rgba(7,7,7,0.12)_100%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,#070707_0%,rgba(7,7,7,0.94)_26%,rgba(7,7,7,0.38)_62%,rgba(7,7,7,0.14)_100%)]" />
           </div>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(214,185,140,0.16),transparent_24%),radial-gradient(circle_at_70%_20%,rgba(255,255,255,0.07),transparent_22%)]" />
-          <div className="relative grid gap-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,0.08fr)]">
-            <div className="max-w-4xl">
+          <div className="relative">
+            <div className="max-w-[54rem]">
               <span className="section-kicker">Virgil Agu Education</span>
-              <h1 className="mt-8 max-w-5xl text-[3.8rem] leading-[0.82] text-white sm:text-[5rem] lg:text-[6.5rem]">
+              <h1 className="mt-8 max-w-[48rem] text-[3.5rem] leading-[0.82] text-white sm:text-[4.6rem] lg:text-[5.8rem] xl:text-[6.2rem]">
                 Locul unde frizeria inceteaza sa fie un job si devine arta.
               </h1>
               <p className="mt-7 max-w-xl text-xl leading-8 text-white/72">
@@ -100,7 +100,7 @@ export function HomepageContent() {
               </div>
             </div>
 
-            <div className="relative min-h-[22rem] overflow-hidden rounded-[2.2rem] lg:hidden">
+            <div className="relative mt-10 min-h-[22rem] overflow-hidden rounded-[2.2rem] lg:hidden">
               <Image src={brandImages.hero} alt="Virgil Agu" fill priority className="object-cover" />
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.12),rgba(0,0,0,0.7))]" />
             </div>

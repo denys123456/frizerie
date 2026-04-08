@@ -14,7 +14,7 @@ const contactItems = [
 export default function ContactPage() {
   return (
     <section className="section-shell section-space">
-      <FadeIn className="overflow-hidden rounded-[2.5rem] border border-white/8 bg-[radial-gradient(circle_at_top_left,rgba(214,185,140,0.14),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.012))] shadow-luxury">
+      <FadeIn className="overflow-hidden rounded-[2.5rem] bg-[radial-gradient(circle_at_top_left,rgba(214,185,140,0.14),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01))] shadow-[0_40px_120px_rgba(0,0,0,0.3)]">
         <div className="grid gap-0 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="border-b border-white/8 p-8 sm:p-10 lg:border-b-0 lg:border-r lg:p-14">
             <p className="text-xs uppercase tracking-[0.42em] text-[#d6b98c]">Contact</p>
@@ -31,9 +31,9 @@ export default function ContactPage() {
               <Link
                 key={item.label}
                 href={item.href}
-                className="group rounded-[1.8rem] border border-white/8 bg-white/[0.03] p-5 transition duration-500 hover:-translate-y-1.5 hover:border-[#d6b98c]/24 hover:shadow-panel"
+                className="group rounded-[1.8rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.008))] p-5 transition duration-500 hover:-translate-y-1.5 hover:shadow-[0_22px_55px_rgba(0,0,0,0.22)]"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[#d6b98c]/20 bg-[#d6b98c]/10 text-accent">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#d6b98c]/10 text-accent">
                   <item.icon className="h-5 w-5" />
                 </div>
                 <p className="mt-10 text-[11px] uppercase tracking-[0.36em] text-white/42">{item.label}</p>

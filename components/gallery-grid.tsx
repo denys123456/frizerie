@@ -58,9 +58,9 @@ export function GalleryGrid({
               </button>
             </Dialog.Trigger>
             <Dialog.Portal>
-              <Dialog.Overlay className="fixed inset-0 z-[60] bg-black/88 backdrop-blur-md" />
-              <Dialog.Content className="fixed left-1/2 top-1/2 z-[70] w-[94vw] max-w-6xl -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[2rem] border border-white/10 bg-[#0b0b0b] shadow-luxury">
-                <div className="relative aspect-[4/3] w-full bg-black">
+              <Dialog.Overlay className="fixed inset-0 z-[60] bg-black/92 backdrop-blur-[12px]" />
+              <Dialog.Content className="fixed inset-4 z-[70] overflow-hidden rounded-[2.2rem] bg-[#060606] shadow-[0_40px_120px_rgba(0,0,0,0.45)] lg:inset-8">
+                <div className="relative h-[78vh] w-full bg-black">
                   <Image src={item.imageUrl} alt={item.title} fill className="object-contain" />
                 </div>
                 <div className="flex items-center justify-between p-6">
@@ -68,7 +68,7 @@ export function GalleryGrid({
                     <p className="text-[10px] uppercase tracking-[0.38em] text-accent/80">{item.category}</p>
                     <Dialog.Title className="mt-2 text-3xl text-white">{item.title}</Dialog.Title>
                   </div>
-                  <Dialog.Close className="rounded-full border border-white/15 p-3 text-white/70 transition hover:border-white/30 hover:text-white">
+                  <Dialog.Close className="rounded-full bg-white/[0.05] p-3 text-white/70 transition hover:bg-white/[0.1] hover:text-white">
                     <X className="h-5 w-5" />
                   </Dialog.Close>
                 </div>

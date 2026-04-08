@@ -30,13 +30,17 @@ export function ReviewsList({
       <Stagger className="grid gap-8 lg:grid-cols-2">
         {visibleItems.map((review, index) => (
           <StaggerItem key={review.id}>
-            <FadeIn delay={index * 0.04} className="premium-card h-full p-8 sm:p-10">
+            <FadeIn
+              delay={index * 0.04}
+              className="relative h-full overflow-hidden rounded-[2.2rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.026),rgba(255,255,255,0.008))] p-8 shadow-[0_30px_90px_rgba(0,0,0,0.22)] sm:p-10"
+            >
+              <div className="absolute right-0 top-0 h-32 w-32 rounded-full bg-[#d6b98c]/[0.08] blur-3xl" />
               <div className="flex items-center justify-between gap-4">
                 <div>
                   <p className="text-[11px] uppercase tracking-[0.38em] text-white/42">Verified review</p>
                   <p className="mt-3 text-3xl text-white">{review.name}</p>
                 </div>
-                <span className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-[10px] uppercase tracking-[0.38em] text-accent/80">
+                <span className="rounded-full bg-white/[0.045] px-4 py-2 text-[10px] uppercase tracking-[0.38em] text-accent/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
                   {review.source}
                 </span>
               </div>

@@ -65,6 +65,7 @@ export function Navbar({ session }: { session: Session | null }) {
         <div
           className={cn(
             "rounded-full px-4 py-3 transition duration-500",
+            isScrolled ? "-translate-y-2 opacity-0 pointer-events-none md:translate-y-0 md:opacity-100 md:pointer-events-auto" : "translate-y-0 opacity-100",
             isScrolled
               ? "bg-black/74 shadow-[0_18px_60px_rgba(0,0,0,0.24)]"
               : "bg-black/38 shadow-[0_18px_60px_rgba(0,0,0,0.22)]"
@@ -78,7 +79,8 @@ export function Navbar({ session }: { session: Session | null }) {
         <div className="flex items-center gap-3">
           <div
             className={cn(
-              "hidden rounded-full px-3 py-2.5 md:flex",
+              "hidden rounded-full px-3 py-2.5 md:flex transition duration-500",
+              isScrolled ? "translate-y-[-12px] opacity-0 pointer-events-none" : "translate-y-0 opacity-100",
               isScrolled ? "bg-black/74 shadow-[0_18px_60px_rgba(0,0,0,0.22)]" : "bg-black/40 shadow-[0_18px_60px_rgba(0,0,0,0.18)]"
             )}
           >
@@ -104,7 +106,7 @@ export function Navbar({ session }: { session: Session | null }) {
       <div
         className={cn(
           "pointer-events-none fixed inset-0 z-40 transition duration-500",
-          isOpen ? "bg-black/72" : "bg-black/0"
+          isOpen ? "bg-black/78 backdrop-blur-[10px]" : "bg-black/0"
         )}
         onClick={() => setIsOpen(false)}
       />

@@ -607,7 +607,7 @@ export function LivePageContent({
     <div className="space-y-8">
       <div className="grid gap-8 xl:grid-cols-[minmax(0,1.42fr)_25rem]">
         <div className="space-y-6">
-          <div className="overflow-hidden rounded-[2.35rem] border border-white/8 bg-[radial-gradient(circle_at_top,rgba(214,185,140,0.12),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.012))] shadow-luxury">
+          <div className="overflow-hidden rounded-[2.35rem] bg-[radial-gradient(circle_at_top,rgba(214,185,140,0.12),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.028),rgba(255,255,255,0.008))] shadow-[0_36px_110px_rgba(0,0,0,0.28)]">
             <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 px-6 py-5 sm:px-7">
               <div>
                 <div className="flex items-center gap-3">
@@ -620,7 +620,7 @@ export function LivePageContent({
                   {currentSession?.title || "LIVE Barber Experience"}
                 </h3>
               </div>
-              <div className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/60">
+              <div className="rounded-full bg-white/[0.045] px-4 py-2 text-sm text-white/60 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
                 {currentSession?.scheduledFor
                   ? new Date(currentSession.scheduledFor).toLocaleString("ro-RO")
                   : "Va fi disponibil cand se porneste o sesiune LIVE"}
@@ -643,11 +643,11 @@ export function LivePageContent({
             </div>
 
             <div className="grid gap-4 px-6 py-6 sm:px-7 lg:grid-cols-[1fr_auto] lg:items-center">
-              <p className="max-w-2xl text-sm leading-7 text-white/60">
-                {currentSession?.isLive
-                  ? "Stream-ul este live. In dreapta ai chatul, iar sub el replay-urile care pot fi deblocate."
-                  : "Va fi disponibil cand se porneste o sesiune live, daca nu a fost programat nimic din contul de admin."}
-              </p>
+              {!currentSession?.isLive ? (
+                <p className="max-w-2xl text-sm leading-7 text-white/60">
+                  Va fi disponibil cand se porneste o sesiune live, daca nu a fost programat nimic din contul de admin.
+                </p>
+              ) : <div />}
               {isAdmin ? (
                 <div className="flex flex-wrap gap-3">
                   <Button type="button" onClick={() => void startLive()} disabled={!currentSession || currentSession.isLive}>
@@ -679,7 +679,7 @@ export function LivePageContent({
         </div>
 
         <div className="space-y-6">
-          <div className="flex min-h-[540px] flex-col overflow-hidden rounded-[2.2rem] bg-[radial-gradient(circle_at_top,rgba(214,185,140,0.08),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.028),rgba(255,255,255,0.008))] shadow-[0_26px_80px_rgba(0,0,0,0.2)]">
+          <div className="flex min-h-[540px] flex-col overflow-hidden rounded-[2.2rem] bg-[radial-gradient(circle_at_top,rgba(214,185,140,0.08),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.024),rgba(255,255,255,0.006))] shadow-[0_30px_90px_rgba(0,0,0,0.24)]">
             <div className="border-b border-white/10 px-5 py-5 sm:px-6">
               <p className="text-xs uppercase tracking-[0.35em] text-[#d6b98c]">Live Chat</p>
               <h3 className="mt-3 text-3xl text-white">Chat in timp real</h3>
@@ -698,8 +698,8 @@ export function LivePageContent({
                             <div
                               className={`max-w-[88%] rounded-[1.5rem] px-4 py-3 ${
                                 isRight
-                                  ? "rounded-br-md bg-[linear-gradient(180deg,#ecd4ac,#cfab72)] text-black shadow-[0_20px_36px_rgba(214,185,140,0.18)]"
-                                  : "rounded-bl-md border border-white/10 bg-white/[0.05] text-white"
+                                ? "rounded-br-md bg-[linear-gradient(180deg,#ecd4ac,#cfab72)] text-black shadow-[0_20px_36px_rgba(214,185,140,0.18)]"
+                                  : "rounded-bl-md bg-white/[0.05] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]"
                               }`}
                             >
                               <p className={`text-xs font-medium ${isRight ? "text-black/70" : "text-white/55"}`}>
@@ -717,7 +717,7 @@ export function LivePageContent({
                         );
                       })
                     ) : (
-                      <div className="flex h-full items-center justify-center rounded-[1.6rem] border border-white/10 bg-white/[0.03] px-5 text-center text-sm text-white/50">
+                      <div className="flex h-full items-center justify-center rounded-[1.6rem] bg-white/[0.03] px-5 text-center text-sm text-white/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
                         Chatul este activ. Primul mesaj poate fi trimis acum.
                       </div>
                     )}
@@ -737,7 +737,7 @@ export function LivePageContent({
                   </div>
                 </div>
               ) : (
-                <div className="flex h-full min-h-[280px] items-center justify-center rounded-[1.6rem] border border-white/10 bg-white/[0.03] px-5 text-center text-sm text-white/50">
+                <div className="flex h-full min-h-[280px] items-center justify-center rounded-[1.6rem] bg-white/[0.03] px-5 text-center text-sm text-white/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
                   {canViewLive
                     ? "Chatul devine activ cand sesiunea este LIVE."
                     : "Chatul este disponibil dupa autentificare si acces activ."}
