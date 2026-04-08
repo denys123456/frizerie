@@ -11,14 +11,25 @@ import { getSiteSettings } from "@/lib/site-content";
 import { addGalleryItem, addLiveSession, deleteGalleryItem, deleteLiveSession, updateSiteSettings } from "@/app/admin/actions";
 
 async function getAdminData() {
-  const [gallery, sessions, users, settings] = await Promise.all([
-    prisma.galleryItem.findMany({ orderBy: { createdAt: "desc" } }),
-    prisma.liveSession.findMany({ orderBy: [{ isFeatured: "desc" }, { scheduledFor: "asc" }] }),
-    prisma.user.findMany({ orderBy: { createdAt: "desc" }, take: 10 }),
-    getSiteSettings()
-  ]);
+  try {
+    const [gallery, sessions, users, settings] = await Promise.all([
+      prisma.galleryItem.findMany({ orderBy: { createdAt: "desc" } }),
+      prisma.liveSession.findMany({ orderBy: [{ isFeatured: "desc" }, { scheduledFor: "asc" }] }),
+      prisma.user.findMany({ orderBy: { createdAt: "desc" }, take: 10 }),
+      getSiteSettings()
+    ]);
 
-  return { gallery, sessions, users, settings };
+    return { gallery, sessions, users, settings };
+  } catch {
+    const settings = await getSiteSettings();
+
+    return {
+      gallery: [],
+      sessions: [],
+      users: [],
+      settings
+    };
+  }
 }
 
 function toTextarea(items: string[]) {
@@ -195,9 +206,15 @@ export default async function AdminPage() {
     redirect("/dashboard");
   }
 
-  const liveSessions = await prisma.liveSession.findMany({
-    orderBy: [{ isFeatured: "desc" }, { scheduledFor: "asc" }, { createdAt: "desc" }]
-  });
+  let liveSessions: Awaited<ReturnType<typeof prisma.liveSession.findMany>> = [];
+
+  try {
+    liveSessions = await prisma.liveSession.findMany({
+      orderBy: [{ isFeatured: "desc" }, { scheduledFor: "asc" }, { createdAt: "desc" }]
+    });
+  } catch {
+    liveSessions = [];
+  }
 
   return (
     <AdminDashboard

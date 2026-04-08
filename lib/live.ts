@@ -40,10 +40,26 @@ export async function getPastLiveSessions(canAccess: boolean) {
   try {
     const sessions = await prisma.liveSession.findMany({
       where: {
-        recordingUrl: { not: null },
-        recordingData: { not: null }
+        recordingUrl: { not: null }
       },
-      orderBy: { scheduledFor: "desc" }
+      orderBy: { scheduledFor: "desc" },
+      select: {
+        id: true,
+        title: true,
+        slug: true,
+        description: true,
+        scheduledFor: true,
+        durationMinutes: true,
+        thumbnailUrl: true,
+        streamUrl: true,
+        recordingUrl: true,
+        price: true,
+        visibility: true,
+        isLive: true,
+        isFeatured: true,
+        createdAt: true,
+        updatedAt: true
+      }
     });
 
     const now = new Date();

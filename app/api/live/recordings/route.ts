@@ -13,8 +13,7 @@ export async function GET() {
   const recordings = await prisma.liveSession.findMany({
     where: {
       isLive: false,
-      recordingUrl: { not: null },
-      recordingData: { not: null }
+      recordingUrl: { not: null }
     },
     orderBy: { createdAt: "desc" },
     select: {
@@ -24,7 +23,7 @@ export async function GET() {
       createdAt: true,
       recordingUrl: true
     }
-  });
+  }).catch(() => []);
 
   return NextResponse.json({
     recordings: recordings.map((item) => ({
