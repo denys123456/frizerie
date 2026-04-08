@@ -27,7 +27,7 @@ export function PastLiveList({
       <div className="mt-8 grid gap-4">
         {sessions.length ? (
           sessions.map((session) => (
-            <div key={session.id} className="rounded-[1.55rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.008))] p-5 shadow-[0_20px_55px_rgba(0,0,0,0.18)] sm:p-6">
+            <div key={session.id} className="rounded-[1.55rem] border border-white/8 bg-[radial-gradient(circle_at_top_right,rgba(214,185,140,0.08),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.008))] p-5 shadow-[0_20px_55px_rgba(0,0,0,0.18)] transition duration-300 hover:-translate-y-0.5 sm:p-6">
               <div className="flex flex-wrap items-start justify-between gap-4">
                 <div>
                   <p className="text-xl text-white">{session.title}</p>

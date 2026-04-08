@@ -20,12 +20,14 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body {
   min-height: 100vh;
   overflow-x: hidden;
-  overscroll-behavior-y: none;
+  overflow-y: auto;
+  overscroll-behavior-y: auto;
   background-color: var(--background);
   background-image:
     radial-gradient(circle at top, rgba(214, 185, 140, 0.12), transparent 18%),
@@ -98,7 +100,7 @@ body {
   }
 
   .premium-card {
-    @apply rounded-[2rem] transition duration-500;
+    @apply rounded-[2rem] transition-transform duration-300;
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.032), rgba(255, 255, 255, 0.01)),
       rgba(7, 7, 7, 0.9);
