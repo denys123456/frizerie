@@ -19,6 +19,8 @@ type PastLiveSession = {
   description: string;
   scheduledFor: string;
   recordingUrl: string;
+  price?: number | null;
+  visibility?: string;
 };
 
 type ChatMessage = {
@@ -34,6 +36,8 @@ type LiveRecording = {
   description: string;
   createdAt: string;
   videoUrl: string;
+  price?: number | null;
+  visibility?: string;
 };
 
 type LiveDebugState = {
@@ -107,7 +111,9 @@ export function LivePageContent({
       title: item.title,
       description: item.description,
       createdAt: item.scheduledFor,
-      videoUrl: item.recordingUrl
+      videoUrl: item.recordingUrl,
+      price: item.price,
+      visibility: item.visibility
     }))
   );
   const [error, setError] = useState<string | null>(null);
@@ -599,9 +605,9 @@ export function LivePageContent({
 
   return (
     <div className="space-y-8">
-      <div className="grid gap-8 xl:grid-cols-[minmax(0,1.38fr)_24rem]">
+      <div className="grid gap-8 xl:grid-cols-[minmax(0,1.42fr)_25rem]">
         <div className="space-y-6">
-          <div className="overflow-hidden rounded-[2.1rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.012))] shadow-luxury">
+          <div className="overflow-hidden rounded-[2.35rem] border border-white/8 bg-[radial-gradient(circle_at_top,rgba(214,185,140,0.12),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.012))] shadow-luxury">
             <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 px-6 py-5 sm:px-7">
               <div>
                 <div className="flex items-center gap-3">
@@ -639,8 +645,8 @@ export function LivePageContent({
             <div className="grid gap-4 px-6 py-6 sm:px-7 lg:grid-cols-[1fr_auto] lg:items-center">
               <p className="max-w-2xl text-sm leading-7 text-white/60">
                 {currentSession?.isLive
-                  ? "Video centrat, fara clutter, cu acces direct la stream si chat."
-                  : "Sesiunea poate fi programata din admin, iar streamul porneste doar cand adminul apasa Go Live."}
+                  ? "Stream-ul este live. In dreapta ai chatul, iar sub el replay-urile care pot fi deblocate."
+                  : "Cand stream-ul porneste, aici intra direct video-ul live, fara introduceri inutile sau blocuri care incarca pagina."}
               </p>
               {isAdmin ? (
                 <div className="flex flex-wrap gap-3">
@@ -670,6 +676,75 @@ export function LivePageContent({
               </div>
             </details>
           ) : null}
+        </div>
+
+        <div className="space-y-6">
+          <div className="flex min-h-[540px] flex-col overflow-hidden rounded-[2.2rem] border border-white/8 bg-[radial-gradient(circle_at_top,rgba(214,185,140,0.1),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.035),rgba(255,255,255,0.01))] shadow-panel">
+            <div className="border-b border-white/10 px-5 py-5 sm:px-6">
+              <p className="text-xs uppercase tracking-[0.35em] text-[#d6b98c]">Live Chat</p>
+              <h3 className="mt-3 text-3xl text-white">Conversația ramane aproape de stream.</h3>
+            </div>
+
+            <div className="flex-1 bg-[#070707] px-4 py-4 sm:px-5">
+              {canViewLive && currentSession?.isLive ? (
+                <div className="flex h-full flex-col">
+                  <div className="flex-1 space-y-3 overflow-y-auto pr-1">
+                    {messages.length ? (
+                      messages.map((item, index) => {
+                        const isRight = index % 2 === 1;
+
+                        return (
+                          <div key={item.id} className={`flex ${isRight ? "justify-end" : "justify-start"}`}>
+                            <div
+                              className={`max-w-[88%] rounded-[1.5rem] px-4 py-3 ${
+                                isRight
+                                  ? "rounded-br-md bg-[linear-gradient(180deg,#ecd4ac,#cfab72)] text-black shadow-[0_20px_36px_rgba(214,185,140,0.18)]"
+                                  : "rounded-bl-md border border-white/10 bg-white/[0.05] text-white"
+                              }`}
+                            >
+                              <p className={`text-xs font-medium ${isRight ? "text-black/70" : "text-white/55"}`}>
+                                {item.user}
+                              </p>
+                              <p className="mt-1 text-sm leading-6">{item.text}</p>
+                              <p className={`mt-2 text-[11px] ${isRight ? "text-black/55" : "text-white/35"}`}>
+                                {new Date(item.timestamp).toLocaleTimeString("ro-RO", {
+                                  hour: "2-digit",
+                                  minute: "2-digit"
+                                })}
+                              </p>
+                            </div>
+                          </div>
+                        );
+                      })
+                    ) : (
+                      <div className="flex h-full items-center justify-center rounded-[1.6rem] border border-white/10 bg-white/[0.03] px-5 text-center text-sm text-white/50">
+                        Chatul este activ. Primul mesaj poate fi trimis acum.
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="mt-4 flex gap-3">
+                    <input
+                      value={chatText}
+                      onChange={(event) => setChatText(event.target.value)}
+                      maxLength={500}
+                      placeholder="Scrie un mesaj"
+                      className="premium-input flex-1"
+                    />
+                    <Button type="button" onClick={() => void sendMessage()}>
+                      Trimite
+                    </Button>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex h-full min-h-[280px] items-center justify-center rounded-[1.6rem] border border-white/10 bg-white/[0.03] px-5 text-center text-sm text-white/50">
+                  {canViewLive
+                    ? "Chatul devine activ cand sesiunea este LIVE."
+                    : "Chatul este disponibil dupa autentificare si acces activ."}
+                </div>
+              )}
+            </div>
+          </div>
 
           <PastLiveList
             canAccess={canViewLive}
@@ -678,79 +753,11 @@ export function LivePageContent({
               title: item.title,
               description: item.description,
               scheduledFor: item.createdAt,
-              recordingUrl: item.videoUrl
+              recordingUrl: item.videoUrl,
+              price: item.price,
+              visibility: item.visibility
             }))}
           />
-        </div>
-
-        <div className="flex min-h-[540px] flex-col overflow-hidden rounded-[2rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.035),rgba(255,255,255,0.01))] shadow-panel">
-          <div className="border-b border-white/10 px-5 py-5 sm:px-6">
-            <p className="text-xs uppercase tracking-[0.35em] text-[#d6b98c]">Chat</p>
-            <h3 className="mt-3 text-2xl text-white">Live Chat</h3>
-            <p className="mt-2 text-sm leading-6 text-white/55">
-              Interfata simpla, dark UI, mesaje clare si actualizare live.
-            </p>
-          </div>
-
-          <div className="flex-1 bg-[#070707] px-4 py-4 sm:px-5">
-            {canViewLive && currentSession?.isLive ? (
-              <div className="flex h-full flex-col">
-                <div className="flex-1 space-y-3 overflow-y-auto pr-1">
-                  {messages.length ? (
-                    messages.map((item, index) => {
-                      const isRight = index % 2 === 1;
-
-                      return (
-                        <div key={item.id} className={`flex ${isRight ? "justify-end" : "justify-start"}`}>
-                          <div
-                            className={`max-w-[88%] rounded-[1.35rem] px-4 py-3 ${
-                              isRight
-                                ? "rounded-br-md bg-[#d6b98c] text-black shadow-[0_14px_28px_rgba(214,185,140,0.16)]"
-                                : "rounded-bl-md border border-white/10 bg-white/[0.05] text-white"
-                            }`}
-                          >
-                            <p className={`text-xs font-medium ${isRight ? "text-black/70" : "text-white/55"}`}>
-                              {item.user}
-                            </p>
-                            <p className="mt-1 text-sm leading-6">{item.text}</p>
-                            <p className={`mt-2 text-[11px] ${isRight ? "text-black/55" : "text-white/35"}`}>
-                              {new Date(item.timestamp).toLocaleTimeString("ro-RO", {
-                                hour: "2-digit",
-                                minute: "2-digit"
-                              })}
-                            </p>
-                          </div>
-                        </div>
-                      );
-                    })
-                  ) : (
-                    <div className="flex h-full items-center justify-center rounded-[1.5rem] border border-white/10 bg-white/[0.03] px-5 text-center text-sm text-white/50">
-                      Chatul este activ. Primul mesaj poate fi trimis acum.
-                    </div>
-                  )}
-                </div>
-
-                <div className="mt-4 flex gap-3">
-                  <input
-                    value={chatText}
-                    onChange={(event) => setChatText(event.target.value)}
-                    maxLength={500}
-                    placeholder="Scrie un mesaj"
-                    className="premium-input flex-1"
-                  />
-                  <Button type="button" onClick={() => void sendMessage()}>
-                    Trimite
-                  </Button>
-                </div>
-              </div>
-            ) : (
-              <div className="flex h-full min-h-[280px] items-center justify-center rounded-[1.5rem] border border-white/10 bg-white/[0.03] px-5 text-center text-sm text-white/50">
-                {canViewLive
-                  ? "Chatul devine activ cand sesiunea este LIVE."
-                  : "Chatul este disponibil dupa autentificare si acces activ."}
-              </div>
-            )}
-          </div>
         </div>
       </div>
     </div>

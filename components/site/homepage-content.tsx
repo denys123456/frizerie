@@ -144,17 +144,13 @@ export function HomepageContent() {
                     {achievements.map((item) => (
                       <div
                         key={item}
-                        className="rounded-[1.35rem] border border-white/8 bg-white/[0.025] px-5 py-4 text-white/78"
+                        className="rounded-[1.6rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))] px-5 py-4 text-white/82 shadow-[0_18px_40px_rgba(0,0,0,0.18)]"
                       >
                         {item}
                       </div>
                     ))}
                   </div>
                 </div>
-                <p className="mt-8 max-w-md text-sm leading-7 text-white/56">
-                  Pozitionare clara, selectie mai buna a informatiei si un cadru care sustine
-                  increderea in expertiza, nu doar o lista de texte.
-                </p>
               </div>
             </div>
           </FadeIn>
@@ -205,8 +201,15 @@ export function HomepageContent() {
                       {meta.description}
                     </p>
                     <div className="mt-8 border-t border-white/10 pt-5">
-                      <p className="text-sm uppercase tracking-[0.34em] text-white/42">Pret</p>
-                      <p className="mt-2 text-3xl text-white">{meta.price}</p>
+                      <div className="flex items-end justify-between gap-4">
+                        <div>
+                          <p className="text-sm uppercase tracking-[0.34em] text-white/42">Pret</p>
+                          <p className="mt-2 text-3xl text-white">{meta.price}</p>
+                        </div>
+                        <span className="rounded-full border border-[#d6b98c]/18 bg-[#d6b98c]/[0.08] px-4 py-2 text-[10px] uppercase tracking-[0.3em] text-[#f1dec0]">
+                          Plata in web
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </article>
@@ -220,10 +223,9 @@ export function HomepageContent() {
         <div className="grid gap-8 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)]">
           <FadeIn className="section-intro">
             <span className="section-kicker">Review-uri</span>
-            <h2 className="mt-6 editorial-title">Feedback real, prezentat mai curat si mai credibil.</h2>
+            <h2 className="mt-6 editorial-title">Fara prea multa cosmetizare a realitatii.</h2>
             <p className="mt-6 editorial-copy">
-              Mai putine elemente decorative, mai mult focus pe vocea clientului si pe increderea
-              construita in timp.
+              Review-urile de pe MERO pun realitatea in fata.
             </p>
           </FadeIn>
 

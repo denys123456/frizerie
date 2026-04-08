@@ -19,10 +19,13 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   min-height: 100vh;
+  overflow-x: hidden;
+  overscroll-behavior-y: none;
   background-color: var(--background);
   background-image:
     radial-gradient(circle at top, rgba(214, 185, 140, 0.12), transparent 18%),

@@ -11,8 +11,7 @@ export function SiteFooter() {
           <div className="space-y-5">
             <Logo />
             <p className="max-w-xl text-sm leading-7 text-white/56 sm:text-base">
-              Cursuri de frizerie, sesiuni LIVE si educatie aplicata construite cu disciplina,
-              claritate si executie reala de salon.
+              Lasa frizeria sa iasa din tiparele unui job si sa prinda aripi spre arta.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-xs uppercase tracking-[0.28em] text-white/52">

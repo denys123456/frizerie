@@ -29,8 +29,8 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
   socials: {
     instagram: "https://instagram.com",
-    whatsapp: "https://wa.me/40700000000",
-    phone: "tel:+40700000000",
+    whatsapp: "https://wa.me/40785571176",
+    phone: "tel:+40785571176",
     mero: "https://mero.ro/p/provide-beauty"
   }
 };
