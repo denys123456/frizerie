@@ -14,7 +14,6 @@ export type CourseOffer = {
   learnTitle?: string;
   learn?: string[];
   advantage?: string;
-  freestyle?: string;
   purchaseLabel: string;
 };
 
@@ -29,7 +28,7 @@ export const courseOffers: CourseOffer[] = [
     note: "max 6 cursanti",
     image: "hero",
     description:
-      "Format freestyle pentru cei care vor sa intre corect in industrie, fara structuri sterile si fara informatie livrata mecanic.",
+      "Format dedicat celor care vor sa intre corect in industrie, fara structuri sterile si fara informatie livrata mecanic.",
     dialogBody:
       "Cursul pentru incepatori este construit flexibil, in functie de dinamica grupei si de nivelul real al cursantilor. Obiectivul este sa pleci cu o baza functionala, cu ritm de lucru, control pe unelte si o intelegere clara a modului in care construiesti o tunsoare curata de la zero.",
     includeTitle: "Structura zilelor",
@@ -46,8 +45,6 @@ export const courseOffers: CourseOffer[] = [
       "Primele fade-uri curate si primele tranzitii controlate",
       "Ritmul de lucru care te scoate din faza de incepator nesigur"
     ],
-    freestyle:
-      "Programul este adaptat live, cu accent pe ce are nevoie grupa in momentul respectiv. Fara palmares pus artificial aici.",
     purchaseLabel: "Achizitioneaza cursul"
   },
   {

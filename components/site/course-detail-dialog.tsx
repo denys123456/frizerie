@@ -160,13 +160,6 @@ export function CourseDetailDialog({
                 </div>
               ) : null}
 
-              {course.freestyle ? (
-                <div className="mt-5 rounded-[1.8rem] border border-dashed border-white/10 bg-white/[0.02] p-5">
-                  <p className="text-xs uppercase tracking-[0.35em] text-white/42">Freestyle</p>
-                  <p className="mt-4 text-sm leading-7 text-white/72">{course.freestyle}</p>
-                </div>
-              ) : null}
-
               <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
                 <div>
                   <p className="text-[10px] uppercase tracking-[0.34em] text-white/38">Pret final</p>

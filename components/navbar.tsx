@@ -120,7 +120,7 @@ export function Navbar({ session }: { session: Session | null }) {
       {isOpen ? (
         <>
           <div
-            className="fixed inset-0 z-40 bg-black/52"
+            className="fixed inset-0 z-40 bg-black/52 backdrop-blur-[5px]"
             onClick={() => setIsOpen(false)}
           />
 

@@ -605,31 +605,6 @@ export function LivePageContent({
 
   return (
     <div className="space-y-8">
-      <div className="overflow-hidden rounded-[2.35rem] border border-white/8 bg-[radial-gradient(circle_at_top_left,rgba(214,185,140,0.14),transparent_26%),linear-gradient(180deg,rgba(255,255,255,0.024),rgba(255,255,255,0.008))] p-6 shadow-[0_34px_100px_rgba(0,0,0,0.24)] sm:p-8">
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-end">
-          <div>
-            <p className="text-xs uppercase tracking-[0.38em] text-[#d6b98c]">LIVE Barber Experience</p>
-            <h1 className="mt-5 max-w-4xl text-5xl leading-[0.84] text-white sm:text-6xl">
-              O sectiune LIVE care trebuie sa para la fel de serioasa ca experienta din salon.
-            </h1>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-            <div className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-5">
-              <p className="dashboard-label">Format</p>
-              <p className="mt-3 text-2xl text-white">LIVE</p>
-            </div>
-            <div className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-5">
-              <p className="dashboard-label">Replay</p>
-              <p className="mt-3 text-2xl text-white">Disponibil</p>
-            </div>
-            <div className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-5">
-              <p className="dashboard-label">Acces</p>
-              <p className="mt-3 text-2xl text-white">{canViewLive ? "Activ" : "Platit"}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div className="grid gap-8 xl:grid-cols-[minmax(0,1.42fr)_25rem]">
         <div className="space-y-6">
           <div className="overflow-hidden rounded-[2.15rem] border border-white/8 bg-[radial-gradient(circle_at_top,rgba(214,185,140,0.12),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.028),rgba(255,255,255,0.008))] shadow-[0_36px_110px_rgba(0,0,0,0.28)]">
