@@ -24,49 +24,59 @@ export function GalleryGrid({
       className={
         columns === "preview"
           ? "grid gap-6 md:grid-cols-2"
-          : "grid gap-8 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4"
+          : "grid auto-rows-[18rem] gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4"
       }
     >
-      {items.map((item) => (
-        <Dialog.Root key={item.id}>
-          <Dialog.Trigger asChild>
-            <button className="group relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-white/8 bg-black text-left shadow-panel transition duration-500 hover:-translate-y-1.5 hover:shadow-luxury">
-              <div className="relative aspect-square overflow-hidden">
-                <Image
-                  src={item.imageUrl}
-                  alt={item.title}
-                  fill
-                  className="object-cover transition duration-700 group-hover:scale-[1.05]"
-                />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.02),rgba(0,0,0,0.62))]" />
-              </div>
-              <div className="absolute inset-x-0 bottom-0 p-7">
-                <p className="text-[10px] uppercase tracking-[0.38em] text-accent/85">{item.category}</p>
-                <h3 className="mt-2 max-w-[16rem] text-2xl leading-tight text-white sm:text-[1.9rem]">
-                  {item.title}
-                </h3>
-              </div>
-            </button>
-          </Dialog.Trigger>
-          <Dialog.Portal>
-            <Dialog.Overlay className="fixed inset-0 z-[60] bg-black/85 backdrop-blur-sm" />
-            <Dialog.Content className="fixed left-1/2 top-1/2 z-[70] w-[92vw] max-w-6xl -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[2rem] border border-white/10 bg-[#0b0b0b] shadow-luxury">
-              <div className="relative aspect-[4/3] w-full bg-black">
-                <Image src={item.imageUrl} alt={item.title} fill className="object-contain" />
-              </div>
-              <div className="flex items-center justify-between p-6">
-                <div>
-                  <p className="text-[10px] uppercase tracking-[0.38em] text-accent/80">{item.category}</p>
-                  <Dialog.Title className="mt-2 text-3xl text-white">{item.title}</Dialog.Title>
+      {items.map((item, index) => {
+        const spanClass = columns === "preview"
+          ? ""
+          : index % 5 === 0
+            ? "sm:col-span-2 sm:row-span-2"
+            : index % 4 === 0
+              ? "lg:row-span-2"
+              : "";
+
+        return (
+          <Dialog.Root key={item.id}>
+            <Dialog.Trigger asChild>
+              <button className={`group relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-white/8 bg-black text-left shadow-panel transition duration-500 hover:-translate-y-1.5 hover:shadow-luxury ${spanClass}`}>
+                <div className="relative h-full min-h-[18rem] overflow-hidden">
+                  <Image
+                    src={item.imageUrl}
+                    alt={item.title}
+                    fill
+                    className="object-cover transition duration-700 group-hover:scale-[1.05]"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.02),rgba(0,0,0,0.72))]" />
                 </div>
-                <Dialog.Close className="rounded-full border border-white/15 p-3 text-white/70 transition hover:border-white/30 hover:text-white">
-                  <X className="h-5 w-5" />
-                </Dialog.Close>
-              </div>
-            </Dialog.Content>
-          </Dialog.Portal>
-        </Dialog.Root>
-      ))}
+                <div className="absolute inset-x-0 bottom-0 p-7">
+                  <p className="text-[10px] uppercase tracking-[0.38em] text-accent/85">{item.category}</p>
+                  <h3 className="mt-2 max-w-[18rem] text-2xl leading-tight text-white sm:text-[2rem]">
+                    {item.title}
+                  </h3>
+                </div>
+              </button>
+            </Dialog.Trigger>
+            <Dialog.Portal>
+              <Dialog.Overlay className="fixed inset-0 z-[60] bg-black/88 backdrop-blur-md" />
+              <Dialog.Content className="fixed left-1/2 top-1/2 z-[70] w-[94vw] max-w-6xl -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[2rem] border border-white/10 bg-[#0b0b0b] shadow-luxury">
+                <div className="relative aspect-[4/3] w-full bg-black">
+                  <Image src={item.imageUrl} alt={item.title} fill className="object-contain" />
+                </div>
+                <div className="flex items-center justify-between p-6">
+                  <div>
+                    <p className="text-[10px] uppercase tracking-[0.38em] text-accent/80">{item.category}</p>
+                    <Dialog.Title className="mt-2 text-3xl text-white">{item.title}</Dialog.Title>
+                  </div>
+                  <Dialog.Close className="rounded-full border border-white/15 p-3 text-white/70 transition hover:border-white/30 hover:text-white">
+                    <X className="h-5 w-5" />
+                  </Dialog.Close>
+                </div>
+              </Dialog.Content>
+            </Dialog.Portal>
+          </Dialog.Root>
+        );
+      })}
     </div>
   );
 }

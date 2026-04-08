@@ -2,7 +2,17 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import {
+  ArrowUpRight,
+  GraduationCap,
+  Home,
+  Images,
+  Menu,
+  MessageCircleMore,
+  Radio,
+  Star,
+  X
+} from "lucide-react";
 import type { Session } from "next-auth";
 
 import { AuthButtons } from "@/components/auth-buttons";
@@ -10,17 +20,19 @@ import { Logo } from "@/components/logo";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "/", label: "Acasa" },
-  { href: "/live", label: "LIVE" },
-  { href: "/reviews", label: "Review-uri" },
-  { href: "/courses", label: "Cursuri" }
-];
+  { href: "/", label: "Acasa", icon: Home, tone: "bg-white/[0.06]" },
+  { href: "/live", label: "LIVE", icon: Radio, tone: "bg-red-500/12" },
+  { href: "/courses", label: "Cursuri", icon: GraduationCap, tone: "bg-[#d6b98c]/12" },
+  { href: "/reviews", label: "Review-uri", icon: Star, tone: "bg-white/[0.05]" },
+  { href: "/gallery", label: "Galerie", icon: Images, tone: "bg-white/[0.05]" },
+  { href: "/contact", label: "Contact", icon: MessageCircleMore, tone: "bg-[#d6b98c]/10" }
+] as const;
 
 export function Navbar({ session }: { session: Session | null }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const visibleLinks = session?.user?.role === "ADMIN"
-    ? [...navLinks, { href: "/admin", label: "Admin" }]
+    ? [...navLinks, { href: "/admin", label: "Admin", icon: ArrowUpRight, tone: "bg-white/[0.06]" }]
     : navLinks;
 
   useEffect(() => {
@@ -31,63 +43,123 @@ export function Navbar({ session }: { session: Session | null }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [isOpen]);
+
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      <div className="section-shell pt-5">
+      <div className="section-shell flex items-start justify-between gap-4 pt-5">
         <div
           className={cn(
-            "soft-ring flex items-center justify-between rounded-full border px-5 py-3.5 transition duration-500 sm:px-7 lg:px-8",
+            "rounded-full border px-4 py-3 transition duration-500 backdrop-blur-2xl",
             isScrolled
-              ? "border-white/12 bg-black/72 shadow-panel backdrop-blur-2xl"
-              : "border-white/8 bg-black/38 shadow-[0_18px_60px_rgba(0,0,0,0.28)] backdrop-blur-xl"
+              ? "border-white/12 bg-black/74 shadow-panel"
+              : "border-white/8 bg-black/40 shadow-[0_18px_60px_rgba(0,0,0,0.28)]"
           )}
         >
-          <Link href="/" aria-label="Go to homepage">
+          <Link href="/" aria-label="Go to homepage" className="block">
             <Logo />
           </Link>
-          <nav className="hidden items-center gap-1 lg:gap-2 md:flex">
-            {visibleLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="group relative rounded-full px-4 py-2 text-xs uppercase tracking-[0.28em] text-white/62 transition hover:text-white"
-              >
-                {link.label}
-                <span className="absolute inset-x-4 bottom-1 h-px origin-left scale-x-0 bg-[#d6b98c] transition duration-300 group-hover:scale-x-100" />
-              </Link>
-            ))}
-          </nav>
-          <div className="hidden md:flex">
+        </div>
+
+        <div className="flex items-center gap-3">
+          <div
+            className={cn(
+              "hidden rounded-full border px-3 py-2.5 md:flex",
+              isScrolled ? "border-white/12 bg-black/74 shadow-panel backdrop-blur-2xl" : "border-white/8 bg-black/40 backdrop-blur-xl"
+            )}
+          >
             <AuthButtons session={session} />
           </div>
+
           <button
             type="button"
             aria-label={isOpen ? "Close navigation" : "Open navigation"}
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white transition hover:bg-white/[0.08] md:hidden"
+            className={cn(
+              "flex h-14 w-14 items-center justify-center rounded-full border text-white transition duration-500 backdrop-blur-2xl",
+              isScrolled
+                ? "border-[#d6b98c]/28 bg-black/78 shadow-panel"
+                : "border-[#d6b98c]/22 bg-black/46 shadow-[0_18px_60px_rgba(0,0,0,0.28)]"
+            )}
             onClick={() => setIsOpen((value) => !value)}
           >
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
-        {isOpen ? (
-          <div className="mt-3 rounded-[1.75rem] border border-white/10 bg-black/85 p-4 shadow-panel backdrop-blur-2xl md:hidden">
-            <nav className="grid gap-2">
-              {visibleLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="rounded-2xl px-4 py-3 text-xs uppercase tracking-[0.28em] text-white/78 transition hover:bg-white/[0.05] hover:text-white"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
-            <div className="mt-4 border-t border-white/10 pt-4">
-              <AuthButtons session={session} />
+      </div>
+
+      <div
+        className={cn(
+          "pointer-events-none fixed inset-0 z-40 transition duration-500",
+          isOpen ? "bg-black/72 backdrop-blur-xl" : "bg-black/0"
+        )}
+        onClick={() => setIsOpen(false)}
+      />
+
+      <div
+        className={cn(
+          "pointer-events-none fixed inset-x-0 top-0 z-50 px-5 pt-24 transition duration-500 sm:px-7 lg:px-10",
+          isOpen ? "translate-y-0 opacity-100" : "-translate-y-4 opacity-0"
+        )}
+      >
+        <div className="section-shell">
+          <div className="pointer-events-auto overflow-hidden rounded-[2.5rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(214,185,140,0.14),transparent_22%),linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.012))] shadow-luxury backdrop-blur-2xl">
+            <div className="grid gap-0 xl:grid-cols-[0.88fr_1.12fr]">
+              <div className="border-b border-white/8 p-8 xl:border-b-0 xl:border-r xl:p-10">
+                <p className="text-xs uppercase tracking-[0.42em] text-[#d6b98c]">Navigation</p>
+                <h2 className="mt-5 max-w-md text-5xl leading-[0.86] text-white sm:text-6xl">
+                  Intri in orice zona dintr-un singur gest.
+                </h2>
+                <p className="mt-5 max-w-md text-base leading-8 text-white/62">
+                  Fara bara clasica de meniu. Navigatia devine un moment separat, mai controlat si
+                  mai memorabil.
+                </p>
+                <div className="mt-8 md:hidden">
+                  <AuthButtons session={session} />
+                </div>
+              </div>
+
+              <nav className="grid gap-3 p-5 sm:grid-cols-2 sm:p-6 lg:grid-cols-3 lg:p-8">
+                {visibleLinks.map((link) => {
+                  const Icon = link.icon;
+
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setIsOpen(false)}
+                      className="group rounded-[1.9rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.035),rgba(255,255,255,0.012))] p-5 transition duration-500 hover:-translate-y-1.5 hover:border-[#d6b98c]/24 hover:shadow-panel"
+                    >
+                      <div className={cn("flex h-12 w-12 items-center justify-center rounded-full border border-white/10 text-white/88", link.tone)}>
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <p className="mt-12 text-[11px] uppercase tracking-[0.36em] text-white/42">
+                        Route
+                      </p>
+                      <div className="mt-2 flex items-center justify-between gap-3">
+                        <h3 className="text-2xl text-white">{link.label}</h3>
+                        <ArrowUpRight className="h-5 w-5 text-white/32 transition duration-300 group-hover:text-[#d6b98c]" />
+                      </div>
+                    </Link>
+                  );
+                })}
+              </nav>
             </div>
           </div>
-        ) : null}
+        </div>
       </div>
     </header>
   );

@@ -35,9 +35,6 @@ const courseMeta = [
 ] as const;
 
 const aboutParagraphs = [
-  "Apropo, poti adauga si cursuri de incepatori fizice.",
-  "Plus cursuri de frizerie pentru avansati (de perfectionare tot fizice.",
-  "Curs incepatori de la 0 .",
   "Impreuna cu Scoala Comerciala si de Servicii Bacau, Provibe, alaturi de fondatorul Virgil Agu, organizeaza cursuri de frizerie dedicate incepatorilor.",
   "Cu o experienta vasta de peste 10 ani in domeniu, Virgil Agu a participat la zeci de seminarii si workshopuri, atat in calitate de cursant, cat si ca trainer.",
   "A format peste 300 de cursanti, ajutandu-i sa devina frizeri de top in industrie."
@@ -129,7 +126,7 @@ export function HomepageContent() {
               Trainer, competitor si fondator cu rezultate confirmate.
             </h2>
             <div className="mt-7 max-w-xl space-y-4 text-sm leading-8 text-white/62 sm:text-base">
-              {aboutParagraphs.slice(3).map((paragraph) => (
+              {aboutParagraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
@@ -163,6 +160,39 @@ export function HomepageContent() {
             </div>
           </FadeIn>
         </div>
+      </section>
+
+      <section className="section-shell section-space pt-0">
+        <FadeIn className="overflow-hidden rounded-[2.4rem] border border-white/8 bg-black shadow-luxury">
+          <div className="grid gap-0 lg:grid-cols-[minmax(0,1.05fr)_minmax(420px,0.95fr)]">
+            <div className="flex flex-col justify-between p-8 sm:p-10 lg:p-14">
+              <div>
+                <span className="section-kicker">Craft & Presence</span>
+                <h2 className="mt-6 max-w-4xl text-5xl leading-[0.86] text-white sm:text-6xl lg:text-7xl">
+                  Un proiect care trebuie sa inspire incredere inainte sa spuna un singur cuvant.
+                </h2>
+              </div>
+              <div className="mt-10 grid gap-4 sm:grid-cols-3">
+                <div className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-5">
+                  <p className="dashboard-label">Discipline</p>
+                  <p className="mt-3 text-2xl text-white">Executie</p>
+                </div>
+                <div className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-5">
+                  <p className="dashboard-label">Focus</p>
+                  <p className="mt-3 text-2xl text-white">Claritate</p>
+                </div>
+                <div className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-5">
+                  <p className="dashboard-label">Feel</p>
+                  <p className="mt-3 text-2xl text-white">Luxury dark</p>
+                </div>
+              </div>
+            </div>
+            <div className="relative min-h-[28rem]">
+              <Image src={brandImages.salonWide} alt="Virgil Agu salon" fill className="object-cover" />
+              <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.82),rgba(0,0,0,0.14)),linear-gradient(180deg,rgba(0,0,0,0.04),rgba(0,0,0,0.58))]" />
+            </div>
+          </div>
+        </FadeIn>
       </section>
 
       <section className="section-shell section-space pt-0">
@@ -236,7 +266,7 @@ export function HomepageContent() {
               <FadeIn key={review.id} className="premium-card h-full p-7 sm:p-8">
                 <div className="flex gap-1 text-[#d6b98c]">
                   {Array.from({ length: 5 }).map((_, starIndex) => (
-                    <span key={starIndex} className="text-sm">★</span>
+                    <span key={starIndex} className="text-sm">&#9733;</span>
                   ))}
                 </div>
                 <p className="mt-6 text-lg leading-8 text-white/76">&ldquo;{review.text}&rdquo;</p>

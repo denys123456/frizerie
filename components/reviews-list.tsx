@@ -32,17 +32,22 @@ export function ReviewsList({
           <StaggerItem key={review.id}>
             <FadeIn delay={index * 0.04} className="premium-card h-full p-8 sm:p-10">
               <div className="flex items-center justify-between gap-4">
-                <p className="text-2xl text-white">{review.name}</p>
-                <span className="text-[10px] uppercase tracking-[0.38em] text-accent/80">
+                <div>
+                  <p className="text-[11px] uppercase tracking-[0.38em] text-white/42">Verified review</p>
+                  <p className="mt-3 text-3xl text-white">{review.name}</p>
+                </div>
+                <span className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-[10px] uppercase tracking-[0.38em] text-accent/80">
                   {review.source}
                 </span>
               </div>
-              <div className="mt-5 flex gap-1 text-accent">
+              <div className="mt-6 flex gap-1 text-accent">
                 {Array.from({ length: review.rating }).map((_, starIndex) => (
                   <Star key={starIndex} className="h-4 w-4 fill-current" />
                 ))}
               </div>
-              <p className="mt-7 max-w-2xl text-base leading-8 text-white/70 sm:text-lg">{review.text}</p>
+              <p className="mt-8 max-w-2xl text-lg leading-8 text-white/74 sm:text-[1.25rem]">
+                &ldquo;{review.text}&rdquo;
+              </p>
             </FadeIn>
           </StaggerItem>
         ))}

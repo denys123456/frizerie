@@ -2,7 +2,6 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 
 import { auth } from "@/auth";
-import { SectionHeading } from "@/components/section-heading";
 import { Button } from "@/components/ui/button";
 import { prisma } from "@/lib/prisma";
 import { formatDate } from "@/lib/utils";
@@ -34,35 +33,71 @@ export default async function DashboardPage() {
   );
 
   return (
-    <section className="section-shell py-16 sm:py-20 lg:py-24">
-      <SectionHeading
-        eyebrow="Dashboard"
-        title={`Bine ai revenit, ${session.user.name || "membru"}.`}
-        description="Zona de cont pune accent pe claritate: accesul activ, achizitiile si programarile sunt mai bine separate si mai usor de parcurs."
-      />
+    <section className="section-shell section-space">
+      <div className="overflow-hidden rounded-[2.5rem] border border-white/8 bg-[radial-gradient(circle_at_top_left,rgba(214,185,140,0.14),transparent_26%),linear-gradient(180deg,rgba(255,255,255,0.035),rgba(255,255,255,0.012))] shadow-luxury">
+        <div className="grid gap-0 xl:grid-cols-[1.02fr_0.98fr]">
+          <div className="border-b border-white/8 p-8 sm:p-10 xl:border-b-0 xl:border-r xl:p-14">
+            <p className="text-xs uppercase tracking-[0.42em] text-[#d6b98c]">Dashboard</p>
+            <h1 className="mt-6 max-w-4xl text-5xl leading-[0.84] text-white sm:text-6xl lg:text-7xl">
+              Bine ai revenit, {session.user.name || "membru"}.
+            </h1>
+            <p className="mt-6 max-w-xl text-base leading-8 text-white/64 sm:text-lg">
+              Contul tau este organizat ca un spatiu premium: accesul activ, achizitiile si
+              programarile apar clar, fara senzatie de dashboard generic.
+            </p>
+            <div className="mt-10 flex flex-wrap gap-3">
+              <Button asChild className="px-7">
+                <Link href="/live">Vezi LIVE</Link>
+              </Button>
+              <Button asChild variant="secondary" className="px-7">
+                <Link href="/courses">Vezi cursuri</Link>
+              </Button>
+            </div>
+          </div>
 
-      <div className="mt-14 grid gap-6 lg:grid-cols-3">
+          <div className="grid gap-4 p-8 sm:grid-cols-3 sm:p-10 xl:p-14">
+            <div className="rounded-[1.7rem] border border-white/8 bg-white/[0.03] p-5">
+              <p className="dashboard-label">Subscription</p>
+              <p className="mt-3 text-3xl text-white">{activeSubscription ? activeSubscription.status : "Inactive"}</p>
+            </div>
+            <div className="rounded-[1.7rem] border border-white/8 bg-white/[0.03] p-5">
+              <p className="dashboard-label">Purchases</p>
+              <p className="mt-3 text-3xl text-white">{data.purchases.length}</p>
+            </div>
+            <div className="rounded-[1.7rem] border border-white/8 bg-white/[0.03] p-5">
+              <p className="dashboard-label">Bookings</p>
+              <p className="mt-3 text-3xl text-white">{data.bookings.length}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-10 grid gap-6 xl:grid-cols-[1.08fr_0.92fr]">
         <div className="premium-card p-7 sm:p-8">
-          <p className="text-xs uppercase tracking-[0.35em] text-accent/80">Subscription</p>
-          <h2 className="mt-5 text-4xl text-white">{activeSubscription ? activeSubscription.status : "Not active"}</h2>
-          <p className="mt-4 text-sm leading-7 text-white/58">
+          <div className="flex items-end justify-between gap-4">
+            <div>
+              <p className="dashboard-label">Acces activ</p>
+              <h2 className="mt-3 text-4xl text-white">
+                {activeSubscription ? activeSubscription.status : "No active plan"}
+              </h2>
+            </div>
+            <Button asChild variant="secondary">
+              <Link href="/live">Manage Access</Link>
+            </Button>
+          </div>
+          <p className="mt-5 max-w-xl text-sm leading-7 text-white/58">
             {activeSubscription?.currentPeriodEnd
               ? `Renews until ${formatDate(activeSubscription.currentPeriodEnd)}`
               : "No recurring plan attached yet."}
           </p>
-          <Button asChild className="mt-6">
-            <Link href="/live">Manage Access</Link>
-          </Button>
         </div>
+
         <div className="premium-card p-7 sm:p-8">
-          <p className="text-xs uppercase tracking-[0.35em] text-accent/80">Purchases</p>
-          <h2 className="mt-5 text-4xl text-white">{data.purchases.length}</h2>
-          <p className="mt-4 text-sm leading-7 text-white/58">One-time session unlocks stored against your account.</p>
-        </div>
-        <div className="premium-card p-7 sm:p-8">
-          <p className="text-xs uppercase tracking-[0.35em] text-accent/80">Bookings</p>
-          <h2 className="mt-5 text-4xl text-white">{data.bookings.length}</h2>
-          <p className="mt-4 text-sm leading-7 text-white/58">Recent appointment requests submitted through the website.</p>
+          <p className="dashboard-label">Continut</p>
+          <h2 className="mt-3 text-4xl text-white">Video, replay, booking.</h2>
+          <p className="mt-5 max-w-xl text-sm leading-7 text-white/58">
+            Accesul si istoricul tau sunt grupate intr-un shell mai calm si mai usor de parcurs.
+          </p>
         </div>
       </div>
 

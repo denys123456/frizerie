@@ -464,11 +464,12 @@ export function LivePageContent({
         });
 
         requestedOfferLiveIdRef.current = currentSession.id;
-        updateDebug({
+        setDebug((current) => ({
+          ...current,
           role: "viewer",
           lastEvent: "offer request sent",
-          offerRequestsSent: debug.offerRequestsSent + 1
-        });
+          offerRequestsSent: current.offerRequestsSent + 1
+        }));
       }
 
       if (viewerPeerRef.current) {
@@ -487,11 +488,12 @@ export function LivePageContent({
         return;
       }
 
-      updateDebug({
+      setDebug((current) => ({
+        ...current,
         role: "viewer",
-        offersReceived: debug.offersReceived + 1,
+        offersReceived: current.offersReceived + 1,
         lastEvent: "offer received"
-      });
+      }));
       const peer = createPeerConnection();
       peer.ontrack = (event) => {
         if (remoteVideoRef.current) {
@@ -546,13 +548,14 @@ export function LivePageContent({
           sdp: peer.localDescription
         })
       });
-      updateDebug({
-        answersSent: debug.answersSent + 1,
+      setDebug((current) => ({
+        ...current,
+        answersSent: current.answersSent + 1,
         lastEvent: "answer sent",
         connectionState: peer.connectionState,
         iceConnectionState: peer.iceConnectionState,
         signalingState: peer.signalingState
-      });
+      }));
 
       viewerPeerRef.current = peer;
     };
