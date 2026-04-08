@@ -607,7 +607,7 @@ export function LivePageContent({
     <div className="space-y-8">
       <div className="grid gap-8 xl:grid-cols-[minmax(0,1.42fr)_25rem]">
         <div className="space-y-6">
-          <div className="overflow-hidden rounded-[2.35rem] bg-[radial-gradient(circle_at_top,rgba(214,185,140,0.12),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.028),rgba(255,255,255,0.008))] shadow-[0_36px_110px_rgba(0,0,0,0.28)]">
+          <div className="overflow-hidden rounded-[2.15rem] border border-white/8 bg-[radial-gradient(circle_at_top,rgba(214,185,140,0.12),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.028),rgba(255,255,255,0.008))] shadow-[0_36px_110px_rgba(0,0,0,0.28)]">
             <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 px-6 py-5 sm:px-7">
               <div>
                 <div className="flex items-center gap-3">
@@ -663,7 +663,7 @@ export function LivePageContent({
           </div>
 
           {canViewLive ? (
-            <details className="premium-card p-5 sm:p-6">
+            <details className="premium-card rounded-[1.8rem] p-5 sm:p-6">
               <summary className="cursor-pointer list-none text-sm uppercase tracking-[0.34em] text-white/55">
                 Diagnostic LIVE
               </summary>
@@ -679,7 +679,7 @@ export function LivePageContent({
         </div>
 
         <div className="space-y-6">
-          <div className="flex min-h-[540px] flex-col overflow-hidden rounded-[2.2rem] bg-[radial-gradient(circle_at_top,rgba(214,185,140,0.08),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.024),rgba(255,255,255,0.006))] shadow-[0_30px_90px_rgba(0,0,0,0.24)]">
+          <div className="flex min-h-[540px] flex-col overflow-hidden rounded-[2rem] border border-white/8 bg-[radial-gradient(circle_at_top,rgba(214,185,140,0.08),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.024),rgba(255,255,255,0.006))] shadow-[0_30px_90px_rgba(0,0,0,0.24)]">
             <div className="border-b border-white/10 px-5 py-5 sm:px-6">
               <p className="text-xs uppercase tracking-[0.35em] text-[#d6b98c]">Live Chat</p>
               <h3 className="mt-3 text-3xl text-white">Chat in timp real</h3>

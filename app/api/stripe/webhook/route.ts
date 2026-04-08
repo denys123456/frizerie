@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
 import { prisma } from "@/lib/prisma";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 
 function getStripeId(value: string | Stripe.Customer | Stripe.DeletedCustomer | null | undefined) {
   return typeof value === "string" ? value : value?.id;
@@ -126,6 +126,7 @@ export async function POST(request: Request) {
   }
 
   try {
+    const stripe = getStripe();
     const event = stripe.webhooks.constructEvent(body, signature, process.env.STRIPE_WEBHOOK_SECRET);
 
     if (event.type === "checkout.session.completed") {

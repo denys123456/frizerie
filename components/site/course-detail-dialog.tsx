@@ -1,0 +1,185 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import * as Dialog from "@radix-ui/react-dialog";
+import { ArrowUpRight, GraduationCap, Radio, Scissors, X } from "lucide-react";
+
+import type { CourseOffer } from "@/lib/course-offers";
+import { brandImages } from "@/lib/data";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
+function CourseImage({ image, title }: { image: CourseOffer["image"]; title: string }) {
+  const source = image === "hero"
+    ? brandImages.hero
+    : image === "aboutMain"
+      ? brandImages.aboutMain
+      : brandImages.aboutSecondary;
+
+  return <Image src={source} alt={title} fill className="object-cover transition duration-700 group-hover:scale-[1.05]" />;
+}
+
+function CourseIcon({ label }: { label: string }) {
+  if (label === "LIVE") {
+    return <Radio className="h-5 w-5" />;
+  }
+
+  if (label === "Perfectionare") {
+    return <Scissors className="h-5 w-5" />;
+  }
+
+  return <GraduationCap className="h-5 w-5" />;
+}
+
+export function CourseDetailDialog({
+  course,
+  ctaHref,
+  compact = false,
+  className
+}: {
+  course: CourseOffer;
+  ctaHref: string;
+  compact?: boolean;
+  className?: string;
+}) {
+  return (
+    <Dialog.Root>
+      <Dialog.Trigger asChild>
+        <button
+          className={cn(
+            "group overflow-hidden text-left transition duration-500 hover:-translate-y-1.5",
+            compact
+              ? "premium-card h-full rounded-[1.9rem]"
+              : "rounded-[2rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.008))] shadow-[0_22px_70px_rgba(0,0,0,0.2)]",
+            className
+          )}
+        >
+          <div className={cn("relative overflow-hidden", compact ? "aspect-[16/12]" : "aspect-[16/11]")}>
+            <CourseImage image={course.image} title={course.title} />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.78))]" />
+            <div className="absolute left-5 top-5 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-black/35 text-white backdrop-blur-md">
+              <CourseIcon label={course.label} />
+            </div>
+            <div className="absolute inset-x-5 bottom-5 z-10">
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-[10px] uppercase tracking-[0.34em] text-[#d6b98c]">{course.label}</p>
+                <span className="rounded-full bg-black/35 px-3 py-1.5 text-[10px] uppercase tracking-[0.26em] text-white/64">
+                  {course.note}
+                </span>
+              </div>
+              <p className="mt-3 text-3xl leading-tight text-white">{course.shortTitle}</p>
+            </div>
+          </div>
+
+          <div className={cn("p-5 sm:p-6", compact ? "space-y-5" : "space-y-6")}>
+            <div>
+              <p className={cn("leading-tight text-white", compact ? "text-2xl sm:text-[2rem]" : "text-3xl")}>
+                {course.title}
+              </p>
+              <p className="mt-3 text-sm leading-7 text-white/62 sm:text-[15px]">{course.description}</p>
+            </div>
+
+            <div className="flex items-end justify-between gap-4">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.34em] text-white/38">Pret</p>
+                <p className="mt-2 text-xl text-white sm:text-2xl">{course.price}</p>
+              </div>
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[10px] uppercase tracking-[0.32em] text-white/72">
+                Detalii
+                <ArrowUpRight className="h-3.5 w-3.5" />
+              </span>
+            </div>
+          </div>
+        </button>
+      </Dialog.Trigger>
+
+      <Dialog.Portal>
+        <Dialog.Overlay className="fixed inset-0 z-[60] bg-black/82 backdrop-blur-[12px]" />
+        <Dialog.Content className="fixed left-1/2 top-1/2 z-[70] max-h-[90vh] w-[94vw] max-w-5xl -translate-x-1/2 -translate-y-1/2 overflow-auto rounded-[2.3rem] border border-white/10 bg-[#070707] p-5 shadow-[0_44px_140px_rgba(0,0,0,0.5)] sm:p-8">
+          <div className="grid gap-6 lg:grid-cols-[0.86fr_1.14fr]">
+            <div className="relative min-h-[24rem] overflow-hidden rounded-[1.9rem]">
+              <CourseImage image={course.image} title={course.title} />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.12),rgba(0,0,0,0.82))]" />
+              <div className="absolute inset-x-0 bottom-0 p-6">
+                <p className="text-[10px] uppercase tracking-[0.34em] text-[#d6b98c]">{course.label}</p>
+                <p className="mt-3 text-4xl leading-[0.92] text-white">{course.title}</p>
+                <p className="mt-4 text-sm leading-7 text-white/68">{course.price}</p>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.34em] text-[#d6b98c]">{course.note}</p>
+                  <Dialog.Title className="mt-3 text-3xl leading-tight text-white sm:text-4xl">
+                    {course.title}
+                  </Dialog.Title>
+                </div>
+                <Dialog.Close className="rounded-full border border-white/10 bg-white/[0.04] p-3 text-white/70 transition hover:bg-white/[0.1] hover:text-white">
+                  <X className="h-5 w-5" />
+                </Dialog.Close>
+              </div>
+
+              <p className="mt-6 text-base leading-8 text-white/68">{course.dialogBody}</p>
+
+              <div className="mt-8 grid gap-5 md:grid-cols-2">
+                {course.include?.length ? (
+                  <div className="rounded-[1.8rem] border border-white/8 bg-white/[0.025] p-5">
+                    <p className="text-xs uppercase tracking-[0.35em] text-[#d6b98c]">{course.includeTitle}</p>
+                    <div className="mt-4 space-y-3">
+                      {course.include.map((item) => (
+                        <p key={item} className="border-l border-[#d6b98c]/25 pl-4 text-sm leading-7 text-white/76">
+                          {item}
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
+
+                {course.learn?.length ? (
+                  <div className="rounded-[1.8rem] border border-white/8 bg-white/[0.025] p-5">
+                    <p className="text-xs uppercase tracking-[0.35em] text-[#d6b98c]">{course.learnTitle}</p>
+                    <div className="mt-4 space-y-3">
+                      {course.learn.map((item) => (
+                        <p key={item} className="border-l border-white/12 pl-4 text-sm leading-7 text-white/76">
+                          {item}
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
+              </div>
+
+              {course.advantage ? (
+                <div className="mt-5 rounded-[1.8rem] bg-[linear-gradient(180deg,rgba(214,185,140,0.09),rgba(214,185,140,0.03))] p-5">
+                  <p className="text-xs uppercase tracking-[0.35em] text-[#d6b98c]">
+                    {course.label === "LIVE" ? "De ce sa participi" : "Avantajul tau"}
+                  </p>
+                  <p className="mt-4 text-sm leading-7 text-white/76">{course.advantage}</p>
+                </div>
+              ) : null}
+
+              {course.freestyle ? (
+                <div className="mt-5 rounded-[1.8rem] border border-dashed border-white/10 bg-white/[0.02] p-5">
+                  <p className="text-xs uppercase tracking-[0.35em] text-white/42">Freestyle</p>
+                  <p className="mt-4 text-sm leading-7 text-white/72">{course.freestyle}</p>
+                </div>
+              ) : null}
+
+              <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.34em] text-white/38">Pret final</p>
+                  <p className="mt-2 text-3xl text-white">{course.price}</p>
+                </div>
+                <Button asChild className="px-7">
+                  <Link href={ctaHref}>{course.purchaseLabel}</Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
+  );
+}

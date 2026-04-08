@@ -20,18 +20,18 @@ export function PastLiveList({
   sessions: PastLiveSession[];
 }) {
   return (
-    <div className="premium-card p-6 sm:p-8">
+    <div className="premium-card rounded-[2rem] p-6 sm:p-7">
       <p className="text-xs uppercase tracking-[0.35em] text-[#d6b98c]">Live-uri anterioare</p>
       <h3 className="mt-3 text-3xl text-white">Replay-uri disponibile</h3>
 
-      <div className="mt-8 space-y-4">
+      <div className="mt-8 grid gap-4">
         {sessions.length ? (
           sessions.map((session) => (
-            <div key={session.id} className="rounded-[1.7rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.008))] p-5 shadow-[0_20px_55px_rgba(0,0,0,0.18)] sm:p-6">
-              <div className="flex items-start justify-between gap-4">
+            <div key={session.id} className="rounded-[1.55rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.008))] p-5 shadow-[0_20px_55px_rgba(0,0,0,0.18)] sm:p-6">
+              <div className="flex flex-wrap items-start justify-between gap-4">
                 <div>
                   <p className="text-xl text-white">{session.title}</p>
-                  <p className="mt-2 text-sm leading-6 text-white/60">{session.description}</p>
+                  <p className="mt-2 max-w-2xl text-sm leading-6 text-white/60">{session.description}</p>
                 </div>
                 <div className="rounded-full bg-[#d6b98c]/[0.08] px-4 py-2 text-[10px] uppercase tracking-[0.3em] text-[#f1dec0]">
                   {session.price ? `${(session.price / 100).toFixed(0)} EUR` : "Abonament"}
