@@ -20,7 +20,7 @@ export function TestimonialsSection({
             title="Review-uri reale care confirma executia, atentia la detalii si constanta."
             description="Sectiunea ramane aerisita si usor de citit, cu acces direct la istoricul complet din MERO."
           />
-          <div className="mt-8 space-y-4 text-white/62">
+          <div className="mt-8 space-y-4 text-white/[0.62]">
             <p className="text-sm uppercase tracking-[0.34em] text-accent/80">MERO</p>
             <p className="text-5xl text-white">4.98</p>
             <p className="max-w-sm text-base leading-7">
@@ -57,3 +57,5 @@ export function TestimonialsSection({
     </section>
   );
 }
+
+

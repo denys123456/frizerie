@@ -23,7 +23,7 @@ export function AboutSection() {
               <p className="text-xs uppercase tracking-[0.35em] text-accent/80">Salon</p>
               <p className="mt-3 text-3xl text-white">Look curat</p>
             </div>
-            <p className="text-sm leading-7 text-white/58">
+            <p className="text-sm leading-7 text-white/[0.58]">
               Toate imaginile din prezentare vin din asset-urile proiectului si pastreaza acelasi stil vizual cu galeria.
             </p>
           </div>
@@ -43,7 +43,7 @@ export function AboutSection() {
             {aboutHighlights.map(([title, copy]) => (
               <div key={title} className="glass-panel rounded-[1.5rem] p-6">
                 <h3 className="text-2xl text-white">{title}</h3>
-                <p className="mt-3 text-sm leading-7 text-white/58">{copy}</p>
+                <p className="mt-3 text-sm leading-7 text-white/[0.58]">{copy}</p>
               </div>
             ))}
           </div>
@@ -52,3 +52,5 @@ export function AboutSection() {
     </section>
   );
 }
+
+

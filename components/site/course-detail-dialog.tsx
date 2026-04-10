@@ -58,13 +58,13 @@ export function CourseDetailDialog({
           <div className={cn("relative overflow-hidden", compact ? "aspect-[16/12]" : "aspect-[16/11]")}>
             <CourseImage image={course.image} title={course.title} />
             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.78))]" />
-            <div className="absolute left-5 top-5 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-black/35 text-white backdrop-blur-md">
+            <div className="absolute left-5 top-5 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-black/[0.35] text-white backdrop-blur-md">
               <CourseIcon label={course.label} />
             </div>
             <div className="absolute inset-x-5 bottom-5 z-10">
               <div className="flex items-center justify-between gap-3">
                 <p className="text-[10px] uppercase tracking-[0.34em] text-[#d6b98c]">{course.label}</p>
-                <span className="rounded-full bg-black/35 px-3 py-1.5 text-[10px] uppercase tracking-[0.26em] text-white/64">
+                <span className="rounded-full bg-black/[0.35] px-3 py-1.5 text-[10px] uppercase tracking-[0.26em] text-white/[0.64]">
                   {course.note}
                 </span>
               </div>
@@ -77,15 +77,15 @@ export function CourseDetailDialog({
               <p className={cn("leading-tight text-white", compact ? "text-2xl sm:text-[2rem]" : "text-3xl")}>
                 {course.title}
               </p>
-              <p className="mt-3 text-sm leading-7 text-white/62 sm:text-[15px]">{course.description}</p>
+              <p className="mt-3 text-sm leading-7 text-white/[0.62] sm:text-[15px]">{course.description}</p>
             </div>
 
             <div className="flex items-end justify-between gap-4">
               <div>
-                <p className="text-[10px] uppercase tracking-[0.34em] text-white/38">Pret</p>
+                <p className="text-[10px] uppercase tracking-[0.34em] text-white/[0.38]">Pret</p>
                 <p className="mt-2 text-xl text-white sm:text-2xl">{course.price}</p>
               </div>
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[10px] uppercase tracking-[0.32em] text-white/72">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[10px] uppercase tracking-[0.32em] text-white/[0.72]">
                 Detalii
                 <ArrowUpRight className="h-3.5 w-3.5" />
               </span>
@@ -95,7 +95,7 @@ export function CourseDetailDialog({
       </Dialog.Trigger>
 
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-[60] bg-black/82 backdrop-blur-[12px]" />
+        <Dialog.Overlay className="fixed inset-0 z-[60] bg-black/[0.82] backdrop-blur-[12px]" />
         <Dialog.Content className="fixed left-1/2 top-1/2 z-[70] max-h-[90vh] w-[94vw] max-w-5xl -translate-x-1/2 -translate-y-1/2 overflow-auto rounded-[2.3rem] border border-white/10 bg-[#070707] p-5 shadow-[0_44px_140px_rgba(0,0,0,0.5)] sm:p-8">
           <div className="grid gap-6 lg:grid-cols-[0.86fr_1.14fr]">
             <div className="relative min-h-[24rem] overflow-hidden rounded-[1.9rem]">
@@ -104,7 +104,7 @@ export function CourseDetailDialog({
               <div className="absolute inset-x-0 bottom-0 p-6">
                 <p className="text-[10px] uppercase tracking-[0.34em] text-[#d6b98c]">{course.label}</p>
                 <p className="mt-3 text-4xl leading-[0.92] text-white">{course.title}</p>
-                <p className="mt-4 text-sm leading-7 text-white/68">{course.price}</p>
+                <p className="mt-4 text-sm leading-7 text-white/[0.68]">{course.price}</p>
               </div>
             </div>
 
@@ -121,7 +121,7 @@ export function CourseDetailDialog({
                 </Dialog.Close>
               </div>
 
-              <p className="mt-6 text-base leading-8 text-white/68">{course.dialogBody}</p>
+              <p className="mt-6 text-base leading-8 text-white/[0.68]">{course.dialogBody}</p>
 
               <div className="mt-8 grid gap-5 md:grid-cols-2">
                 {course.include?.length ? (
@@ -129,7 +129,7 @@ export function CourseDetailDialog({
                     <p className="text-xs uppercase tracking-[0.35em] text-[#d6b98c]">{course.includeTitle}</p>
                     <div className="mt-4 space-y-3">
                       {course.include.map((item) => (
-                        <p key={item} className="border-l border-[#d6b98c]/25 pl-4 text-sm leading-7 text-white/76">
+                        <p key={item} className="border-l border-[#d6b98c]/25 pl-4 text-sm leading-7 text-white/[0.76]">
                           {item}
                         </p>
                       ))}
@@ -142,7 +142,7 @@ export function CourseDetailDialog({
                     <p className="text-xs uppercase tracking-[0.35em] text-[#d6b98c]">{course.learnTitle}</p>
                     <div className="mt-4 space-y-3">
                       {course.learn.map((item) => (
-                        <p key={item} className="border-l border-white/12 pl-4 text-sm leading-7 text-white/76">
+                        <p key={item} className="border-l border-white/[0.12] pl-4 text-sm leading-7 text-white/[0.76]">
                           {item}
                         </p>
                       ))}
@@ -156,13 +156,13 @@ export function CourseDetailDialog({
                   <p className="text-xs uppercase tracking-[0.35em] text-[#d6b98c]">
                     {course.label === "LIVE" ? "De ce sa participi" : "Avantajul tau"}
                   </p>
-                  <p className="mt-4 text-sm leading-7 text-white/76">{course.advantage}</p>
+                  <p className="mt-4 text-sm leading-7 text-white/[0.76]">{course.advantage}</p>
                 </div>
               ) : null}
 
               <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
                 <div>
-                  <p className="text-[10px] uppercase tracking-[0.34em] text-white/38">Pret final</p>
+                  <p className="text-[10px] uppercase tracking-[0.34em] text-white/[0.38]">Pret final</p>
                   <p className="mt-2 text-3xl text-white">{course.price}</p>
                 </div>
                 <Button asChild className="px-7">
@@ -176,3 +176,5 @@ export function CourseDetailDialog({
     </Dialog.Root>
   );
 }
+
+

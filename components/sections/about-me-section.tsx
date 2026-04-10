@@ -18,7 +18,7 @@ export function AboutMeSection() {
           />
           <div className="mt-8 grid gap-4">
             {aboutMeAchievements.map((item) => (
-              <div key={item} className="rounded-[1.25rem] border border-white/10 bg-black/20 px-5 py-4 text-white/72">
+              <div key={item} className="rounded-[1.25rem] border border-white/10 bg-black/20 px-5 py-4 text-white/[0.72]">
                 {item}
               </div>
             ))}
@@ -38,7 +38,7 @@ export function AboutMeSection() {
               <Image src={item.imageUrl} alt={item.title} fill className="object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-5">
-                <p className="text-xs uppercase tracking-[0.34em] text-accent/85">{item.category}</p>
+                <p className="text-xs uppercase tracking-[0.34em] text-accent/[0.85]">{item.category}</p>
                 <p className="mt-2 text-2xl text-white">{item.title}</p>
               </div>
             </FadeIn>
@@ -48,3 +48,5 @@ export function AboutMeSection() {
     </section>
   );
 }
+
+

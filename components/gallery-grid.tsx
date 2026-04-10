@@ -50,7 +50,7 @@ export function GalleryGrid({
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.02),rgba(0,0,0,0.72))]" />
                 </div>
                 <div className="absolute inset-x-0 bottom-0 p-7">
-                  <p className="text-[10px] uppercase tracking-[0.38em] text-accent/85">{item.category}</p>
+                  <p className="text-[10px] uppercase tracking-[0.38em] text-accent/[0.85]">{item.category}</p>
                   <h3 className="mt-2 max-w-[18rem] text-2xl leading-tight text-white sm:text-[2rem]">
                     {item.title}
                   </h3>
@@ -58,7 +58,7 @@ export function GalleryGrid({
               </button>
             </Dialog.Trigger>
             <Dialog.Portal>
-              <Dialog.Overlay className="fixed inset-0 z-[60] bg-black/92 backdrop-blur-[12px]" />
+              <Dialog.Overlay className="fixed inset-0 z-[60] bg-black/[0.92] backdrop-blur-[12px]" />
               <Dialog.Content className="fixed inset-4 z-[70] overflow-hidden rounded-[2.2rem] bg-[#060606] shadow-[0_40px_120px_rgba(0,0,0,0.45)] lg:inset-8">
                 <div className="relative h-[78vh] w-full bg-black">
                   <Image src={item.imageUrl} alt={item.title} fill className="object-contain" />
@@ -80,3 +80,5 @@ export function GalleryGrid({
     </div>
   );
 }
+
+

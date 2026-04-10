@@ -21,7 +21,7 @@ export default function ContactPage() {
             <h1 className="mt-5 max-w-4xl text-4xl leading-[0.9] text-white sm:text-6xl lg:text-7xl">
               Hai direct la conversatia care misca lucrurile.
             </h1>
-            <p className="mt-5 max-w-xl text-sm leading-7 text-white/64 sm:text-lg sm:leading-8">
+            <p className="mt-5 max-w-xl text-sm leading-7 text-white/[0.64] sm:text-lg sm:leading-8">
               Alege canalul rapid, cere detalii pentru cursuri sau programeaza o discutie privata.
               Totul este gandit sa ajungi la actiune in cateva secunde.
             </p>
@@ -39,9 +39,9 @@ export default function ContactPage() {
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#d6b98c]/10 text-accent">
                   <item.icon className="h-5 w-5" />
                 </div>
-                <p className="mt-8 text-[11px] uppercase tracking-[0.36em] text-white/42">{item.label}</p>
+                <p className="mt-8 text-[11px] uppercase tracking-[0.36em] text-white/[0.42]">{item.label}</p>
                 <p className="mt-3 text-xl text-white sm:text-2xl">{item.value}</p>
-                <p className="mt-3 text-sm text-white/48">Deschide canalul direct si continua conversatia.</p>
+                <p className="mt-3 text-sm text-white/[0.48]">Deschide canalul direct si continua conversatia.</p>
               </Link>
             ))}
           </div>
@@ -54,3 +54,5 @@ export default function ContactPage() {
     </section>
   );
 }
+
+

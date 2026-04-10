@@ -25,10 +25,12 @@ export function AuthButtons({ session }: { session: Session | null }) {
           <Link href="/admin">Admin</Link>
         </Button>
       ) : null}
-      <Button asChild variant="secondary" className="inline-flex border-[#d6b98c]/24 bg-[#d6b98c]/[0.08] px-4 text-[#f4e5c8] sm:px-5">
+      <Button asChild variant="secondary" className="inline-flex border-[#d6b98c]/[0.24] bg-[#d6b98c]/[0.08] px-4 text-[#f4e5c8] sm:px-5">
         <Link href="/dashboard">Contul meu</Link>
       </Button>
       <SignOutButton />
     </div>
   );
 }
+
+

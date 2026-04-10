@@ -171,7 +171,7 @@ export function AdminDashboard({
             <h1 className="mt-4 text-3xl leading-tight text-white sm:text-4xl">
               Mobil first, clar si rapid pentru operatiuni reale.
             </h1>
-            <p className="mt-4 text-sm leading-7 text-white/58">
+            <p className="mt-4 text-sm leading-7 text-white/[0.58]">
               Navigarea, programarea LIVE si managementul galeriei sunt prioritizate pentru atingere,
               viteză si vizibilitate.
             </p>
@@ -186,7 +186,7 @@ export function AdminDashboard({
                 <a
                   key={item.href}
                   href={item.href}
-                  className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white/72 transition hover:border-[#d6b98c]/35 hover:text-white"
+                  className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white/[0.72] transition hover:border-[#d6b98c]/[0.35] hover:text-white"
                 >
                   {item.label}
                 </a>
@@ -288,7 +288,7 @@ export function AdminDashboard({
                     <h3 className="mt-3 text-2xl text-white">Timer activ pentru LIVE</h3>
                   </div>
                   {selectedLiveSession ? (
-                    <div className="rounded-full bg-white/[0.04] px-4 py-2 text-xs uppercase tracking-[0.3em] text-white/55">
+                    <div className="rounded-full bg-white/[0.04] px-4 py-2 text-xs uppercase tracking-[0.3em] text-white/[0.55]">
                       {selectedLiveSession.isLive ? "Live acum" : "Programat"}
                     </div>
                   ) : null}
@@ -331,7 +331,7 @@ export function AdminDashboard({
                     </div>
                   </form>
                 ) : (
-                  <div className="mt-6 rounded-[1.4rem] border border-white/10 bg-white/[0.03] px-4 py-5 text-sm text-white/55">
+                  <div className="mt-6 rounded-[1.4rem] border border-white/10 bg-white/[0.03] px-4 py-5 text-sm text-white/[0.55]">
                     Nu exista sesiuni live disponibile pentru editare.
                   </div>
                 )}
@@ -354,11 +354,11 @@ export function AdminDashboard({
                         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                           <div className="min-w-0">
                             <p className="text-base text-white">{session.title}</p>
-                            <p className="mt-2 text-sm leading-6 text-white/52">
+                            <p className="mt-2 text-sm leading-6 text-white/[0.52]">
                               {session.visibility} • {session.isLive ? "LIVE" : "scheduled"} •{" "}
                               {new Date(session.scheduledFor).toLocaleString("ro-RO")}
                             </p>
-                            {session.recordingUrl ? <p className="mt-2 text-xs uppercase tracking-[0.26em] text-white/35">VOD salvat</p> : null}
+                            {session.recordingUrl ? <p className="mt-2 text-xs uppercase tracking-[0.26em] text-white/[0.35]">VOD salvat</p> : null}
                           </div>
                           <div className="flex flex-col gap-2 sm:min-w-[11rem]">
                             <Button type="button" variant="secondary" className="min-h-11" onClick={() => setSelectedLiveId(session.id)}>
@@ -377,7 +377,7 @@ export function AdminDashboard({
                       </div>
                     ))
                   ) : (
-                    <div className="rounded-[1.4rem] border border-white/10 bg-white/[0.03] px-4 py-5 text-sm text-white/55">
+                    <div className="rounded-[1.4rem] border border-white/10 bg-white/[0.03] px-4 py-5 text-sm text-white/[0.55]">
                       Nu exista sesiuni live.
                     </div>
                   )}
@@ -392,7 +392,7 @@ export function AdminDashboard({
                 <p className="dashboard-label">Courses</p>
                 <h2 className="mt-3 text-2xl text-white sm:text-3xl">Carduri editabile cu preview instant.</h2>
               </div>
-              <div className="rounded-full bg-white/[0.04] px-4 py-2 text-[11px] uppercase tracking-[0.32em] text-white/48">
+              <div className="rounded-full bg-white/[0.04] px-4 py-2 text-[11px] uppercase tracking-[0.32em] text-white/[0.48]">
                 Local content only
               </div>
             </div>
@@ -421,7 +421,7 @@ export function AdminDashboard({
                         key={image.id}
                         type="button"
                         onClick={() => setServiceDraft((current) => ({ ...current, imageId: image.id }))}
-                        className={`overflow-hidden rounded-[1.25rem] border text-left transition ${active ? "border-[#d6b98c]/45 bg-[#d6b98c]/8" : "border-white/10 bg-white/[0.03] hover:border-white/20"}`}
+                        className={`overflow-hidden rounded-[1.25rem] border text-left transition ${active ? "border-[#d6b98c]/[0.45] bg-[#d6b98c]/[0.08]" : "border-white/10 bg-white/[0.03] hover:border-white/20"}`}
                       >
                         <div className="relative aspect-[4/3]">
                           <Image src={image.src} alt={image.label} fill className="object-cover" />
@@ -451,7 +451,7 @@ export function AdminDashboard({
                   </div>
                   <div className="space-y-3 p-5">
                     <h3 className="text-2xl text-white">{serviceDraft.title || "Titlu card"}</h3>
-                    <p className="text-sm leading-7 text-white/58">{serviceDraft.description || "Descrierea cardului apare aici inainte sa salvezi."}</p>
+                    <p className="text-sm leading-7 text-white/[0.58]">{serviceDraft.description || "Descrierea cardului apare aici inainte sa salvezi."}</p>
                   </div>
                 </div>
               </div>
@@ -492,17 +492,17 @@ export function AdminDashboard({
                 <p className="dashboard-label">Gallery</p>
                 <h2 className="mt-3 text-2xl text-white sm:text-3xl">Upload din device si management curat.</h2>
               </div>
-              <div className="rounded-full bg-white/[0.04] px-4 py-2 text-[11px] uppercase tracking-[0.32em] text-white/48">
+              <div className="rounded-full bg-white/[0.04] px-4 py-2 text-[11px] uppercase tracking-[0.32em] text-white/[0.48]">
                 Touch friendly
               </div>
             </div>
 
             <div className="mt-6 grid gap-6 xl:grid-cols-[20rem_minmax(0,1fr)]">
               <div className="space-y-4 rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-5">
-                <label className="flex min-h-[8rem] cursor-pointer flex-col items-center justify-center gap-3 rounded-[1.25rem] border border-dashed border-white/15 bg-black/20 px-4 py-5 text-center text-sm text-white/75 transition hover:border-white/25 hover:text-white">
+                <label className="flex min-h-[8rem] cursor-pointer flex-col items-center justify-center gap-3 rounded-[1.25rem] border border-dashed border-white/[0.15] bg-black/20 px-4 py-5 text-center text-sm text-white/75 transition hover:border-white/25 hover:text-white">
                   <Upload className="h-5 w-5" />
                   Adauga imagine din device
-                  <span className="text-xs uppercase tracking-[0.28em] text-white/35">PNG, JPG, WEBP</span>
+                  <span className="text-xs uppercase tracking-[0.28em] text-white/[0.35]">PNG, JPG, WEBP</span>
                   <input type="file" accept="image/*" className="hidden" onChange={handleGalleryUpload} />
                 </label>
 
@@ -527,7 +527,7 @@ export function AdminDashboard({
                     </div>
                   </div>
                 ) : (
-                  <div className="rounded-[1.25rem] border border-white/10 bg-black/20 px-4 py-6 text-sm leading-7 text-white/55">
+                  <div className="rounded-[1.25rem] border border-white/10 bg-black/20 px-4 py-6 text-sm leading-7 text-white/[0.55]">
                     Alege o imagine pentru preview. Upload-ul este salvat local ca base64 in browserul curent.
                   </div>
                 )}
@@ -550,7 +550,7 @@ export function AdminDashboard({
                           Sterge
                         </Button>
                       ) : (
-                        <div className="inline-flex rounded-full bg-white/[0.04] px-3 py-2 text-[11px] uppercase tracking-[0.28em] text-white/38">
+                        <div className="inline-flex rounded-full bg-white/[0.04] px-3 py-2 text-[11px] uppercase tracking-[0.28em] text-white/[0.38]">
                           Asset
                         </div>
                       )}
@@ -573,14 +573,14 @@ export function AdminDashboard({
                     <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                       <div className="min-w-0">
                         <p className="truncate text-white">{user.email}</p>
-                        <p className="mt-1 text-sm text-white/55">{user.role}</p>
+                        <p className="mt-1 text-sm text-white/[0.55]">{user.role}</p>
                       </div>
-                      <p className="text-sm text-white/42">{new Date(user.createdAt).toLocaleString("ro-RO")}</p>
+                      <p className="text-sm text-white/[0.42]">{new Date(user.createdAt).toLocaleString("ro-RO")}</p>
                     </div>
                   </div>
                 ))
               ) : (
-                <div className="rounded-[1.4rem] border border-white/10 bg-white/[0.03] px-4 py-5 text-sm text-white/55">
+                <div className="rounded-[1.4rem] border border-white/10 bg-white/[0.03] px-4 py-5 text-sm text-white/[0.55]">
                   Nu exista utilizatori disponibili.
                 </div>
               )}
@@ -591,3 +591,5 @@ export function AdminDashboard({
     </section>
   );
 }
+
+

@@ -41,7 +41,7 @@ export default async function DashboardPage() {
             <h1 className="mt-6 max-w-4xl text-5xl leading-[0.84] text-white sm:text-6xl lg:text-7xl">
               Bine ai revenit, {session.user.name || "membru"}.
             </h1>
-            <p className="mt-6 max-w-xl text-base leading-8 text-white/64 sm:text-lg">
+            <p className="mt-6 max-w-xl text-base leading-8 text-white/[0.64] sm:text-lg">
               Contul tau este organizat ca un spatiu premium: accesul activ, achizitiile si
               programarile apar clar, fara senzatie de dashboard generic.
             </p>
@@ -85,7 +85,7 @@ export default async function DashboardPage() {
               <Link href="/live">Manage Access</Link>
             </Button>
           </div>
-          <p className="mt-5 max-w-xl text-sm leading-7 text-white/58">
+          <p className="mt-5 max-w-xl text-sm leading-7 text-white/[0.58]">
             {activeSubscription?.currentPeriodEnd
               ? `Renews until ${formatDate(activeSubscription.currentPeriodEnd)}`
               : "No recurring plan attached yet."}
@@ -95,7 +95,7 @@ export default async function DashboardPage() {
         <div className="premium-card p-7 sm:p-8">
           <p className="dashboard-label">Continut</p>
           <h2 className="mt-3 text-4xl text-white">Video, replay, booking.</h2>
-          <p className="mt-5 max-w-xl text-sm leading-7 text-white/58">
+          <p className="mt-5 max-w-xl text-sm leading-7 text-white/[0.58]">
             Accesul si istoricul tau sunt grupate intr-un shell mai calm si mai usor de parcurs.
           </p>
         </div>
@@ -106,7 +106,7 @@ export default async function DashboardPage() {
           <h3 className="text-3xl text-white">Session purchases</h3>
           <div className="mt-7 space-y-4">
             {data.purchases.length ? data.purchases.map((purchase: (typeof data.purchases)[number]) => (
-              <div key={purchase.id} className="rounded-[1.6rem] border border-white/10 bg-black/20 p-5 text-white/68">
+              <div key={purchase.id} className="rounded-[1.6rem] border border-white/10 bg-black/20 p-5 text-white/[0.68]">
                 <p className="text-lg text-white">{purchase.liveSession?.title || purchase.type}</p>
                 <p className="mt-2 text-sm">Purchased on {formatDate(purchase.createdAt)}</p>
               </div>
@@ -117,7 +117,7 @@ export default async function DashboardPage() {
           <h3 className="text-3xl text-white">Recent bookings</h3>
           <div className="mt-7 space-y-4">
             {data.bookings.length ? data.bookings.map((booking: (typeof data.bookings)[number]) => (
-              <div key={booking.id} className="rounded-[1.6rem] border border-white/10 bg-black/20 p-5 text-white/68">
+              <div key={booking.id} className="rounded-[1.6rem] border border-white/10 bg-black/20 p-5 text-white/[0.68]">
                 <p className="text-lg text-white">{booking.service}</p>
                 <p className="mt-2 text-sm">Preferred date {formatDate(booking.preferredAt)}</p>
               </div>
@@ -128,3 +128,5 @@ export default async function DashboardPage() {
     </section>
   );
 }
+
+

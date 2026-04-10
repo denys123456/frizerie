@@ -26,7 +26,7 @@ function PalmaresDialog() {
             {palmaresHighlights.map((item) => (
               <div
                 key={item}
-                className="rounded-[1.5rem] border border-white/10 bg-white/[0.035] px-5 py-4 text-sm uppercase tracking-[0.16em] text-white/82 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]"
+                className="rounded-[1.5rem] border border-white/10 bg-white/[0.035] px-5 py-4 text-sm uppercase tracking-[0.16em] text-white/[0.82] shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]"
               >
                 {item}
               </div>
@@ -35,7 +35,7 @@ function PalmaresDialog() {
         </button>
       </Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-[60] bg-black/82 backdrop-blur-[12px]" />
+        <Dialog.Overlay className="fixed inset-0 z-[60] bg-black/[0.82] backdrop-blur-[12px]" />
         <Dialog.Content className="fixed left-1/2 top-1/2 z-[70] w-[94vw] max-w-3xl -translate-x-1/2 -translate-y-1/2 overflow-auto rounded-[2.2rem] border border-white/10 bg-[#070707] p-6 shadow-[0_44px_140px_rgba(0,0,0,0.5)] sm:p-8">
           <div className="flex items-start justify-between gap-4">
             <div>
@@ -51,7 +51,7 @@ function PalmaresDialog() {
 
           <div className="mt-8 grid gap-4">
             {palmaresHighlights.map((item) => (
-              <div key={item} className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] px-5 py-4 text-white/84">
+              <div key={item} className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] px-5 py-4 text-white/[0.84]">
                 {item}
               </div>
             ))}
@@ -59,7 +59,7 @@ function PalmaresDialog() {
 
           <div className="mt-6 space-y-4">
             {palmaresDetails.map((item) => (
-              <p key={item} className="border-l border-[#d6b98c]/20 pl-4 text-sm leading-7 text-white/72">
+              <p key={item} className="border-l border-[#d6b98c]/20 pl-4 text-sm leading-7 text-white/[0.72]">
                 {item}
               </p>
             ))}
@@ -89,7 +89,7 @@ export function HomepageContent() {
               <h1 className="mt-8 max-w-[48rem] text-[3.5rem] leading-[0.82] text-white sm:text-[4.6rem] lg:text-[5.8rem] xl:text-[6.2rem]">
                 Locul unde frizeria inceteaza sa fie un job si devine arta.
               </h1>
-              <p className="mt-7 max-w-xl text-xl leading-8 text-white/72">
+              <p className="mt-7 max-w-xl text-xl leading-8 text-white/[0.72]">
                 Aici incepe diferenta.
               </p>
 
@@ -138,7 +138,7 @@ export function HomepageContent() {
                 Palmaresul si imaginea trebuie sa stea in acelasi cadru, nu in doua bucati fara legatura.
               </p>
             </div>
-            <p className="text-[3.8rem] font-display leading-none tracking-[0.18em] text-white/8 sm:text-[5.5rem] lg:text-[7rem]">
+            <p className="text-[3.8rem] font-display leading-none tracking-[0.18em] text-white/[0.08] sm:text-[5.5rem] lg:text-[7rem]">
               VA
             </p>
           </div>
@@ -204,7 +204,7 @@ export function HomepageContent() {
                     <span key={starIndex} className="text-sm">&#9733;</span>
                   ))}
                 </div>
-                <p className="mt-6 text-base leading-8 text-white/76">&ldquo;{review.text}&rdquo;</p>
+                <p className="mt-6 text-base leading-8 text-white/[0.76]">&ldquo;{review.text}&rdquo;</p>
                 <div className="mt-6">
                   <p className="text-base text-white">{review.name}</p>
                   <p className="mt-1 text-xs uppercase tracking-[0.32em] text-white/40">
@@ -219,3 +219,5 @@ export function HomepageContent() {
     </>
   );
 }
+
+

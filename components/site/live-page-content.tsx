@@ -1485,7 +1485,7 @@ export function LivePageContent({
             <p className="text-[11px] uppercase tracking-[0.35em] text-[#d6b98c]">Live Chat</p>
             <h3 className="mt-2 text-xl text-white sm:text-2xl">Conversație in timp real</h3>
           </div>
-          <div className="rounded-full bg-white/[0.04] px-3 py-2 text-[11px] uppercase tracking-[0.28em] text-white/45">
+          <div className="rounded-full bg-white/[0.04] px-3 py-2 text-[11px] uppercase tracking-[0.28em] text-white/[0.45]">
             {messages.length} mesaje
           </div>
         </div>
@@ -1508,11 +1508,11 @@ export function LivePageContent({
                             : "rounded-bl-md bg-white/[0.05] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]"
                         }`}
                       >
-                        <p className={`text-xs font-medium ${isRight ? "text-black/70" : "text-white/55"}`}>
+                        <p className={`text-xs font-medium ${isRight ? "text-black/70" : "text-white/[0.55]"}`}>
                           {item.user}
                         </p>
                         <p className="mt-1 text-sm leading-6">{item.text}</p>
-                        <p className={`mt-2 text-[11px] ${isRight ? "text-black/55" : "text-white/35"}`}>
+                        <p className={`mt-2 text-[11px] ${isRight ? "text-black/[0.55]" : "text-white/[0.35]"}`}>
                           {new Date(item.timestamp).toLocaleTimeString("ro-RO", {
                             hour: "2-digit",
                             minute: "2-digit"
@@ -1565,12 +1565,12 @@ export function LivePageContent({
             <div className="grid gap-4 px-4 py-4 sm:px-6 sm:py-5 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start">
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-3">
-                  <div className="inline-flex items-center gap-2 rounded-full bg-white/[0.04] px-3 py-2 text-[11px] uppercase tracking-[0.32em] text-white/64">
+                  <div className="inline-flex items-center gap-2 rounded-full bg-white/[0.04] px-3 py-2 text-[11px] uppercase tracking-[0.32em] text-white/[0.64]">
                     <span className="live-dot" />
                     {statusLabel}
                   </div>
                   {sessionScheduleLabel ? (
-                    <div className="rounded-full bg-white/[0.04] px-3 py-2 text-[11px] uppercase tracking-[0.28em] text-white/45">
+                    <div className="rounded-full bg-white/[0.04] px-3 py-2 text-[11px] uppercase tracking-[0.28em] text-white/[0.45]">
                       {sessionScheduleLabel}
                     </div>
                   ) : null}
@@ -1578,7 +1578,7 @@ export function LivePageContent({
                 <h2 className="mt-4 max-w-4xl text-3xl leading-tight text-white sm:text-4xl lg:text-5xl">
                   {currentSession?.title || "LIVE Barber Experience"}
                 </h2>
-                <p className="mt-3 max-w-2xl text-sm leading-7 text-white/58 sm:text-base">
+                <p className="mt-3 max-w-2xl text-sm leading-7 text-white/[0.58] sm:text-base">
                   {currentSession?.isLive
                     ? "Video-ul ramane in prim-plan, iar chatul se deschide doar cand ai nevoie de el."
                     : countdownParts
@@ -1616,7 +1616,7 @@ export function LivePageContent({
                     style={{ animation: "countdownPulse 2.8s ease-in-out infinite" }}
                   >
                     <div className="text-[2rem] leading-none text-white sm:text-[2.4rem]">{item.value}</div>
-                    <div className="mt-2 text-[11px] uppercase tracking-[0.28em] text-white/42">{item.label}</div>
+                    <div className="mt-2 text-[11px] uppercase tracking-[0.28em] text-white/[0.42]">{item.label}</div>
                   </div>
                 ))}
               </div>
@@ -1635,7 +1635,7 @@ export function LivePageContent({
               )}
 
               <div className="absolute left-3 top-3 z-20 flex flex-wrap gap-2 sm:left-4 sm:top-4">
-                <div className="rounded-full bg-black/55 px-3 py-2 text-[11px] uppercase tracking-[0.28em] text-white backdrop-blur-md">
+                <div className="rounded-full bg-black/[0.55] px-3 py-2 text-[11px] uppercase tracking-[0.28em] text-white backdrop-blur-md">
                   <Radio className="mr-1 inline h-3.5 w-3.5 text-red-300" />
                   {statusLabel}
                 </div>
@@ -1643,7 +1643,7 @@ export function LivePageContent({
                   <button
                     type="button"
                     onClick={() => setMobileChatOpen((value) => !value)}
-                    className="inline-flex items-center gap-2 rounded-full bg-black/55 px-3 py-2 text-[11px] uppercase tracking-[0.28em] text-white backdrop-blur-md xl:hidden"
+                    className="inline-flex items-center gap-2 rounded-full bg-black/[0.55] px-3 py-2 text-[11px] uppercase tracking-[0.28em] text-white backdrop-blur-md xl:hidden"
                   >
                     <MessageSquare className="h-3.5 w-3.5" />
                     {mobileChatOpen ? "Ascunde chat" : "Deschide chat"}
@@ -1654,14 +1654,14 @@ export function LivePageContent({
               <button
                 type="button"
                 onClick={() => void toggleFullscreen()}
-                className="absolute bottom-3 right-3 z-20 inline-flex items-center gap-2 rounded-full bg-black/55 px-3 py-2 text-[11px] uppercase tracking-[0.28em] text-white backdrop-blur-md transition hover:bg-black/70 sm:bottom-4 sm:right-4"
+                className="absolute bottom-3 right-3 z-20 inline-flex items-center gap-2 rounded-full bg-black/[0.55] px-3 py-2 text-[11px] uppercase tracking-[0.28em] text-white backdrop-blur-md transition hover:bg-black/70 sm:bottom-4 sm:right-4"
               >
                 {isFullscreen ? <Minimize2 className="h-3.5 w-3.5" /> : <Maximize2 className="h-3.5 w-3.5" />}
                 {isFullscreen ? "Iesi" : "Fullscreen"}
               </button>
 
               {currentSession?.isLive && !isAdmin && streamStatus !== "live" ? (
-                <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/55 px-6 text-center text-sm text-white/75 backdrop-blur-sm">
+                <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/[0.55] px-6 text-center text-sm text-white/75 backdrop-blur-sm">
                   {streamStatus === "reconnecting"
                     ? "Conexiunea la live se reface automat."
                     : streamStatus === "joining"
@@ -1675,7 +1675,7 @@ export function LivePageContent({
 
             <div className="grid gap-4 px-4 py-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
               <div className="space-y-2">
-                <p className="text-sm leading-7 text-white/58">
+                <p className="text-sm leading-7 text-white/[0.58]">
                   {currentSession?.isLive
                     ? "Broadcasterul publica o singura data catre server, iar spectatorii primesc fluxul prin distributie centralizata."
                     : countdownParts
@@ -1683,7 +1683,7 @@ export function LivePageContent({
                       : "Cand adminul programeaza o sesiune, countdown-ul apare automat in aceasta zona."}
                 </p>
                 {currentSession?.description ? (
-                  <p className="text-sm leading-7 text-white/44">{currentSession.description}</p>
+                  <p className="text-sm leading-7 text-white/[0.44]">{currentSession.description}</p>
                 ) : null}
               </div>
               {!canViewLive && !isAdmin ? (
@@ -1698,12 +1698,12 @@ export function LivePageContent({
 
           {canViewLive ? (
             <details className="premium-card rounded-[1.6rem] p-4 sm:p-5">
-              <summary className="cursor-pointer list-none text-sm uppercase tracking-[0.34em] text-white/55">
+              <summary className="cursor-pointer list-none text-sm uppercase tracking-[0.34em] text-white/[0.55]">
                 Diagnostic LIVE
               </summary>
               <div className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
                 {diagnostics.map((item) => (
-                  <div key={item} className="rounded-[1.1rem] border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white/68">
+                  <div key={item} className="rounded-[1.1rem] border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white/[0.68]">
                     {item}
                   </div>
                 ))}
@@ -1791,3 +1791,5 @@ export function LivePageContent({
     </div>
   );
 }
+
+

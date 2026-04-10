@@ -22,7 +22,7 @@ export function ProtectedVideoPlayer({
           Niciun LIVE disponibil momentan
         </div>
       )}
-      <div className="p-6 text-sm leading-7 text-white/62">
+      <div className="p-6 text-sm leading-7 text-white/[0.62]">
         {embedUrl
           ? "Playerul foloseste embed-ul video Owncast al sesiunii salvate in admin."
           : !canAccess
@@ -34,3 +34,5 @@ export function ProtectedVideoPlayer({
     </div>
   );
 }
+
+

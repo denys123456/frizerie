@@ -22,12 +22,12 @@ export function PricingSection() {
         {subscriptionPlans.map((plan) => (
           <StaggerItem key={plan.name}>
             <article className="premium-card h-full p-8">
-              <p className="text-xs uppercase tracking-[0.4em] text-accent/85">{plan.name}</p>
+              <p className="text-xs uppercase tracking-[0.4em] text-accent/[0.85]">{plan.name}</p>
               <h3 className="mt-4 text-4xl text-white">{plan.price}</h3>
               <p className="mt-4 max-w-lg text-base leading-7 text-white/60">{plan.description}</p>
               <div className="mt-8 space-y-4">
                 {plan.features.map((feature) => (
-                  <div key={feature} className="flex items-center gap-3 text-white/72">
+                  <div key={feature} className="flex items-center gap-3 text-white/[0.72]">
                     <span className="h-2 w-2 rounded-full bg-white/70" />
                     <span>{feature}</span>
                   </div>
@@ -43,3 +43,5 @@ export function PricingSection() {
     </section>
   );
 }
+
+

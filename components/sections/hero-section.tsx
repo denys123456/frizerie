@@ -21,7 +21,7 @@ export function HeroSection() {
               <h1 className="max-w-4xl text-6xl leading-[0.92] text-white sm:text-7xl lg:text-8xl">
                 Frizerie premium, educatie reala si o prezenta construita modern.
               </h1>
-              <p className="max-w-2xl text-lg leading-8 text-white/68 sm:text-xl">
+              <p className="max-w-2xl text-lg leading-8 text-white/[0.68] sm:text-xl">
                 {siteConfig.name} livreaza servicii curate, cursuri practice si sesiuni
                 live pentru barberi care vor standard mai bun, imagine mai buna si
                 executie mai buna.
@@ -44,7 +44,7 @@ export function HeroSection() {
               {homepageStats.map(([value, label]) => (
                 <div key={label} className="rounded-3xl border border-white/10 bg-black/25 p-5 backdrop-blur-sm">
                   <p className="font-display text-3xl text-white">{value}</p>
-                  <p className="mt-2 text-sm uppercase tracking-[0.3em] text-white/45">{label}</p>
+                  <p className="mt-2 text-sm uppercase tracking-[0.3em] text-white/[0.45]">{label}</p>
                 </div>
               ))}
             </FadeIn>
@@ -60,13 +60,13 @@ export function HeroSection() {
         </div>
         <div className="relative min-h-[32rem] overflow-hidden">
           <Image src={brandImages.hero} alt="Virgil Agu hero" fill priority className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/25 to-black/85" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/[0.15] via-black/25 to-black/[0.85]" />
           <div className="absolute inset-x-6 bottom-6 rounded-[1.75rem] border border-white/10 bg-black/40 p-6 backdrop-blur-md">
             <div className="flex items-center gap-3 text-accent">
               <Scissors className="h-5 w-5" />
               <p className="text-sm uppercase tracking-[0.4em]">Virgil Agu</p>
             </div>
-            <p className="mt-4 max-w-sm text-base leading-7 text-white/72">
+            <p className="mt-4 max-w-sm text-base leading-7 text-white/[0.72]">
               Tunsoare, educatie si continut live intr-un format care arata matur,
               premium si clar pe mobil sau desktop.
             </p>
@@ -76,3 +76,5 @@ export function HeroSection() {
     </section>
   );
 }
+
+

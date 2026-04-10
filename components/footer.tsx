@@ -12,7 +12,7 @@ export function Footer() {
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div className="space-y-4">
               <Logo />
-              <p className="max-w-md text-sm leading-6 text-white/55">
+              <p className="max-w-md text-sm leading-6 text-white/[0.55]">
                 Educatie si barbering intr-un format coerent, curat si premium.
               </p>
             </div>
@@ -31,3 +31,5 @@ export function Footer() {
     </footer>
   );
 }
+
+

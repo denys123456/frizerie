@@ -38,7 +38,7 @@ export function ReviewsList({
               </div>
               <div className="relative flex items-center justify-between gap-4">
                 <div>
-                  <p className="text-[11px] uppercase tracking-[0.38em] text-white/42">Verified review</p>
+                  <p className="text-[11px] uppercase tracking-[0.38em] text-white/[0.42]">Verified review</p>
                   <p className="mt-3 text-2xl text-white sm:text-3xl">{review.name}</p>
                 </div>
                 <span className="rounded-full bg-white/[0.045] px-4 py-2 text-[10px] uppercase tracking-[0.38em] text-accent/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
@@ -50,7 +50,7 @@ export function ReviewsList({
                   <Star key={starIndex} className="h-4 w-4 fill-current" />
                 ))}
               </div>
-              <p className="relative mt-8 max-w-2xl text-lg leading-8 text-white/74 sm:text-[1.18rem]">
+              <p className="relative mt-8 max-w-2xl text-lg leading-8 text-white/[0.74] sm:text-[1.18rem]">
                 &ldquo;{review.text}&rdquo;
               </p>
             </FadeIn>
@@ -69,3 +69,5 @@ export function ReviewsList({
     </>
   );
 }
+
+

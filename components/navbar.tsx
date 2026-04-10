@@ -22,8 +22,8 @@ import { cn } from "@/lib/utils";
 
 const navLinks = [
   { href: "/", label: "Acasa", icon: Home, tone: "bg-white/[0.06]" },
-  { href: "/live", label: "LIVE", icon: Radio, tone: "bg-red-500/12" },
-  { href: "/courses", label: "Cursuri", icon: GraduationCap, tone: "bg-[#d6b98c]/12" },
+  { href: "/live", label: "LIVE", icon: Radio, tone: "bg-red-500/[0.12]" },
+  { href: "/courses", label: "Cursuri", icon: GraduationCap, tone: "bg-[#d6b98c]/[0.12]" },
   { href: "/reviews", label: "Review-uri", icon: Star, tone: "bg-white/[0.05]" },
   { href: "/gallery", label: "Galerie", icon: Images, tone: "bg-white/[0.05]" },
   { href: "/contact", label: "Contact", icon: MessageCircleMore, tone: "bg-[#d6b98c]/10" }
@@ -89,7 +89,7 @@ export function Navbar({ session }: { session: Session | null }) {
       <div className="section-shell flex items-start justify-between gap-3 pt-4 sm:pt-5">
         <div
           className={cn(
-            "rounded-full bg-black/42 px-4 py-3 shadow-[0_16px_48px_rgba(0,0,0,0.18)] backdrop-blur-md transition duration-200 will-change-transform",
+            "rounded-full bg-black/[0.42] px-4 py-3 shadow-[0_16px_48px_rgba(0,0,0,0.18)] backdrop-blur-md transition duration-200 will-change-transform",
             isScrolled ? "-translate-y-4 opacity-0 pointer-events-none sm:-translate-y-5" : "translate-y-0 opacity-100"
           )}
         >
@@ -101,7 +101,7 @@ export function Navbar({ session }: { session: Session | null }) {
         <div className="flex items-center gap-3">
           <div
             className={cn(
-              "hidden rounded-full bg-black/36 px-3 py-2.5 shadow-[0_16px_48px_rgba(0,0,0,0.16)] backdrop-blur-md transition duration-200 md:flex",
+              "hidden rounded-full bg-black/[0.36] px-3 py-2.5 shadow-[0_16px_48px_rgba(0,0,0,0.16)] backdrop-blur-md transition duration-200 md:flex",
               isScrolled ? "-translate-y-4 opacity-0 pointer-events-none" : "translate-y-0 opacity-100"
             )}
           >
@@ -111,7 +111,7 @@ export function Navbar({ session }: { session: Session | null }) {
           <button
             type="button"
             aria-label={isOpen ? "Close navigation" : "Open navigation"}
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-black/44 text-white shadow-[0_14px_36px_rgba(0,0,0,0.16)] transition duration-200 hover:bg-black/60"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-black/[0.44] text-white shadow-[0_14px_36px_rgba(0,0,0,0.16)] transition duration-200 hover:bg-black/60"
             onClick={() => setIsOpen((value) => !value)}
           >
             {isOpen ? <X className="h-4.5 w-4.5" /> : <Menu className="h-4.5 w-4.5" />}
@@ -150,19 +150,19 @@ export function Navbar({ session }: { session: Session | null }) {
       {isOpen ? (
         <>
           <div
-            className="fixed inset-0 z-40 bg-black/52 backdrop-blur-[5px]"
+            className="fixed inset-0 z-40 bg-black/[0.52] backdrop-blur-[5px]"
             onClick={() => setIsOpen(false)}
           />
 
           <div className="fixed inset-x-0 top-0 z-50 px-4 pt-20 sm:px-7 lg:px-10">
             <div className="section-shell">
-              <div className="mx-auto max-w-[46rem] overflow-hidden rounded-[1.85rem] border border-white/10 bg-[#0a0a0a]/98 p-4 shadow-[0_28px_90px_rgba(0,0,0,0.34)] sm:p-5">
+              <div className="mx-auto max-w-[46rem] overflow-hidden rounded-[1.85rem] border border-white/10 bg-black/[0.98] p-4 shadow-[0_28px_90px_rgba(0,0,0,0.34)] sm:p-5">
                 <div className="mb-4 flex items-center justify-between gap-3">
                   <p className="text-[10px] uppercase tracking-[0.34em] text-white/40">Navigation</p>
                   <button
                     type="button"
                     onClick={() => setIsOpen(false)}
-                    className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[10px] uppercase tracking-[0.34em] text-white/72 transition hover:bg-white/[0.1] hover:text-white"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[10px] uppercase tracking-[0.34em] text-white/[0.72] transition hover:bg-white/[0.1] hover:text-white"
                   >
                     <X className="h-3.5 w-3.5" />
                     Close
@@ -182,12 +182,12 @@ export function Navbar({ session }: { session: Session | null }) {
                       >
                         <div className="flex items-center justify-between gap-4">
                           <div className="flex items-center gap-3">
-                            <div className={cn("flex h-9 w-9 items-center justify-center rounded-full text-white/88", link.tone)}>
+                            <div className={cn("flex h-9 w-9 items-center justify-center rounded-full text-white/[0.88]", link.tone)}>
                               <Icon className="h-4 w-4" />
                             </div>
                             <span className="text-base text-white">{link.label}</span>
                           </div>
-                          <ArrowUpRight className="h-4 w-4 text-white/28 transition duration-200 group-hover:text-[#d6b98c]" />
+                          <ArrowUpRight className="h-4 w-4 text-white/[0.28] transition duration-200 group-hover:text-[#d6b98c]" />
                         </div>
                       </Link>
                     );
@@ -205,3 +205,5 @@ export function Navbar({ session }: { session: Session | null }) {
     </header>
   );
 }
+
+

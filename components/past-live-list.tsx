@@ -73,7 +73,7 @@ export function PastLiveList({
             </div>
           ))
         ) : (
-          <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] px-5 py-8 text-sm text-white/55">
+          <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] px-5 py-8 text-sm text-white/[0.55]">
             Niciun replay disponibil momentan.
           </div>
         )}
@@ -81,3 +81,5 @@ export function PastLiveList({
     </div>
   );
 }
+
+

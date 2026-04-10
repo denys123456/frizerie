@@ -34,19 +34,19 @@ export function CoursesPageContent() {
             </div>
 
             <div className="mt-10 grid max-w-3xl gap-3 sm:grid-cols-3">
-              <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.025] px-4 py-4 text-sm text-white/66">
+              <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.025] px-4 py-4 text-sm text-white/[0.66]">
                 <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/[0.05] text-[#d6b98c]">
                   <GraduationCap className="h-4 w-4" />
                 </div>
                 Baza corecta pentru cei care pornesc serios.
               </div>
-              <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.025] px-4 py-4 text-sm text-white/66">
+              <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.025] px-4 py-4 text-sm text-white/[0.66]">
                 <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/[0.05] text-[#d6b98c]">
                   <ScissorsLineDashed className="h-4 w-4" />
                 </div>
                 Corectii directe si progres rapid in 1 la 1.
               </div>
-              <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.025] px-4 py-4 text-sm text-white/66">
+              <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.025] px-4 py-4 text-sm text-white/[0.66]">
                 <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/[0.05] text-[#d6b98c]">
                   <Award className="h-4 w-4" />
                 </div>
@@ -60,7 +60,7 @@ export function CoursesPageContent() {
             <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.25),rgba(0,0,0,0.72)),radial-gradient(circle_at_top,rgba(214,185,140,0.18),transparent_28%)]" />
             <div className="absolute inset-x-0 bottom-0 p-8 sm:p-10">
               <div className="grid max-w-sm gap-3">
-                <div className="rounded-full bg-black/38 px-4 py-2 text-[10px] uppercase tracking-[0.34em] text-white/60">
+                <div className="rounded-full bg-black/[0.38] px-4 py-2 text-[10px] uppercase tracking-[0.34em] text-white/60">
                   Trainer profile
                 </div>
                 <p className="text-3xl leading-tight text-white sm:text-4xl">
@@ -82,3 +82,5 @@ export function CoursesPageContent() {
     </section>
   );
 }
+
+
