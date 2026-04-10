@@ -20,22 +20,22 @@ export function AuthForm({ mode }: { mode: "signin" | "register" }) {
   const alternateLabel = mode === "register" ? "Ai deja cont? Intra in cont" : "Nu ai cont? Creeaza unul";
 
   return (
-    <div className="glass-panel w-full max-w-[34rem] rounded-[2.2rem] p-8 sm:p-10">
+    <div className="glass-panel w-full max-w-[34rem] rounded-[2rem] p-5 sm:rounded-[2.2rem] sm:p-8 lg:p-10">
       <div className="space-y-3">
         <p className="text-xs uppercase tracking-[0.35em] text-accent/80">
           {mode === "register" ? "Cont nou" : "Bine ai revenit"}
         </p>
-        <h1 className="max-w-md text-5xl leading-[0.88] text-white sm:text-6xl">
+        <h1 className="max-w-md text-4xl leading-[0.9] text-white sm:text-5xl lg:text-6xl">
           {mode === "register" ? "Creeaza contul tau." : "Acceseaza contul tau."}
         </h1>
-        <p className="max-w-md text-base leading-8 text-white/60">
+        <p className="max-w-md text-sm leading-7 text-white/60 sm:text-base sm:leading-8">
           {mode === "register"
             ? "Creeaza un cont clasic cu email si parola."
             : "Introdu emailul si parola pentru a intra in platforma."}
         </p>
       </div>
 
-      <div className="mt-10 space-y-4">
+      <div className="mt-8 space-y-4 sm:mt-10">
         <form
           className="space-y-4"
           onSubmit={(event) => {

@@ -229,6 +229,7 @@ export default async function AdminPage() {
       liveSessions={liveSessions.map((item) => ({
         id: item.id,
         title: item.title,
+        description: item.description,
         visibility: item.visibility,
         isLive: item.isLive,
         scheduledFor: item.scheduledFor.toISOString(),

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   ArrowUpRight,
   GraduationCap,
@@ -29,6 +30,7 @@ const navLinks = [
 ] as const;
 
 export function Navbar({ session }: { session: Session | null }) {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const rafRef = useRef<number | null>(null);
@@ -84,11 +86,11 @@ export function Navbar({ session }: { session: Session | null }) {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      <div className="section-shell flex items-start justify-between gap-4 pt-5">
+      <div className="section-shell flex items-start justify-between gap-3 pt-4 sm:pt-5">
         <div
           className={cn(
-            "rounded-full bg-black/34 px-4 py-3 shadow-[0_16px_48px_rgba(0,0,0,0.18)] transition duration-200 will-change-transform",
-            isScrolled ? "-translate-y-5 opacity-0 pointer-events-none" : "translate-y-0 opacity-100"
+            "rounded-full bg-black/42 px-4 py-3 shadow-[0_16px_48px_rgba(0,0,0,0.18)] backdrop-blur-md transition duration-200 will-change-transform",
+            isScrolled ? "-translate-y-4 opacity-0 pointer-events-none sm:-translate-y-5" : "translate-y-0 opacity-100"
           )}
         >
           <Link href="/" aria-label="Go to homepage" className="block">
@@ -99,7 +101,7 @@ export function Navbar({ session }: { session: Session | null }) {
         <div className="flex items-center gap-3">
           <div
             className={cn(
-              "hidden rounded-full bg-black/36 px-3 py-2.5 shadow-[0_16px_48px_rgba(0,0,0,0.16)] transition duration-200 md:flex",
+              "hidden rounded-full bg-black/36 px-3 py-2.5 shadow-[0_16px_48px_rgba(0,0,0,0.16)] backdrop-blur-md transition duration-200 md:flex",
               isScrolled ? "-translate-y-4 opacity-0 pointer-events-none" : "translate-y-0 opacity-100"
             )}
           >
@@ -117,6 +119,34 @@ export function Navbar({ session }: { session: Session | null }) {
         </div>
       </div>
 
+      {pathname !== "/live" && !pathname.startsWith("/auth") ? (
+        <div
+          className={cn(
+            "pointer-events-none fixed inset-x-0 bottom-4 z-40 px-4 transition duration-200 md:hidden",
+            isOpen ? "opacity-0" : "opacity-100"
+          )}
+        >
+          <div className="mx-auto flex max-w-xl items-center justify-between gap-2 rounded-full border border-white/10 bg-black/70 p-2 shadow-[0_20px_70px_rgba(0,0,0,0.35)] backdrop-blur-xl">
+            <div className="min-w-0 flex-1">
+              <Link
+                href={session?.user ? (session.user.role === "ADMIN" ? "/admin" : "/dashboard") : "/auth/signin"}
+                className="pointer-events-auto flex min-h-11 items-center justify-center rounded-full bg-white/[0.04] px-4 text-sm text-white transition hover:bg-white/[0.08]"
+              >
+                {session?.user ? (session.user.role === "ADMIN" ? "Admin" : "Contul meu") : "Autentificare"}
+              </Link>
+            </div>
+            <div className="min-w-0 flex-1">
+              <Link
+                href="/live"
+                className="pointer-events-auto flex min-h-11 items-center justify-center rounded-full bg-[linear-gradient(180deg,#ecd4ac,#cfab72)] px-4 text-sm font-medium text-black shadow-[0_18px_45px_rgba(214,185,140,0.22)] transition hover:-translate-y-0.5"
+              >
+                LIVE
+              </Link>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
       {isOpen ? (
         <>
           <div
@@ -124,7 +154,7 @@ export function Navbar({ session }: { session: Session | null }) {
             onClick={() => setIsOpen(false)}
           />
 
-          <div className="fixed inset-x-0 top-0 z-50 px-5 pt-20 sm:px-7 lg:px-10">
+          <div className="fixed inset-x-0 top-0 z-50 px-4 pt-20 sm:px-7 lg:px-10">
             <div className="section-shell">
               <div className="mx-auto max-w-[46rem] overflow-hidden rounded-[1.85rem] border border-white/8 bg-[#0a0a0a]/98 p-4 shadow-[0_28px_90px_rgba(0,0,0,0.34)] sm:p-5">
                 <div className="mb-4 flex items-center justify-between gap-3">
@@ -164,7 +194,7 @@ export function Navbar({ session }: { session: Session | null }) {
                   })}
                 </nav>
 
-                <div className="mt-4 md:hidden">
+                <div className="mt-4 border-t border-white/8 pt-4 md:hidden">
                   <AuthButtons session={session} />
                 </div>
               </div>

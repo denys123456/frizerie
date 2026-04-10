@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Maximize2, MessageSquare, Minimize2, Radio, X } from "lucide-react";
 
 import { PastLiveList } from "@/components/past-live-list";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import type {
   LiveBootstrapResponse,
   LiveConsumerProfile,
@@ -191,6 +193,31 @@ function areRecordingsEqual(current: LiveRecording[], next: LiveRecording[]) {
   );
 }
 
+function getCountdownParts(targetDate: string | null, now: number) {
+  if (!targetDate) {
+    return null;
+  }
+
+  const target = new Date(targetDate).getTime();
+
+  if (Number.isNaN(target) || target <= now) {
+    return null;
+  }
+
+  const totalSeconds = Math.max(0, Math.floor((target - now) / 1000));
+  const days = Math.floor(totalSeconds / 86400);
+  const hours = Math.floor((totalSeconds % 86400) / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  return [
+    { label: "Zile", value: String(days).padStart(2, "0") },
+    { label: "Ore", value: String(hours).padStart(2, "0") },
+    { label: "Minute", value: String(minutes).padStart(2, "0") },
+    { label: "Secunde", value: String(seconds).padStart(2, "0") }
+  ];
+}
+
 export function LivePageContent({
   canAccess,
   isAdmin,
@@ -219,6 +246,10 @@ export function LivePageContent({
   );
   const [error, setError] = useState<string | null>(null);
   const [streamStatus, setStreamStatus] = useState<StreamStatus>(initialSession?.isLive ? "connecting" : "offline");
+  const [countdownNow, setCountdownNow] = useState(() => Date.now());
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [mobileChatOpen, setMobileChatOpen] = useState(false);
+  const [mobileChatExpanded, setMobileChatExpanded] = useState(false);
   const [debug, setDebug] = useState<LiveDebugState>({
     role: isAdmin ? "broadcaster" : "viewer",
     lastEvent: "idle",
@@ -233,6 +264,8 @@ export function LivePageContent({
   const localStreamRef = useRef<MediaStream | null>(null);
   const localVideoRef = useRef<HTMLVideoElement | null>(null);
   const remoteVideoRef = useRef<HTMLVideoElement | null>(null);
+  const videoStageRef = useRef<HTMLDivElement | null>(null);
+  const chatScrollRef = useRef<HTMLDivElement | null>(null);
   const remoteStreamRef = useRef<MediaStream>(new MediaStream());
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const recordedChunksRef = useRef<Blob[]>([]);
@@ -265,12 +298,45 @@ export function LivePageContent({
   }, [currentSession]);
 
   useEffect(() => {
+    const interval = window.setInterval(() => {
+      setCountdownNow(Date.now());
+    }, 1000);
+
+    return () => window.clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
     localStreamRef.current = localStream;
 
     if (localVideoRef.current) {
       localVideoRef.current.srcObject = localStream;
     }
   }, [localStream]);
+
+  useEffect(() => {
+    const onFullscreenChange = () => {
+      setIsFullscreen(Boolean(document.fullscreenElement));
+    };
+
+    document.addEventListener("fullscreenchange", onFullscreenChange);
+
+    return () => document.removeEventListener("fullscreenchange", onFullscreenChange);
+  }, []);
+
+  useEffect(() => {
+    if (!currentSession?.isLive) {
+      setMobileChatOpen(false);
+      setMobileChatExpanded(false);
+    }
+  }, [currentSession?.isLive]);
+
+  useEffect(() => {
+    if (!chatScrollRef.current) {
+      return;
+    }
+
+    chatScrollRef.current.scrollTop = chatScrollRef.current.scrollHeight;
+  }, [messages]);
 
   function updateDebug(patch: Partial<LiveDebugState>) {
     setDebug((current) => {
@@ -1367,7 +1433,39 @@ export function LivePageContent({
     await loadMessages();
   }
 
+  async function toggleFullscreen() {
+    if (!videoStageRef.current) {
+      return;
+    }
+
+    if (document.fullscreenElement) {
+      await document.exitFullscreen().catch(() => undefined);
+      return;
+    }
+
+    await videoStageRef.current.requestFullscreen().catch(() => undefined);
+  }
+
   const canViewLive = canAccess || isAdmin;
+  const countdownParts = !currentSession?.isLive ? getCountdownParts(currentSession?.scheduledFor || null, countdownNow) : null;
+  const sessionScheduleLabel = currentSession?.scheduledFor
+    ? new Date(currentSession.scheduledFor).toLocaleString("ro-RO", {
+        weekday: "short",
+        day: "2-digit",
+        month: "short",
+        hour: "2-digit",
+        minute: "2-digit"
+      })
+    : null;
+  const statusLabel =
+    streamStatus === "live"
+      ? "LIVE"
+      : streamStatus === "joining"
+        ? "Joining"
+        : streamStatus === "connecting" || streamStatus === "reconnecting"
+          ? "Connecting"
+          : "Offline";
+  const canUseChat = canViewLive && Boolean(currentSession?.isLive);
   const diagnostics = [
     `Rol: ${debug.role}`,
     `Status stream: ${streamStatus}`,
@@ -1379,47 +1477,188 @@ export function LivePageContent({
     `Calitate curenta: ${debug.consumerProfile}`
   ];
 
-  return (
-    <div className="space-y-8">
-      <div className="grid gap-8 xl:grid-cols-[minmax(0,1.42fr)_25rem]">
-        <div className="space-y-6">
-          <div className="overflow-hidden rounded-[2.15rem] border border-white/8 bg-[radial-gradient(circle_at_top,rgba(214,185,140,0.12),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.028),rgba(255,255,255,0.008))] shadow-[0_36px_110px_rgba(0,0,0,0.28)]">
-            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 px-6 py-5 sm:px-7">
-              <div>
-                <div className="flex items-center gap-3">
-                  <span className="live-dot" />
-                  <p className="text-xs uppercase tracking-[0.35em] text-red-300">
-                    {streamStatus === "live"
-                      ? "LIVE"
-                      : streamStatus === "joining"
-                        ? "Joining"
-                        : streamStatus === "connecting" || streamStatus === "reconnecting"
-                          ? "Connecting"
-                          : "Offline"}
-                  </p>
+  const chatPanel = (
+    <div className="flex h-full flex-col">
+      <div className="border-b border-white/10 px-4 py-4 sm:px-5">
+        <div className="flex items-center justify-between gap-3">
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.35em] text-[#d6b98c]">Live Chat</p>
+            <h3 className="mt-2 text-xl text-white sm:text-2xl">Conversație in timp real</h3>
+          </div>
+          <div className="rounded-full bg-white/[0.04] px-3 py-2 text-[11px] uppercase tracking-[0.28em] text-white/45">
+            {messages.length} mesaje
+          </div>
+        </div>
+      </div>
+
+      <div className="flex-1 px-3 py-3 sm:px-4">
+        {canUseChat ? (
+          <div className="flex h-full flex-col">
+            <div ref={chatScrollRef} className="flex-1 space-y-3 overflow-y-auto pr-1">
+              {messages.length ? (
+                messages.map((item, index) => {
+                  const isRight = index % 2 === 1;
+
+                  return (
+                    <div key={item.id} className={`flex ${isRight ? "justify-end" : "justify-start"}`}>
+                      <div
+                        className={`max-w-[88%] rounded-[1.5rem] px-4 py-3 ${
+                          isRight
+                            ? "rounded-br-md bg-[linear-gradient(180deg,#ecd4ac,#cfab72)] text-black shadow-[0_20px_36px_rgba(214,185,140,0.18)]"
+                            : "rounded-bl-md bg-white/[0.05] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]"
+                        }`}
+                      >
+                        <p className={`text-xs font-medium ${isRight ? "text-black/70" : "text-white/55"}`}>
+                          {item.user}
+                        </p>
+                        <p className="mt-1 text-sm leading-6">{item.text}</p>
+                        <p className={`mt-2 text-[11px] ${isRight ? "text-black/55" : "text-white/35"}`}>
+                          {new Date(item.timestamp).toLocaleTimeString("ro-RO", {
+                            hour: "2-digit",
+                            minute: "2-digit"
+                          })}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })
+              ) : (
+                <div className="flex h-full min-h-[14rem] items-center justify-center rounded-[1.4rem] bg-white/[0.03] px-5 text-center text-sm text-white/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
+                  Chatul este activ. Primul mesaj poate fi trimis acum.
                 </div>
-                <h3 className="mt-3 text-3xl text-white sm:text-4xl">
+              )}
+            </div>
+
+            <div className="mt-3 flex gap-2">
+              <input
+                value={chatText}
+                onChange={(event) => setChatText(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    event.preventDefault();
+                    void sendMessage();
+                  }
+                }}
+                maxLength={500}
+                placeholder="Scrie un mesaj"
+                className="premium-input flex-1"
+              />
+              <Button type="button" className="min-h-12 shrink-0" onClick={() => void sendMessage()}>
+                Trimite
+              </Button>
+            </div>
+          </div>
+        ) : (
+          <div className="flex h-full min-h-[18rem] items-center justify-center rounded-[1.4rem] bg-white/[0.03] px-5 text-center text-sm text-white/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
+            {canViewLive ? "Chatul devine activ cand sesiunea este LIVE." : "Chatul este disponibil dupa autentificare si acces activ."}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="space-y-6 pb-24 xl:pb-0">
+      <div className="grid gap-5 xl:grid-cols-[minmax(0,1.52fr)_24rem]">
+        <div className="space-y-5">
+          <div className="panel-edge overflow-hidden rounded-[2rem] sm:rounded-[2.4rem]">
+            <div className="grid gap-4 px-4 py-4 sm:px-6 sm:py-5 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start">
+              <div className="min-w-0">
+                <div className="flex flex-wrap items-center gap-3">
+                  <div className="inline-flex items-center gap-2 rounded-full bg-white/[0.04] px-3 py-2 text-[11px] uppercase tracking-[0.32em] text-white/64">
+                    <span className="live-dot" />
+                    {statusLabel}
+                  </div>
+                  {sessionScheduleLabel ? (
+                    <div className="rounded-full bg-white/[0.04] px-3 py-2 text-[11px] uppercase tracking-[0.28em] text-white/45">
+                      {sessionScheduleLabel}
+                    </div>
+                  ) : null}
+                </div>
+                <h2 className="mt-4 max-w-4xl text-3xl leading-tight text-white sm:text-4xl lg:text-5xl">
                   {currentSession?.title || "LIVE Barber Experience"}
-                </h3>
+                </h2>
+                <p className="mt-3 max-w-2xl text-sm leading-7 text-white/58 sm:text-base">
+                  {currentSession?.isLive
+                    ? "Video-ul ramane in prim-plan, iar chatul se deschide doar cand ai nevoie de el."
+                    : countdownParts
+                      ? "Urmatoarea sesiune este programata. Timerul este actualizat automat si ramane editabil din admin."
+                      : canViewLive
+                        ? "Nu exista un LIVE activ in acest moment, dar layout-ul ramane pregatit pentru urmatoarea sesiune."
+                        : "Ai nevoie de autentificare si acces activ pentru a intra in sesiunea live."}
+                </p>
               </div>
-              <div className="rounded-full bg-white/[0.045] px-4 py-2 text-sm text-white/60 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
-                {currentSession?.scheduledFor
-                  ? new Date(currentSession.scheduledFor).toLocaleString("ro-RO")
-                  : "Va fi disponibil cand se porneste o sesiune LIVE"}
+
+              <div className="flex flex-wrap gap-2 sm:justify-end">
+                <Button type="button" variant="secondary" className="min-h-11" onClick={() => void toggleFullscreen()}>
+                  {isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+                  {isFullscreen ? "Iesi fullscreen" : "Fullscreen"}
+                </Button>
+                {isAdmin ? (
+                  <>
+                    <Button type="button" className="min-h-11" onClick={() => void startLive()} disabled={!currentSession || currentSession.isLive}>
+                      Go Live
+                    </Button>
+                    <Button type="button" variant="secondary" className="min-h-11" onClick={() => void stopLive()} disabled={!currentSession?.isLive}>
+                      Stop Live
+                    </Button>
+                  </>
+                ) : null}
               </div>
             </div>
 
-            <div className="relative bg-black">
+            {countdownParts ? (
+              <div className="grid gap-3 border-t border-white/10 px-4 py-4 sm:grid-cols-4 sm:px-6">
+                {countdownParts.map((item) => (
+                  <div
+                    key={item.label}
+                    className="countdown-tile"
+                    style={{ animation: "countdownPulse 2.8s ease-in-out infinite" }}
+                  >
+                    <div className="text-[2rem] leading-none text-white sm:text-[2.4rem]">{item.value}</div>
+                    <div className="mt-2 text-[11px] uppercase tracking-[0.28em] text-white/42">{item.label}</div>
+                  </div>
+                ))}
+              </div>
+            ) : null}
+
+            <div ref={videoStageRef} className="relative bg-black">
               <div className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(circle_at_top,rgba(214,185,140,0.12),transparent_28%)]" />
               {isAdmin && localStream ? (
-                <video ref={localVideoRef} autoPlay muted playsInline className="aspect-video w-full bg-black object-cover" />
+                <video ref={localVideoRef} autoPlay muted playsInline className="aspect-video min-h-[15rem] w-full bg-black object-cover sm:min-h-[20rem]" />
               ) : currentSession?.isLive ? (
-                <video ref={remoteVideoRef} autoPlay playsInline controls className="aspect-video w-full bg-black object-cover" />
+                <video ref={remoteVideoRef} autoPlay playsInline controls className="aspect-video min-h-[15rem] w-full bg-black object-cover sm:min-h-[20rem]" />
               ) : (
-                <div className="flex aspect-video items-center justify-center bg-black px-6 text-center text-white/60">
+                <div className="flex aspect-video min-h-[15rem] items-center justify-center bg-black px-6 text-center text-white/60 sm:min-h-[20rem]">
                   {canViewLive ? "Niciun LIVE activ momentan" : "Ai nevoie de abonament activ pentru a accesa LIVE-ul"}
                 </div>
               )}
+
+              <div className="absolute left-3 top-3 z-20 flex flex-wrap gap-2 sm:left-4 sm:top-4">
+                <div className="rounded-full bg-black/55 px-3 py-2 text-[11px] uppercase tracking-[0.28em] text-white backdrop-blur-md">
+                  <Radio className="mr-1 inline h-3.5 w-3.5 text-red-300" />
+                  {statusLabel}
+                </div>
+                {currentSession?.isLive ? (
+                  <button
+                    type="button"
+                    onClick={() => setMobileChatOpen((value) => !value)}
+                    className="inline-flex items-center gap-2 rounded-full bg-black/55 px-3 py-2 text-[11px] uppercase tracking-[0.28em] text-white backdrop-blur-md xl:hidden"
+                  >
+                    <MessageSquare className="h-3.5 w-3.5" />
+                    {mobileChatOpen ? "Ascunde chat" : "Deschide chat"}
+                  </button>
+                ) : null}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => void toggleFullscreen()}
+                className="absolute bottom-3 right-3 z-20 inline-flex items-center gap-2 rounded-full bg-black/55 px-3 py-2 text-[11px] uppercase tracking-[0.28em] text-white backdrop-blur-md transition hover:bg-black/70 sm:bottom-4 sm:right-4"
+              >
+                {isFullscreen ? <Minimize2 className="h-3.5 w-3.5" /> : <Maximize2 className="h-3.5 w-3.5" />}
+                {isFullscreen ? "Iesi" : "Fullscreen"}
+              </button>
 
               {currentSession?.isLive && !isAdmin && streamStatus !== "live" ? (
                 <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/55 px-6 text-center text-sm text-white/75 backdrop-blur-sm">
@@ -1427,43 +1666,42 @@ export function LivePageContent({
                     ? "Conexiunea la live se reface automat."
                     : streamStatus === "joining"
                       ? "Se intra treptat in sesiunea live pentru o conexiune stabila."
-                    : streamStatus === "connecting"
-                      ? "Se conecteaza la fluxul live."
-                      : "Fluxul este offline momentan."}
+                      : streamStatus === "connecting"
+                        ? "Se conecteaza la fluxul live."
+                        : "Fluxul este offline momentan."}
                 </div>
               ) : null}
             </div>
 
-            <div className="grid gap-4 px-6 py-6 sm:px-7 lg:grid-cols-[1fr_auto] lg:items-center">
-              {!currentSession?.isLive ? (
-                <p className="max-w-2xl text-sm leading-7 text-white/60">
-                  Va fi disponibil cand se porneste o sesiune live, daca nu a fost programat nimic din contul de admin.
+            <div className="grid gap-4 px-4 py-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+              <div className="space-y-2">
+                <p className="text-sm leading-7 text-white/58">
+                  {currentSession?.isLive
+                    ? "Broadcasterul publica o singura data catre server, iar spectatorii primesc fluxul prin distributie centralizata."
+                    : countdownParts
+                      ? "Timerul de mai sus inlocuieste mesajul static si afiseaza clar timpul ramas pana la urmatorul LIVE."
+                      : "Cand adminul programeaza o sesiune, countdown-ul apare automat in aceasta zona."}
                 </p>
-              ) : (
-                <p className="max-w-2xl text-sm leading-7 text-white/60">
-                  Broadcasterul publica o singura data catre server, iar spectatorii primesc fluxul prin distributie centralizata.
-                </p>
-              )}
-              {isAdmin ? (
-                <div className="flex flex-wrap gap-3">
-                  <Button type="button" onClick={() => void startLive()} disabled={!currentSession || currentSession.isLive}>
-                    Go Live
-                  </Button>
-                  <Button type="button" variant="secondary" onClick={() => void stopLive()} disabled={!currentSession?.isLive}>
-                    Stop Live
-                  </Button>
-                </div>
+                {currentSession?.description ? (
+                  <p className="text-sm leading-7 text-white/44">{currentSession.description}</p>
+                ) : null}
+              </div>
+              {!canViewLive && !isAdmin ? (
+                <Button asChild className="min-h-11">
+                  <a href="/auth/signin">Activeaza accesul</a>
+                </Button>
               ) : null}
             </div>
-            {error ? <p className="px-6 pb-6 text-sm text-red-300 sm:px-7">{error}</p> : null}
+
+            {error ? <p className="px-4 pb-4 text-sm text-red-300 sm:px-6">{error}</p> : null}
           </div>
 
           {canViewLive ? (
-            <details className="premium-card rounded-[1.8rem] p-5 sm:p-6">
+            <details className="premium-card rounded-[1.6rem] p-4 sm:p-5">
               <summary className="cursor-pointer list-none text-sm uppercase tracking-[0.34em] text-white/55">
                 Diagnostic LIVE
               </summary>
-              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+              <div className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
                 {diagnostics.map((item) => (
                   <div key={item} className="rounded-[1.1rem] border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white/68">
                     {item}
@@ -1472,87 +1710,83 @@ export function LivePageContent({
               </div>
             </details>
           ) : null}
-        </div>
 
-        <div className="space-y-6">
-          <div className="flex min-h-[540px] flex-col overflow-hidden rounded-[2rem] border border-white/8 bg-[radial-gradient(circle_at_top,rgba(214,185,140,0.08),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.024),rgba(255,255,255,0.006))] shadow-[0_30px_90px_rgba(0,0,0,0.24)]">
-            <div className="border-b border-white/10 px-5 py-5 sm:px-6">
-              <p className="text-xs uppercase tracking-[0.35em] text-[#d6b98c]">Live Chat</p>
-              <h3 className="mt-3 text-3xl text-white">Chat in timp real</h3>
-            </div>
-
-            <div className="flex-1 bg-[#070707] px-4 py-4 sm:px-5">
-              {canViewLive && currentSession?.isLive ? (
-                <div className="flex h-full flex-col">
-                  <div className="flex-1 space-y-3 overflow-y-auto pr-1">
-                    {messages.length ? (
-                      messages.map((item, index) => {
-                        const isRight = index % 2 === 1;
-
-                        return (
-                          <div key={item.id} className={`flex ${isRight ? "justify-end" : "justify-start"}`}>
-                            <div
-                              className={`max-w-[88%] rounded-[1.5rem] px-4 py-3 ${
-                                isRight
-                                  ? "rounded-br-md bg-[linear-gradient(180deg,#ecd4ac,#cfab72)] text-black shadow-[0_20px_36px_rgba(214,185,140,0.18)]"
-                                  : "rounded-bl-md bg-white/[0.05] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]"
-                              }`}
-                            >
-                              <p className={`text-xs font-medium ${isRight ? "text-black/70" : "text-white/55"}`}>
-                                {item.user}
-                              </p>
-                              <p className="mt-1 text-sm leading-6">{item.text}</p>
-                              <p className={`mt-2 text-[11px] ${isRight ? "text-black/55" : "text-white/35"}`}>
-                                {new Date(item.timestamp).toLocaleTimeString("ro-RO", {
-                                  hour: "2-digit",
-                                  minute: "2-digit"
-                                })}
-                              </p>
-                            </div>
-                          </div>
-                        );
-                      })
-                    ) : (
-                      <div className="flex h-full items-center justify-center rounded-[1.6rem] bg-white/[0.03] px-5 text-center text-sm text-white/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
-                        Chatul este activ. Primul mesaj poate fi trimis acum.
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="mt-4 flex gap-3">
-                    <input
-                      value={chatText}
-                      onChange={(event) => setChatText(event.target.value)}
-                      maxLength={500}
-                      placeholder="Scrie un mesaj"
-                      className="premium-input flex-1"
-                    />
-                    <Button type="button" onClick={() => void sendMessage()}>
-                      Trimite
-                    </Button>
-                  </div>
-                </div>
-              ) : (
-                <div className="flex h-full min-h-[280px] items-center justify-center rounded-[1.6rem] bg-white/[0.03] px-5 text-center text-sm text-white/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
-                  {canViewLive ? "Chatul devine activ cand sesiunea este LIVE." : "Chatul este disponibil dupa autentificare si acces activ."}
-                </div>
-              )}
-            </div>
+          <div className="hidden xl:block">
+            <PastLiveList
+              canAccess={canViewLive}
+              sessions={recordings.map((item) => ({
+                id: item.id,
+                title: item.title,
+                description: item.description,
+                scheduledFor: item.createdAt,
+                recordingUrl: item.videoUrl,
+                price: item.price,
+                visibility: item.visibility
+              }))}
+            />
           </div>
-
-          <PastLiveList
-            canAccess={canViewLive}
-            sessions={recordings.map((item) => ({
-              id: item.id,
-              title: item.title,
-              description: item.description,
-              scheduledFor: item.createdAt,
-              recordingUrl: item.videoUrl,
-              price: item.price,
-              visibility: item.visibility
-            }))}
-          />
         </div>
+
+        <div className="hidden xl:block">
+          <div className="panel-edge flex min-h-[42rem] flex-col overflow-hidden rounded-[2rem]">
+            {chatPanel}
+          </div>
+        </div>
+      </div>
+
+      <div className="xl:hidden">
+        <PastLiveList
+          canAccess={canViewLive}
+          sessions={recordings.map((item) => ({
+            id: item.id,
+            title: item.title,
+            description: item.description,
+            scheduledFor: item.createdAt,
+            recordingUrl: item.videoUrl,
+            price: item.price,
+            visibility: item.visibility
+          }))}
+        />
+      </div>
+
+      <div className="pointer-events-none fixed inset-x-0 bottom-0 z-40 px-3 pb-3 xl:hidden">
+        {canViewLive && currentSession?.isLive ? (
+          <div
+            className={cn(
+              "pointer-events-auto mx-auto max-w-2xl overflow-hidden rounded-[1.8rem] border border-white/10 bg-[#090909]/95 shadow-[0_28px_80px_rgba(0,0,0,0.36)] backdrop-blur-xl transition-all duration-300",
+              mobileChatOpen ? "translate-y-0" : "translate-y-[calc(100%-4.5rem)]",
+              mobileChatExpanded ? "h-[min(78dvh,44rem)]" : "h-[24rem]"
+            )}
+          >
+            <div className="flex items-center justify-between gap-3 border-b border-white/10 px-4 py-3">
+              <button
+                type="button"
+                onClick={() => setMobileChatOpen((value) => !value)}
+                className="inline-flex items-center gap-2 text-sm text-white"
+              >
+                <MessageSquare className="h-4 w-4 text-[#ecd4ac]" />
+                {mobileChatOpen ? "Chat LIVE" : "Deschide chatul"}
+              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setMobileChatExpanded((value) => !value)}
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/[0.05] text-white"
+                >
+                  {mobileChatExpanded ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setMobileChatOpen(false)}
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/[0.05] text-white"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+            {chatPanel}
+          </div>
+        ) : null}
       </div>
     </div>
   );

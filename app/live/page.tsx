@@ -15,7 +15,7 @@ export default async function LivePage() {
   const isActive = liveSession ? isLiveSessionActive(liveSession) : false;
 
   return (
-    <section className="section-shell section-space pt-6 sm:pt-8">
+    <section className="section-shell py-4 sm:py-8 lg:py-10">
       <LivePageContent
         canAccess={hasAccess}
         isAdmin={isAdmin}

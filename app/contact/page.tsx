@@ -14,19 +14,22 @@ const contactItems = [
 export default function ContactPage() {
   return (
     <section className="section-shell section-space">
-      <FadeIn className="overflow-hidden rounded-[2.5rem] bg-[radial-gradient(circle_at_top_left,rgba(214,185,140,0.14),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01))] shadow-[0_40px_120px_rgba(0,0,0,0.3)]">
-        <div className="grid gap-0 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="border-b border-white/8 p-8 sm:p-10 lg:border-b-0 lg:border-r lg:p-14">
+      <FadeIn className="overflow-hidden rounded-[2.2rem] bg-[radial-gradient(circle_at_top_left,rgba(214,185,140,0.16),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01))] shadow-[0_40px_120px_rgba(0,0,0,0.3)]">
+        <div className="grid gap-0 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="border-b border-white/8 p-6 sm:p-10 lg:border-b-0 lg:border-r lg:p-14">
             <p className="text-xs uppercase tracking-[0.42em] text-[#d6b98c]">Contact</p>
-            <h1 className="mt-6 max-w-4xl text-5xl leading-[0.84] text-white sm:text-6xl lg:text-7xl">
-              Contact direct pentru cursuri, colaborari si sesiuni private.
+            <h1 className="mt-5 max-w-4xl text-4xl leading-[0.9] text-white sm:text-6xl lg:text-7xl">
+              Hai direct la conversatia care misca lucrurile.
             </h1>
-            <p className="mt-6 max-w-xl text-base leading-8 text-white/64 sm:text-lg">
-              Fara o pagina rece de contact. Aici intri rapid in discutie, alegi directia si continui
-              natural spre booking.
+            <p className="mt-5 max-w-xl text-sm leading-7 text-white/64 sm:text-lg sm:leading-8">
+              Alege canalul rapid, cere detalii pentru cursuri sau programeaza o discutie privata.
+              Totul este gandit sa ajungi la actiune in cateva secunde.
             </p>
+            <div className="mt-8 inline-flex rounded-full border border-[#d6b98c]/20 bg-[#d6b98c]/10 px-4 py-2 text-[11px] uppercase tracking-[0.34em] text-[#f3dfbf]">
+              Raspuns rapid
+            </div>
           </div>
-          <div className="grid gap-4 p-8 sm:grid-cols-3 sm:p-10 lg:p-14">
+          <div className="grid gap-4 p-6 sm:grid-cols-3 sm:p-10 lg:p-14">
             {contactItems.map((item) => (
               <Link
                 key={item.label}
@@ -36,15 +39,16 @@ export default function ContactPage() {
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#d6b98c]/10 text-accent">
                   <item.icon className="h-5 w-5" />
                 </div>
-                <p className="mt-10 text-[11px] uppercase tracking-[0.36em] text-white/42">{item.label}</p>
-                <p className="mt-3 text-2xl text-white">{item.value}</p>
+                <p className="mt-8 text-[11px] uppercase tracking-[0.36em] text-white/42">{item.label}</p>
+                <p className="mt-3 text-xl text-white sm:text-2xl">{item.value}</p>
+                <p className="mt-3 text-sm text-white/48">Deschide canalul direct si continua conversatia.</p>
               </Link>
             ))}
           </div>
         </div>
       </FadeIn>
 
-      <div className="mt-10" id="booking">
+      <div className="mt-8 sm:mt-10" id="booking">
         <BookingForm />
       </div>
     </section>

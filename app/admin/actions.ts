@@ -115,6 +115,46 @@ export async function deleteLiveSession(formData: FormData) {
   revalidatePath("/admin");
 }
 
+export async function updateLiveSessionSchedule(formData: FormData) {
+  await requireAdmin();
+
+  const id = String(formData.get("id") || "");
+  const title = String(formData.get("title") || "").trim();
+  const description = String(formData.get("description") || "").trim();
+  const mode = String(formData.get("mode") || "UPDATE");
+  const scheduledValue = String(formData.get("scheduledFor") || "").trim();
+  const scheduledFor = mode === "RESET" ? new Date() : new Date(scheduledValue);
+
+  if (!id) {
+    throw new Error("Missing live session id.");
+  }
+
+  if (!title) {
+    throw new Error("Title is required.");
+  }
+
+  if (!description) {
+    throw new Error("Description is required.");
+  }
+
+  if (Number.isNaN(scheduledFor.getTime())) {
+    throw new Error("Invalid scheduled date.");
+  }
+
+  await prisma.liveSession.update({
+    where: { id },
+    data: {
+      title,
+      description,
+      scheduledFor
+    }
+  });
+
+  revalidatePath("/");
+  revalidatePath("/live");
+  revalidatePath("/admin");
+}
+
 export async function updateSiteSettings(formData: FormData) {
   await requireAdmin();
 
