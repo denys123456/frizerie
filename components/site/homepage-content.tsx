@@ -26,7 +26,7 @@ function PalmaresDialog() {
             {palmaresHighlights.map((item) => (
               <div
                 key={item}
-                className="rounded-[1.5rem] border border-white/8 bg-white/[0.035] px-5 py-4 text-sm uppercase tracking-[0.16em] text-white/82 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]"
+                className="rounded-[1.5rem] border border-white/10 bg-white/[0.035] px-5 py-4 text-sm uppercase tracking-[0.16em] text-white/82 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]"
               >
                 {item}
               </div>
@@ -51,7 +51,7 @@ function PalmaresDialog() {
 
           <div className="mt-8 grid gap-4">
             {palmaresHighlights.map((item) => (
-              <div key={item} className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] px-5 py-4 text-white/84">
+              <div key={item} className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] px-5 py-4 text-white/84">
                 {item}
               </div>
             ))}
@@ -130,7 +130,7 @@ export function HomepageContent() {
       </section>
 
       <section className="section-shell section-space pt-0">
-        <FadeIn className="overflow-hidden rounded-[2.6rem] border border-white/8 bg-[radial-gradient(circle_at_top_left,rgba(214,185,140,0.14),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.022),rgba(255,255,255,0.008))] px-6 py-8 shadow-[0_34px_110px_rgba(0,0,0,0.26)] sm:px-8 sm:py-10 lg:px-10">
+        <FadeIn className="overflow-hidden rounded-[2.6rem] border border-white/10 bg-[radial-gradient(circle_at_top_left,rgba(214,185,140,0.14),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.022),rgba(255,255,255,0.008))] px-6 py-8 shadow-[0_34px_110px_rgba(0,0,0,0.26)] sm:px-8 sm:py-10 lg:px-10">
           <div className="mb-8 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <span className="section-kicker">About Me</span>

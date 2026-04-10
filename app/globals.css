@@ -188,7 +188,7 @@ body {
   }
 
   .panel-edge {
-    @apply border border-white/8;
+    @apply border border-white/10;
     background:
       radial-gradient(circle at top, rgba(214, 185, 140, 0.08), transparent 28%),
       linear-gradient(180deg, rgba(255, 255, 255, 0.024), rgba(255, 255, 255, 0.008));

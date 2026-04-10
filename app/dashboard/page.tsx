@@ -34,9 +34,9 @@ export default async function DashboardPage() {
 
   return (
     <section className="section-shell section-space">
-      <div className="overflow-hidden rounded-[2.5rem] border border-white/8 bg-[radial-gradient(circle_at_top_left,rgba(214,185,140,0.14),transparent_26%),linear-gradient(180deg,rgba(255,255,255,0.035),rgba(255,255,255,0.012))] shadow-luxury">
+      <div className="overflow-hidden rounded-[2.5rem] border border-white/10 bg-[radial-gradient(circle_at_top_left,rgba(214,185,140,0.14),transparent_26%),linear-gradient(180deg,rgba(255,255,255,0.035),rgba(255,255,255,0.012))] shadow-luxury">
         <div className="grid gap-0 xl:grid-cols-[1.02fr_0.98fr]">
-          <div className="border-b border-white/8 p-8 sm:p-10 xl:border-b-0 xl:border-r xl:p-14">
+          <div className="border-b border-white/10 p-8 sm:p-10 xl:border-b-0 xl:border-r xl:p-14">
             <p className="text-xs uppercase tracking-[0.42em] text-[#d6b98c]">Dashboard</p>
             <h1 className="mt-6 max-w-4xl text-5xl leading-[0.84] text-white sm:text-6xl lg:text-7xl">
               Bine ai revenit, {session.user.name || "membru"}.
@@ -56,15 +56,15 @@ export default async function DashboardPage() {
           </div>
 
           <div className="grid gap-4 p-8 sm:grid-cols-3 sm:p-10 xl:p-14">
-            <div className="rounded-[1.7rem] border border-white/8 bg-white/[0.03] p-5">
+            <div className="rounded-[1.7rem] border border-white/10 bg-white/[0.03] p-5">
               <p className="dashboard-label">Subscription</p>
               <p className="mt-3 text-3xl text-white">{activeSubscription ? activeSubscription.status : "Inactive"}</p>
             </div>
-            <div className="rounded-[1.7rem] border border-white/8 bg-white/[0.03] p-5">
+            <div className="rounded-[1.7rem] border border-white/10 bg-white/[0.03] p-5">
               <p className="dashboard-label">Purchases</p>
               <p className="mt-3 text-3xl text-white">{data.purchases.length}</p>
             </div>
-            <div className="rounded-[1.7rem] border border-white/8 bg-white/[0.03] p-5">
+            <div className="rounded-[1.7rem] border border-white/10 bg-white/[0.03] p-5">
               <p className="dashboard-label">Bookings</p>
               <p className="mt-3 text-3xl text-white">{data.bookings.length}</p>
             </div>

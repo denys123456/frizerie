@@ -569,7 +569,7 @@ export function AdminDashboard({
             <div className="grid gap-3 p-4 sm:p-6">
               {users.length ? (
                 users.map((user) => (
-                  <div key={user.id} className="rounded-[1.35rem] border border-white/8 bg-white/[0.03] p-4">
+                  <div key={user.id} className="rounded-[1.35rem] border border-white/10 bg-white/[0.03] p-4">
                     <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                       <div className="min-w-0">
                         <p className="truncate text-white">{user.email}</p>

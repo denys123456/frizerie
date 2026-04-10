@@ -9,7 +9,7 @@ export function BookingForm() {
 
   return (
     <form
-      className="space-y-6 rounded-[2rem] border border-white/8 bg-[radial-gradient(circle_at_top,rgba(214,185,140,0.1),transparent_26%),linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.012))] p-8 shadow-luxury"
+      className="space-y-6 rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(214,185,140,0.1),transparent_26%),linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.012))] p-8 shadow-luxury"
       onSubmit={async (event) => {
         event.preventDefault();
         const form = event.currentTarget;

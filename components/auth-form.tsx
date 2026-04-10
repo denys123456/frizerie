@@ -141,7 +141,7 @@ export function AuthForm({ mode }: { mode: "signin" | "register" }) {
           </Button>
         </form>
 
-        <div className="flex items-center justify-between gap-3 border-t border-white/8 pt-4 text-sm">
+        <div className="flex items-center justify-between gap-3 border-t border-white/10 pt-4 text-sm">
           <Link href={alternateHref} className="text-white/60 transition hover:text-white">
             {alternateLabel}
           </Link>

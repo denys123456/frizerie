@@ -30,7 +30,7 @@ export function ReviewsList({
           <StaggerItem key={review.id}>
             <FadeIn
               delay={index * 0.04}
-              className="group relative h-full overflow-hidden rounded-[2rem] border border-white/8 bg-[radial-gradient(circle_at_top_right,rgba(214,185,140,0.12),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.026),rgba(255,255,255,0.008))] p-7 shadow-[0_30px_90px_rgba(0,0,0,0.22)] transition duration-500 hover:-translate-y-1 sm:p-8"
+              className="group relative h-full overflow-hidden rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_top_right,rgba(214,185,140,0.12),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.026),rgba(255,255,255,0.008))] p-7 shadow-[0_30px_90px_rgba(0,0,0,0.22)] transition duration-500 hover:-translate-y-1 sm:p-8"
             >
               <div className="absolute right-0 top-0 h-32 w-32 rounded-full bg-[#d6b98c]/[0.08] blur-3xl" />
               <div className="absolute left-7 top-7 text-[4.5rem] font-display leading-none text-white/[0.05] sm:text-[5.5rem]">

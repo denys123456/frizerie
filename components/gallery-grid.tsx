@@ -39,7 +39,7 @@ export function GalleryGrid({
         return (
           <Dialog.Root key={item.id}>
             <Dialog.Trigger asChild>
-              <button className={`group relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-white/8 bg-black text-left shadow-panel transition duration-500 hover:-translate-y-1.5 hover:shadow-luxury ${spanClass}`}>
+              <button className={`group relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-black text-left shadow-panel transition duration-500 hover:-translate-y-1.5 hover:shadow-luxury ${spanClass}`}>
                 <div className="relative h-full min-h-[18rem] overflow-hidden">
                   <Image
                     src={item.imageUrl}

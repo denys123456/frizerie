@@ -16,7 +16,7 @@ export default function ContactPage() {
     <section className="section-shell section-space">
       <FadeIn className="overflow-hidden rounded-[2.2rem] bg-[radial-gradient(circle_at_top_left,rgba(214,185,140,0.16),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01))] shadow-[0_40px_120px_rgba(0,0,0,0.3)]">
         <div className="grid gap-0 lg:grid-cols-[0.95fr_1.05fr]">
-          <div className="border-b border-white/8 p-6 sm:p-10 lg:border-b-0 lg:border-r lg:p-14">
+          <div className="border-b border-white/10 p-6 sm:p-10 lg:border-b-0 lg:border-r lg:p-14">
             <p className="text-xs uppercase tracking-[0.42em] text-[#d6b98c]">Contact</p>
             <h1 className="mt-5 max-w-4xl text-4xl leading-[0.9] text-white sm:text-6xl lg:text-7xl">
               Hai direct la conversatia care misca lucrurile.

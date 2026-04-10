@@ -11,7 +11,7 @@ import { brandImages } from "@/lib/data";
 export function CoursesPageContent() {
   return (
     <section className="section-shell section-space">
-      <FadeIn className="overflow-hidden rounded-[2.8rem] border border-white/8 bg-[radial-gradient(circle_at_top_left,rgba(214,185,140,0.16),transparent_26%),linear-gradient(180deg,rgba(255,255,255,0.035),rgba(255,255,255,0.012))] shadow-luxury">
+      <FadeIn className="overflow-hidden rounded-[2.8rem] border border-white/10 bg-[radial-gradient(circle_at_top_left,rgba(214,185,140,0.16),transparent_26%),linear-gradient(180deg,rgba(255,255,255,0.035),rgba(255,255,255,0.012))] shadow-luxury">
         <div className="grid gap-0 xl:grid-cols-[1.1fr_0.9fr]">
           <div className="p-8 sm:p-10 lg:p-14">
             <p className="text-xs uppercase tracking-[0.42em] text-[#d6b98c]">Cursuri</p>
@@ -19,34 +19,34 @@ export function CoursesPageContent() {
               Programe premium construite pentru progres clar, nu pentru impresie generica.
             </h1>
             <div className="mt-10 grid max-w-2xl gap-4 sm:grid-cols-3">
-              <div className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-5">
+              <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-5">
                 <p className="dashboard-label">Experienta</p>
                 <p className="mt-3 text-2xl text-white">10+ ani</p>
               </div>
-              <div className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-5">
+              <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-5">
                 <p className="dashboard-label">Cursanti</p>
                 <p className="mt-3 text-2xl text-white">300+</p>
               </div>
-              <div className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-5">
+              <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-5">
                 <p className="dashboard-label">Format</p>
                 <p className="mt-3 text-2xl text-white">Fizic + LIVE</p>
               </div>
             </div>
 
             <div className="mt-10 grid max-w-3xl gap-3 sm:grid-cols-3">
-              <div className="rounded-[1.35rem] border border-white/8 bg-white/[0.025] px-4 py-4 text-sm text-white/66">
+              <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.025] px-4 py-4 text-sm text-white/66">
                 <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/[0.05] text-[#d6b98c]">
                   <GraduationCap className="h-4 w-4" />
                 </div>
                 Baza corecta pentru cei care pornesc serios.
               </div>
-              <div className="rounded-[1.35rem] border border-white/8 bg-white/[0.025] px-4 py-4 text-sm text-white/66">
+              <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.025] px-4 py-4 text-sm text-white/66">
                 <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/[0.05] text-[#d6b98c]">
                   <ScissorsLineDashed className="h-4 w-4" />
                 </div>
                 Corectii directe si progres rapid in 1 la 1.
               </div>
-              <div className="rounded-[1.35rem] border border-white/8 bg-white/[0.025] px-4 py-4 text-sm text-white/66">
+              <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.025] px-4 py-4 text-sm text-white/66">
                 <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/[0.05] text-[#d6b98c]">
                   <Award className="h-4 w-4" />
                 </div>

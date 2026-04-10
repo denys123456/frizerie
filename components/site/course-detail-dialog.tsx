@@ -125,7 +125,7 @@ export function CourseDetailDialog({
 
               <div className="mt-8 grid gap-5 md:grid-cols-2">
                 {course.include?.length ? (
-                  <div className="rounded-[1.8rem] border border-white/8 bg-white/[0.025] p-5">
+                  <div className="rounded-[1.8rem] border border-white/10 bg-white/[0.025] p-5">
                     <p className="text-xs uppercase tracking-[0.35em] text-[#d6b98c]">{course.includeTitle}</p>
                     <div className="mt-4 space-y-3">
                       {course.include.map((item) => (
@@ -138,7 +138,7 @@ export function CourseDetailDialog({
                 ) : null}
 
                 {course.learn?.length ? (
-                  <div className="rounded-[1.8rem] border border-white/8 bg-white/[0.025] p-5">
+                  <div className="rounded-[1.8rem] border border-white/10 bg-white/[0.025] p-5">
                     <p className="text-xs uppercase tracking-[0.35em] text-[#d6b98c]">{course.learnTitle}</p>
                     <div className="mt-4 space-y-3">
                       {course.learn.map((item) => (
